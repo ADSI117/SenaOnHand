@@ -15,7 +15,7 @@ class Publicacion extends Model {
 
 
     public function EstadoPublicacion() {
-        return $this->belongsTo('App\EstadosPublicacione','estado_id', 'id');
+        return $this->belongsTo('App\EstadoPublicacion','estado_id', 'id');
     }
 
     public function Subcategoria() {
