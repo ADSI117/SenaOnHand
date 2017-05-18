@@ -13,7 +13,7 @@ class Calificacion extends Model {
     protected $fillable = ['id', 'publicacion_id', 'user_id', 'puntaje'];
 
 
-    public function Publicacion() {
+    public function publicacion() {
         return $this->belongsTo('App\Publicacion','publicacion_id', 'id');
     }
 

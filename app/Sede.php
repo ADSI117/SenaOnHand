@@ -14,9 +14,12 @@ class Sede extends Model {
     protected $fillable = ['id', 'centro_id', 'acronimo', 'descripcion'];
 
 
-    public function Centro() {
+    public function centro() {
         return $this->belongsTo('App\Centro','centro_id', 'id');
     }
 
+    public function scopeSearch($query,$descripcion) {
+        return $query->where('descripcion','LIKE', "%$descripcion%");
+    }
 
 }

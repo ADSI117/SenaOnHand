@@ -14,11 +14,11 @@ class Publicacion extends Model {
     protected $fillable = ['id', 'user_id', 'subcategoria_id', 'estado_id', 'titulo', 'contenido', 'url_video', 'url_archivo'];
 
 
-    public function EstadoPublicacion() {
+    public function estado_publicacion() {
         return $this->belongsTo('App\EstadoPublicacion','estado_id', 'id');
     }
 
-    public function Subcategoria() {
+    public function subcategoria() {
         return $this->belongsTo('App\Subcategoria','subcategoria_id', 'id');
     }
 
@@ -30,15 +30,15 @@ class Publicacion extends Model {
         return $this->belongsToMany('App\User','tb_calificaciones', 'publicacion_id', 'user_id');
     }
 
-    public function Calificaciones() {
+    public function calificaciones() {
         return $this->hasMany('App\Calificacion','publicacion_id', 'id');
     }
 
-    public function Comentarios() {
+    public function comentarios() {
         return $this->hasMany('App\Comentario','publicacion_id', 'id');
     }
 
-    public function Tags() {
+    public function tags() {
         return $this->belongsToMany('App\Tag');
     }
 

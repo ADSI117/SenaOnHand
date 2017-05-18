@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TbRole extends Model {
+class Rol extends Model {
 
     /**
      * Generated

@@ -14,7 +14,7 @@ class Grupo extends Model {
     protected $fillable = ['id', 'programa_id', 'user_id', 'nombre', 'cantidad_est'];
 
 
-    public function Programa() {
+    public function programa() {
         return $this->belongsTo('App\Programa','programa_id', 'id');
     }
 
@@ -22,7 +22,7 @@ class Grupo extends Model {
         return $this->belongsTo('App\User','user_id', 'id');
     }
 
-    public function Salas() {
+    public function salas() {
         return $this->hasMany('App\Sala','grupo_id', 'id');
     }
 

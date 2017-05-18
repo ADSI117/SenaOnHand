@@ -14,7 +14,7 @@ class Mensaje extends Model {
     protected $fillable = ['id', 'user_id', 'sala_id', 'mensaje'];
 
 
-    public function Sala() {
+    public function sala() {
         return $this->belongsTo('App\Sala','sala_id', 'id');
     }
 

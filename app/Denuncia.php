@@ -13,19 +13,19 @@ class Denuncia extends Model {
     protected $fillable = ['id', 'user_id', 'publicacion_id', 'comentario_id', 'tipo_id', 'estado_id', 'comentario'];
 
 
-    public function Comentario() {
+    public function comentario() {
         return $this->belongsTo('App\Comentario', 'comentario_id', 'id');
     }
 
-    public function EstadosDenuncium() {
+    public function estado_denuncia() {
         return $this->belongsTo('App\EstadoDenuncia','estado_id', 'id');
     }
 
-    public function Publicacion() {
+    public function publicacion() {
         return $this->belongsTo('App\Publicacion','publicacion_id', 'id');
     }
 
-    public function TipoDenuncia() {
+    public function tipo_denuncia() {
         return $this->belongsTo('App\TipoDenuncia','tipo_id', 'id');
     }
 

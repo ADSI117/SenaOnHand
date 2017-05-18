@@ -13,9 +13,11 @@ class Regional extends Model {
     protected $fillable = ['id', 'descripcion'];
 
 
-    public function Centros() {
+    public function centros() {
         return $this->hasMany('App\Centro','regional_id', 'id');
     }
 
-
+    public function scopeSearch($query,$descripcion) {
+        return $query->where('descripcion','LIKE', "%$descripcion%");
+    }
 }
