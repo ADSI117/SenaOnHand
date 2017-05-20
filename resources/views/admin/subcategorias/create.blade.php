@@ -1,6 +1,6 @@
 @extends('admin.template.main')
-@section('title','Crear Sede')
-@section('nombre','Crear Sede')
+@section('title','Crear Subcategoria')
+@section('nombre','Crear Subcategoria')
  
 
 @section('content')
@@ -18,16 +18,13 @@
 	</div>
 @endif
 
-{!!Form::open(['route'=>'sedes.store','method'=>'POST'])!!}
+{!!Form::open(['route'=>'subcategorias.store','method'=>'POST'])!!}
 <div class="form-group">
-      {!!Form::label('Centros')!!}
-      {!!Form::select('centro_id', $centros, null,['class' => 'form-control selector', 'required'])!!}
+      {!!Form::label('Categoria')!!}
+      {!!Form::select('categoria_id', $categorias, null,['class' => 'form-control selector', 'required'])!!}
  </div>
 
-<div class="form-group">
-	{!!Form::label('acronimo','Acrónimo')!!}
-	{!! Form::text('acronimo',null,['placeholder'=>'acrónimo','required'])!!}
-</div>
+
 <div class="form-group">
 	{!!Form::label('descripcion','Sede')!!}
 	{!! Form::text('descripcion',null,['placeholder'=>'sede','required'])!!}
@@ -47,7 +44,7 @@
       // disable_search_threshold: 10,
       search_contains: true,
       no_results_text: 'No hay resultados',
-      placeholder_text_single: 'Seleccion una opcion'
+      placeholder_text_single: 'Seleccione una opción'
     });
   </script>
 @endsection

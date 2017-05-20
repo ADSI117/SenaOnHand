@@ -1,6 +1,6 @@
 @extends('admin.template.main')
-@section('title','Editar Sede' . $sede->descripcion)
-@section('nombre','Editar Sede' . $sede->descripcion)
+@section('title','Editar Subcategoria' . $subcategoria->descripcion)
+@section('nombre','Editar Subcategoria' . $subcategoria->descripcion)
  
 
 @section('content')
@@ -17,18 +17,15 @@
 	</div>
 @endif
 
-{!!Form::open(['route'=>['sedes.update', $sede],'method'=>'PUT'])!!}
+{!!Form::open(['route'=>['subcategorias.update', $subcategoria],'method'=>'PUT'])!!}
 <div class="form-group">
-	{!!form::label('Centros')!!}
-	{!!form::select('centro_id', $centros, $sede->centro->id,['class' => 'form-control selector', 'required'])!!}
+	{!!form::label('Categoria')!!}
+	{!!form::select('categoria_id', $categorias, $subcategoria->categoria->id,['class' => 'form-control selector', 'required'])!!}
 </div>
-<div class="">
-	{!!Form::label('acronimo','Acrónimoa')!!}
-	{!! Form::text('acronimo',$sede->acronimo,['placeholder'=>'acrónimo','required'])!!}
-</div>
+
 <div class="">
 	{!!Form::label('descripcion','Sede')!!}
-	{!! Form::text('descripcion',$sede->descripcion,['placeholder'=>'subcategoria','required'])!!}
+	{!! Form::text('descripcion',$subcategoria->descripcion,['placeholder'=>'subcategoria','required'])!!}
 </div>
 <div class="">
 {!! Form::submit('Editar',['class'=>''])!!}

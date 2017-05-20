@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Categoria;
+use App\Http\Requests\RequestCategoria;
 
 class CategoriasController extends Controller
 {
@@ -34,7 +35,7 @@ class CategoriasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestCategoria $request)
     {
         $categorias = new Categoria($request->all());
         $categorias->save();
@@ -73,7 +74,7 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestCategoria $request, $id)
     {
         $categoria = Categoria::find($id);
         $categoria->descripcion = $request->descripcion;

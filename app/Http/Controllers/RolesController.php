@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Rol;
+use App\Http\Requests\RequestRol;
 
 class RolesController extends Controller
 {
@@ -34,7 +35,7 @@ class RolesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestRol $request)
     {
         $roles = new Rol($request->all());
         $roles->save();
@@ -73,7 +74,7 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestRol $request, $id)
     {
         $rol = Rol::find($id);
         $rol->descripcion = $request->descripcion;

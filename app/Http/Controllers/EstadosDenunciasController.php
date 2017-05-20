@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\EstadoDenuncia;
+use App\Http\Requests\RequestDenuncia;
 
 class EstadosDenunciasController extends Controller
 {
@@ -34,7 +35,7 @@ class EstadosDenunciasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestDenuncia $request)
     {
         $estados_denuncias = new EstadoDenuncia($request->all());
         $estados_denuncias->save();
@@ -73,7 +74,7 @@ class EstadosDenunciasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestDenuncia $request, $id)
     {
         $estado_denuncia = EstadoDenuncia::find($id);
         $estado_denuncia->descripcion = $request->descripcion;

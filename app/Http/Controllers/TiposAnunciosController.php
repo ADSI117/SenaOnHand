@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TipoAnuncio;
+use App\Http\Requests\RequestTipoAnuncio;
 
 class TiposAnunciosController extends Controller
 {
@@ -34,7 +35,7 @@ class TiposAnunciosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestTipoAnuncio $request)
     {
         $tipos_anuncios = new TipoAnuncio($request->all());
         $tipos_anuncios->save();
@@ -73,7 +74,7 @@ class TiposAnunciosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestTipoAnuncio $request, $id)
     {
         $tipo_anuncio = TipoAnuncio::find($id);
         $tipo_anuncio->nombre = $request->nombre;

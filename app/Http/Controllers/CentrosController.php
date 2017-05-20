@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Centro;
 use App\Regional;
+use App\Http\Requests\RequestCentro;
 
 class CentrosController extends Controller
 {
@@ -39,7 +40,7 @@ class CentrosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestCentro $request)
     {
         $centros = new Centro($request->all());
         $centros->save();
@@ -79,7 +80,7 @@ class CentrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestCentro $request, $id)
     {
         $centro = Centro::find($id);
         $centro->acronimo = $request->acronimo;
