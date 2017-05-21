@@ -1,7 +1,7 @@
- @extends('admin.template.main')
+@extends('admin.template.main')
 @section('title','Listar Categorias')
 @section('nombre','Listar Categorias')
- 
+
 
 @section('content')
 
@@ -27,15 +27,15 @@
 		<tr>
 			<td>{{$categoria->id}}</td>
 			<td>{{$categoria->descripcion}}</td>
-			
+
 			<td>
 				<a href="{{route('categorias.edit',$categoria->id)}}" class="">editar</a>
 			</td>
 			<td>
-				
+
 
 				{{ Form::open(['method' => 'DELETE', 'route' => ['categorias.destroy', $categoria->id]]) }}
-                     {{ Form::submit('X', ['class' => 'btn btn-danger']) }} 
+                     {{ Form::submit('X', ['class' => 'btn btn-danger']) }}
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                 {{ Form::close() }}
 			</td>

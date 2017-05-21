@@ -1,7 +1,7 @@
 @extends('admin.template.main')
 @section('title','Crear Centro')
 @section('nombre','Crear Centro')
- 
+
 
 @section('content')
 
@@ -9,11 +9,11 @@
 <div class="">
 <ul>
 	@foreach($errors->all() as $error)
-	
+
 		<li> {{$error}}</li>
-	
+
 	@endforeach
-	
+
 	</ul>
 	</div>
 @endif
@@ -52,20 +52,3 @@
     });
   </script>
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
