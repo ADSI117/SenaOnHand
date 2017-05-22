@@ -14,7 +14,7 @@ class CategoriasController extends Controller
      */
     public function index(Request $request)
     {
-        $categorias = Categoria::search($request->descripcion)->orderBy('id','ASC')->paginate(10);
+        $categorias = Categoria::search($request->descripcion)->orderBy('id','ASC')->paginate(5);
         return view('admin.categorias.index')->with('categorias',$categorias);
     }
 
@@ -39,7 +39,7 @@ class CategoriasController extends Controller
         $categorias = new Categoria($request->all());
         $categorias->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('categorias.index');
+        return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -50,7 +50,7 @@ class CategoriasController extends Controller
      */
     public function show($id)
     {
-        //
+      return 'Equivocacion!';
     }
 
     /**
@@ -61,7 +61,7 @@ class CategoriasController extends Controller
      */
     public function edit($id)
     {
-         $categoria= Categoria::find($id);
+         $categoria = Categoria::find($id);
         // DD($user);
         return view('admin.categorias.edit')->with('categoria',$categoria);
     }
@@ -77,14 +77,12 @@ class CategoriasController extends Controller
     {
         $categoria = Categoria::find($id);
         $categoria->descripcion = $request->descripcion;
-        
-        if ($categoria->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
-        }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
-        }
 
-        return redirect()->route('categorias.index');
+        if ($categoria->save()){
+           return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+        }else{
+           return " { estado: '0', mensaje: 'Registro no pudo ser editado' } ";
+        }
     }
 
     /**
