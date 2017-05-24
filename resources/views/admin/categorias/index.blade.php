@@ -95,58 +95,10 @@
 	    <button type="button" class="mdl-snackbar__action"></button>
 	</div>
 
+@endsection
 
-	<script>
-		const dialog = document.querySelector('dialog');
-		const showDialogButton = document.querySelector('.show-dialog');
-		const formAccion = document.querySelector('#form-accion');
-		const notification = document.querySelector('.mdl-js-snackbar');
-
-
-		if (! dialog.showModal) {
-			dialogPolyfill.registerDialog(dialog);
-		}
-
-		function showModalAccion(dataset) {
-			formAccion.action = dataset.action;
-			formAccion.dataset.method = dataset.method;
-			if (dataset.method == "PUT") {
-				formAccion.btnSubmit.textContent = "Guardar";
-			} else {
-				formAccion.btnSubmit.textContent = "Registrar";
-			}
-			dialog.showModal();
-		}
-
-		dialog.querySelector('.close').addEventListener('click', function() {
-			dialog.close();
-		});
-
-		formAccion.addEventListener('submit', function(ev) {
-			ev.preventDefault();
-			let form = ev.target;
-			let datos = "_token="+form._token.value;
-			if (form.dataset.method == "PUT") {
-				datos += "&_method=PUT";
-			}
-			datos += "&descripcion="+form.descripcion.value;
-			let xhttp = new XMLHttpRequest();
-
-		  xhttp.onreadystatechange = function() {
-		    if (this.readyState == 4 && this.status == 200) {
-					let response = JSON.parse(this.responseText);
-					notification.MaterialSnackbar.showSnackbar({
-					    message: response.mensaje
-					});
-					window.location.reload();
-		    }
-		  };
-
-		  xhttp.open("POST", form.action, true);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		  xhttp.send(datos);
-		});
-
-
-	</script>
+@section('js')
+		<script src="https://unpkg.com/vue@2.3.3" charset="utf-8"></script>
+		<script src="{{asset('js/AjaxRequest.js')}}"></script>
+		<script src="{{asset('js/categorias.js')}}" charset="utf-8"></script>
 @endsection

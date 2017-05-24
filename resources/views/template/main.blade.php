@@ -44,7 +44,8 @@ integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 crossorigin="anonymous"></script>
 
 <script src="{{asset('plugins/chosen/chosen.jquery.js')}}"></script>
-
+<script src="https://unpkg.com/vue@2.3.3" charset="utf-8"></script>
+@yield('js')
 {{-- <script>
 $('.selector').chosen({
 search_contains: true,
@@ -52,7 +53,7 @@ no_results_text: 'No hay resultados',
 placeholder_text_single: 'Seleccione una opcion'
 });
 </script> --}}
-@yield('js')
+
 
 </body>
 </html>
