@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Centro;
 use App\Sede;
 use App\Http\Requests\RequestSede;
+use Illuminate\Support\Facades\Cache;
 
 class SedesController extends Controller
 {
@@ -14,6 +15,17 @@ class SedesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+
+     /* //pasamos en un array los middlewares que queramos   
+     
+
+    $this->middleware('auth',['except'=>['show']]); 
+    // luego le pasamos el parametro del middleware que creamos para que sea dinamico que seria el nombre del rol de la base de datos
+    $this->middleware('roles:admin',['except'=>['edit','update','show']]); // hacemos un execept para que el usuario pueda modificar sus datos
+    */
+    }
+    
     public function index(Request $request)
     {
         $sedes = Sede::search($request->descripcion)->orderBy('id','ASC')->paginate(10);
