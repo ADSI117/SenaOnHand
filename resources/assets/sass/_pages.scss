@@ -1,43 +1,14 @@
 * {
-  font-family: $f-Comfortaa;
+  font-family: $confa;
 }
-.title-content {
-  text-align: left;
-  margin-bottom: 20px;
-  font-family: $f-Comfortaa;
-  font-weight: bold;
+html, body {
+  overflow-x: hidden;
+}
+.title-header {
   text-transform: uppercase;
 }
 .btn-float {
-  position: fixed;
+  position: fixed !important;
   bottom: 20px;
   right: 20px;
-}
-.mdl-dialog--full-width {
-  width: 50%;
-  max-width: 50%
-}
-.form-search {
-  margin-top: 14px;
-  margin-bottom: 0px;
-}
-.yeild-titulo-content {
-  border-bottom: 1px solid $color-claro;
-  margin-bottom: 20px;
-  clear: both;
-  overflow: hidden;
-}
-.mdl-data-table thead tr th {
-  @extend .ct-oscuro;
-}
-.pagination {
-  margin: 15px;
-  padding: 0px;
-  list-style-type: none;
-  li {
-    display: inline-block;
-    a {
-      text-decoration: none;
-    }
-  }
 }

@@ -1,12 +1,4 @@
-const dialog = document.querySelector('dialog');
-const showDialogButton = document.querySelector('.show-dialog');
 const formAccion = document.querySelector('#form-accion');
-const notification = document.querySelector('.mdl-js-snackbar');
-
-
-if (! dialog.showModal) {
-  dialogPolyfill.registerDialog(dialog);
-}
 
 function showModalAccion(dataset) {
   formAccion.action = dataset.action;
@@ -16,12 +8,7 @@ function showModalAccion(dataset) {
   } else {
     formAccion.btnSubmit.textContent = "Registrar";
   }
-  dialog.showModal();
 }
-
-dialog.querySelector('.close').addEventListener('click', function() {
-  dialog.close();
-});
 
 formAccion.addEventListener('submit', function(ev) {
   ev.preventDefault();
@@ -35,15 +22,9 @@ formAccion.addEventListener('submit', function(ev) {
   do_send(form.action,"POST",datos)
   .then(JSON.parse)
   .then( res => {
-    notification.MaterialSnackbar.showSnackbar({
-        message: res.mensaje
-    });
     console.log(res);
   })
   .catch( err => {
-    notification.MaterialSnackbar.showSnackbar({
-        message: err.mensaje
-    });
     console.log(err);
   })
 });

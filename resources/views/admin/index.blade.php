@@ -1,12 +1,18 @@
 @extends('template/main')
 
+@section('title','index')
 
-@section('navbar')
-  @include('template.navbar')
+@section('hNavbar')
+  @include('template.h-navbar')
 @endsection
 
+@section('vNavbar')
+  @include('template.v-navbar')
+@endsection
+
+@section('title-content', 'Soy home admin')
 
 
 @section('content')
-  <h1>Soy admin</h1>
+
 @endsection

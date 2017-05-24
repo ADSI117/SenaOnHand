@@ -1,45 +1,3 @@
-.btn-danger-flat {
-  color: #EF5350; }
-
-.btn-warning-flat {
-  color: #FFCA28; }
-
-.btn-danger {
-  background-color: #EF5350; }
-
-.btn-warning {
-  background-color: #FFCA28; }
-
-.cb-primario {
-  background-color: #009688; }
-
-.cb-segundario {
-  background-color: #9CCC65; }
-
-.cb-terciario {
-  background-color: #9CCC65; }
-
-.cb-oscuro {
-  background-color: #333; }
-
-.cb-claro {
-  background-color: #eee; }
-
-.ct-primario {
-  color: #009688; }
-
-.ct-segundario {
-  color: #9CCC65; }
-
-.ct-terciario {
-  color: #FFC107; }
-
-.ct-oscuro, .mdl-data-table thead tr th {
-  color: #333; }
-
-.ct-claro {
-  color: #eee; }
-
 .full-width {
   width: 100%;
   max-width: 100%; }
@@ -71,39 +29,15 @@
 * {
   font-family: "Comfortaa", cursive; }
 
-.title-content {
-  text-align: left;
-  margin-bottom: 20px;
-  font-family: "Comfortaa", cursive;
-  font-weight: bold;
+html, body {
+  overflow-x: hidden; }
+
+.title-header {
   text-transform: uppercase; }
 
 .btn-float {
-  position: fixed;
+  position: fixed !important;
   bottom: 20px;
   right: 20px; }
-
-.mdl-dialog--full-width {
-  width: 50%;
-  max-width: 50%; }
-
-.form-search {
-  margin-top: 14px;
-  margin-bottom: 0px; }
-
-.yeild-titulo-content {
-  border-bottom: 1px solid #eee;
-  margin-bottom: 20px;
-  clear: both;
-  overflow: hidden; }
-
-.pagination {
-  margin: 15px;
-  padding: 0px;
-  list-style-type: none; }
-  .pagination li {
-    display: inline-block; }
-    .pagination li a {
-      text-decoration: none; }
 
 /*# sourceMappingURL=generales.css.map */
