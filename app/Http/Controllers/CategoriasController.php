@@ -79,7 +79,7 @@ class CategoriasController extends Controller
         $categoria->descripcion = $request->descripcion;
 
         if ($categoria->save()){
-           return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+           return '{ "estado": 1, "mensaje": "Registro actualizado", "ref": "' . $id . '"}';
         }else{
            return " { estado: '0', mensaje: 'Registro no pudo ser editado' } ";
         }

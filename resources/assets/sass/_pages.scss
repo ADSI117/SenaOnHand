@@ -4,6 +4,11 @@
 html, body {
   overflow-x: hidden;
 }
+.table {
+  th, td {
+    vertical-align: middle !important;
+  }
+}
 .title-header {
   text-transform: uppercase;
 }
@@ -11,4 +16,9 @@ html, body {
   position: fixed !important;
   bottom: 20px;
   right: 20px;
+}
+.hnav {
+  position: fixed;
+  max-height: 100vh;
+  overflow-y: scroll;
 }

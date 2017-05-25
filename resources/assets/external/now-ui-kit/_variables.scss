@@ -63,10 +63,10 @@ $warning-states-color:       darken($warning-color, 5%) !default;
 $warning-color-opacity:      rgba(255, 178, 54, .3) !default;
 $warning-color-alert:        rgba(255, 178, 54, .8) !default;
 
-$danger-color:               #F44336 !default;
+$danger-color:               #FF3636 !default;
 $danger-states-color:        darken($danger-color, 5%) !default;
-$danger-color-opacity:       rgba(244, 67, 54, .3) !default;
-$danger-color-alert:         rgba(244, 67, 54, .8) !default;
+$danger-color-opacity:       rgba(255, 54, 54, .3) !default;
+$danger-color-alert:         rgba(255, 54, 54, .8) !default;
 
 /*     brand Colors              */
 $brand-primary:              $primary-color !default;

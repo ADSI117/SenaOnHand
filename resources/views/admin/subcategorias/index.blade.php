@@ -1,59 +1,120 @@
-
-
- @extends('admin.template.main')
-@section('title','Listar Categorias')
-@section('nombre','Listar Categorias')
- 
+{{-- llama main blade --}}
+@extends('template.main')
+{{-- seteamos el titulo --}}
+@section('title','Subcategorias')
+{{-- Ponemos el vertical nav  --}}
+@section('vNavbar')
+  @include('template.v-navbar')
+@endsection
+{{-- horizontal nav --}}
+@section('hNavbar')
+  @include('template.h-navbar')
+@endsection
+{{-- titulo del contenido --}}
+@section('title-content', 'Subcategorias')
+{{-- poner el buscar al lado del titulo --}}
+@section('search-content')
+  <!-- BUSCADOR -->
+  	{!!Form::open(['route'=>'subcategorias.index','method'=>'GET'])!!}
+  	<div class="input-group">
+  			{!! Form::text('descripcion',null,
+          ['placeholder'=>'Buscar...', 'class' => 'form-control'])!!}
+          <span class="input-group-addon">
+            <i class="fa fa-search"></i>
+        </span>
+  	</div>
+  	{!!Form::close() !!}
+  <!--  FIN BUSCADOR -->
+@endsection
 
 @section('content')
 
+<div class='btn-float'>
+  <button data-toggle="modal" data-target="#modal-control"
+      type="button"
+      data-action="{{route('subcategorias.store')}}"
+      data-method="POST"
+      onclick="showModalAccion(this.dataset)"
+      class="btn btn-danger btn-icon btn-round">
+    <i class="fa fa-plus"></i>
+  </button>
+</div>
 
-<a href="{{route('subcategorias.create')}}" class="">Registrar Subcategoria</a><hr>
-<!-- BUSCADOR -->
-	{!!Form::open(['route'=>'subcategorias.index','method'=>'GET'])!!}
-	<div class="form-group">
-			{!! Form::text('descripcion',null,['placeholder'=>'buscar subcategorias'])!!}
-	</div>
-	{!!Form::close() !!}
-<!--  FIN BUSCADOR -->
 
-<table class="">
+
+<table class="table table-hover">
 <thead>
-	<th>Id</th>
-	<th>Categoria</th>
-	<th>Subcategoria</th>
-	<th>Editar</th>
-	<th>Eliminar</th>
+  <tr>
+    <th>Id</th>
+    <th>Categoria</th>
+    <th>Subcategoria</th>
+    <th>Acciones</th>
+  </tr>
 </thead>
 <tbody>
 	@foreach($subcategorias as $subcategoria)
 
-		<tr>
-			<td>{{$subcategoria->id}}</td>
-			<td>{{ $subcategoria->categoria->descripcion }}</td>
-			<td>{{$subcategoria->descripcion}}</td>
-			
-			<td>
-				<a href="{{route('subcategorias.edit',$subcategoria->id)}}" class="">editar</a>
-			</td>
-			<td>
-				
-
-				{{ Form::open(['method' => 'DELETE', 'route' => ['subcategorias.destroy', $subcategoria->id]]) }}
-                     {{ Form::submit('X', ['class' => 'btn btn-danger']) }} 
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                {{ Form::close() }}
+		<tr >
+			<td >{{$subcategoria->id}}</td>
+			<td data-cato="td-{{$subcategoria->categoria->id}}">{{ $subcategoria->categoria->descripcion }}</td>
+			<td data-scato="td-{{$subcategoria->id}}">{{$subcategoria->descripcion}}</td>
+			<td class="middle">
+				<button data-toggle="modal" data-target="#modal-control"
+            data-action="{{route('subcategorias.update', $subcategoria->id) }}"
+            data-method="PUT"
+            data-cati="{{$subcategoria->categoria->id}}"
+            data-scati="{{$subcategoria->id}}"
+            onclick="showModalAccion(this.dataset)"
+            class="btn btn-warning btn-icon btn-icon-mini">
+          <i class="fa fa-pencil"></i>
+        </button>
+        {{ Form::open(['class' => 'd-inline-block', 'method' => 'DELETE', 'route' => ['subcategorias.destroy', $subcategoria->id]]) }}
+            <button type="submit" class="btn btn-danger btn-icon btn-icon-mini"><i class="fa fa-trash"></i></button>
+        {{ Form::close() }}
 			</td>
 		</tr>
 
 
 	@endforeach
 
-	
+
 </tbody>
 
 
 </table>
-{!!$subcategorias->render()!!}
+{!!$subcategorias->links('vendor.pagination.custom')!!}
 
+@endsection
+
+@section('modal-control')
+	@extends('template.modal')
+	@section('modal-title','Categoria')
+	@section('modal-content')
+		{!!Form::open(['id' => 'form-accion'])!!}
+		<div class="modal-body">
+		    <div class="form-group">
+
+          {!! Form::select('categoria_id', $categorias, null,
+            ['class'=>'form-control',
+            'place-holder'=>'Seleccionar',
+            'required'])!!}
+
+					{!! Form::text('descripcion',null,
+						['placeholder' => 'Nombre' ,
+						 	'required',
+							'class' => 'form-control',
+							'id' => 'nombre'])!!}
+		    </div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancelar</button>
+			<button type="submit" name="btnSubmit" class="btn btn-info btn-simple">Registrar</button>
+			{{-- {!! Form::submit('Registrar',['class'=>'mdl-button'])!!} --}}
+		</div>
+		{!!Form::close() !!}
+	@endsection
+@endsection
+
+@section('js')
+	<script src="{{asset('js/subcategorias.js')}}" charset="utf-8"></script>
 @endsection

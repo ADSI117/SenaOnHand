@@ -13,17 +13,21 @@
 @section('title-content', 'Categorias')
 
 @section('search-content')
-	<!-- BUSCADOR -->
-	{!! Form::open(['route'=>'categorias.index', 'method'=>'GET','class' => 'f-right form-search']) !!}
-	<div class="input-group">
-		{!! Form::text('descripcion', null,
-			['placeholder' => 'Buscar...', 'class' => 'form-control', 'id' => 'buscar_categoria']) !!}
-			<span class="input-group-addon">
-				<i class="fa fa-search" aria-hidden="true"></i>
-			</span>
+	<div class="col-4">
+		<div class="search-content">
+		<!-- BUSCADOR -->
+		{!! Form::open(['route'=>'categorias.index', 'method'=>'GET','class' => 'f-right form-search']) !!}
+		<div class="input-group">
+			{!! Form::text('descripcion', null,
+				['placeholder' => 'Buscar...', 'class' => 'form-control', 'id' => 'buscar_categoria']) !!}
+				<span class="input-group-addon">
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</span>
+			</div>
+			{!! Form::close() !!}
+			<!--  FIN BUSCADOR -->
 		</div>
-		{!! Form::close() !!}
-		<!--  FIN BUSCADOR -->
+	</div>
 	@endsection
 
 	@section('content')
@@ -44,9 +48,9 @@
 			{{$error}}
 		@endforeach
 	@endif
-	<table class="table table-hover table-sm">
+	<table class="table table-hover table-sm" id="table">
 		<thead>
-			<tr class="fw-bold upcase">
+			<tr>
 				<th class="ta-left">Id</th>
 				<th class="ta-left">Categorias</th>
 				<th class="ta-right">Acciones</th>
@@ -55,18 +59,19 @@
 		<tbody>
 			@foreach($categorias as $categoria)
 				<tr>
-					<td class="ta-left">{{$categoria->id}}</td>
-					<td class="ta-left">{{$categoria->descripcion}}</td>
+					<td class="align-middle">{{$categoria->id}}</td>
+					<td class="align-middle" data-o="td-{{$categoria->id}}">{{$categoria->descripcion}}</td>
 					<td class="ta-right">
 						<button
 							data-toggle="modal" data-target="#modal-control"
 							data-action="{{route('categorias.update', $categoria)}}"
 							data-method="PUT"
+							data-i="{{$categoria->id}}"
 							onclick="showModalAccion(this.dataset)"
 							class="btn btn-neutral btn-icon  btn-icon-mini btn-round">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 						</button>
-					{{ Form::open(['class'=>'d-ib','method' => 'DELETE', 'route' => ['categorias.destroy', $categoria->id]]) }}
+					{{ Form::open(['class'=>'d-ib m-0','method' => 'DELETE', 'route' => ['categorias.destroy', $categoria->id]]) }}
 					<button type="submit" class="btn btn-neutral btn-icon btn-icon-mini btn-round">
 						<i class="fa fa-trash" aria-hidden="true"></i>
 					</button>

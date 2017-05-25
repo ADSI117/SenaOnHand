@@ -1,13 +1,16 @@
 const formAccion = document.querySelector('#form-accion');
 
 function showModalAccion(dataset) {
-  let desc = datasetElement('[data-o="td-' + dataset.i + '"]');
+  let scat = datasetElement('[data-scato="td-' + dataset.scati + '"]');
 
   formAccion.action = dataset.action;
   formAccion.dataset.method = dataset.method;
 
   if (dataset.method == "PUT") {
-    formAccion.descripcion.value = desc.textContent;
+    //console.log(cat, scat);
+    formAccion.categoria_id.selectedIndex = parseInt(dataset.cati);
+    formAccion.descripcion.value = scat.textContent;
+
     formAccion.btnSubmit.textContent = "Guardar";
   } else {
     formAccion.descripcion.value = "";
@@ -16,26 +19,29 @@ function showModalAccion(dataset) {
 
 }
 
-formAccion.addEventListener('submit', function(ev) {
+formAccion.addEventListener('submit', (ev) => {
   ev.preventDefault();
+  // Selecciona el formulario
   let form = ev.target;
-  let datos = "_token="+form._token.value;
+  let request =`_token=${form._token.value}`;
   if (form.dataset.method == "PUT") {
-    datos += "&_method=PUT";
+    request += `&_method=PUT`;
   }
-  datos += "&descripcion="+form.descripcion.value;
+  request += `&categoria_id=${form.categoria_id.value}&descripcion=${form.descripcion.value}`;// ECSC6
 
-  do_send(form.action,"POST",datos)
+  do_send(form.action, "POST", request)
   .then(JSON.parse)
-  .then( res => {
-    datasetElement('[data-o="td-' + res.ref + '"]').textContent = form.descripcion.value;
-    $('#modal-control').modal('hide')
-    console.log(res);
+  .then( response => {
+    console.log(response);
   })
   .catch( err => {
     console.log(err);
-  })
+  });
+
+
 });
+
+
 
 function datasetElement(data) {
   return document.querySelector(data);

@@ -16,33 +16,54 @@
 </head>
 <body>
 
-	<div class="row">
-		<div class="col-2 p-0">
-			@yield('vNavbar')
-		</div>
-		<div class="col-10 p-0">
-			@yield('hNavbar')
 
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-10">
-						<div class="row">
-							<div class="col-8">
-								<h3 class="title-header">@yield('title-content')</h3>
-							</div>
-							<div class="col-4">
-								<div class="search-content">
-									@yield('search-content')
-								</div>
-							</div>
+		<div class="row">
+			@yield('vNavbar')
+			<div class="col-10 p-0">
+				@yield('hNavbar')
+
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-6">
+							<h3 class="title-header">@yield('title-content')</h3>
 						</div>
+						@yield('search-content')
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-10">
+							@yield('content')
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		{{-- <div class="row">
+			<div class="col">
+				@yield('hNavbar')
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			@yield('vNavbar')
+			<div class="col-10">
+
+				<div class="row">
+					<div class="col-6">
+						<h3 class="title-header">@yield('title-content')</h3>
+					</div>
+					@yield('search-content')
+				</div>
+
+				<div class="row">
+					<div class="col-12">
 						@yield('content')
 					</div>
 				</div>
 			</div>
+		</div> --}}
 
-		</div>
-	</div>
+
 
 	@yield('modal-control')
 
@@ -53,7 +74,6 @@
 	<script src="{{asset('plugins/NowKit/js/core/bootstrap.min.js')}}"></script>
 	{{--
 	<script src="{{asset('plugins/chosen/chosen.jquery.js')}}"></script>
-	<script src="https://unpkg.com/vue@2.3.3" charset="utf-8"></script>
 	<script>
 	$('.selector').chosen({
 	search_contains: true,
