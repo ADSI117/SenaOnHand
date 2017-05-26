@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\EstadoPublicacion;
+use App\Http\Requests\RequestEstadoPublicacion;
 
 class EstadosPublicacionesController extends Controller
 {
@@ -14,7 +15,7 @@ class EstadosPublicacionesController extends Controller
      */
     public function index()
     {
-        $estados_publicaciones = EstadoPublicacion::orderBy('id','ASC')->paginate(10);
+        $estados_publicaciones = EstadoPublicacion::orderBy('id','desc')->paginate(5);
         return view('admin.estados_publicaciones.index')->with('estados_publicaciones',$estados_publicaciones);
     }
 
@@ -34,7 +35,7 @@ class EstadosPublicacionesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestEstadoPublicacion $request)
     {
         $estados_publicaciones = new EstadoPublicacion($request->all());
         $estados_publicaciones->save();
@@ -73,7 +74,7 @@ class EstadosPublicacionesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestEstadoPublicacion $request, $id)
     {
         $estado_publicacion = EstadoPublicacion::find($id);
         $estado_publicacion->descripcion = $request->descripcion;

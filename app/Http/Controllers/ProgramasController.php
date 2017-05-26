@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Programa;
+use App\Http\Requests\RequestPrograma;
 
 class ProgramasController extends Controller
 {
@@ -14,7 +15,7 @@ class ProgramasController extends Controller
      */
     public function index(Request $request)
     {
-        $programas = Programa::search($request->descripcion)->orderBy('id','ASC')->paginate(10);
+        $programas = Programa::search($request->descripcion)->orderBy('id','desc')->paginate(5);
         return view('admin.programas.index')->with('programas',$programas);
     }
 
@@ -34,7 +35,7 @@ class ProgramasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestPrograma $request)
     {
         $programas = new Programa($request->all());
         $programas->save();
@@ -73,7 +74,7 @@ class ProgramasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestPrograma $request, $id)
     {
         $programa = Programa::find($id);
         $programa->acronimo = $request->acronimo;

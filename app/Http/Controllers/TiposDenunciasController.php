@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TipoDenuncia;
+use App\Http\Requests\RequestTipoDenuncia;
 
 class TiposDenunciasController extends Controller
 {
@@ -15,7 +16,7 @@ class TiposDenunciasController extends Controller
     public function index()
     {
       // dd('Soy tipos de denuncias');
-       $tipos_denuncias = TipoDenuncia::orderBy('id','ASC')->paginate(10);
+       $tipos_denuncias = TipoDenuncia::orderBy('id','desc')->paginate(5);
       //  dd($tipos_denuncias);
         return view('admin.tipos_denuncias.index')->with('tipos_denuncias',$tipos_denuncias);
     }
@@ -36,7 +37,7 @@ class TiposDenunciasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestTipoDenuncia $request)
     {
         $tipos_denuncias = new TipoDenuncia($request->all());
         $tipos_denuncias->save();
@@ -75,7 +76,7 @@ class TiposDenunciasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestTipoDenuncia $request, $id)
     {
         $tipo_denuncia = TipoDenuncia::find($id);
         $tipo_denuncia->descripcion = $request->descripcion;

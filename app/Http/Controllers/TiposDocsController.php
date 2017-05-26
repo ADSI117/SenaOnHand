@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TipoDoc;
+use App\Http\Requests\RequestTipoDoc;
 
 class TiposDocsController extends Controller
 {
@@ -14,7 +15,7 @@ class TiposDocsController extends Controller
      */
     public function index()
     {
-        $tipos_docs = TipoDoc::orderBy('id','ASC')->paginate(10);
+        $tipos_docs = TipoDoc::orderBy('id','desc')->paginate(5);
         return view('admin.tipos_docs.index')->with('tipos_docs',$tipos_docs);
     }
 
@@ -34,7 +35,7 @@ class TiposDocsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestTipoDoc $request)
     {
         $tipos_docs = new TipoDoc($request->all());
         $tipos_docs->save();
@@ -73,7 +74,7 @@ class TiposDocsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestTipoDoc $request, $id)
     {
         $tipo_doc = TipoDoc::find($id);
         $tipo_doc->nombre = $request->nombre;

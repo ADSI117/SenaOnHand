@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\EstadoUsuario;
+use App\Http\Requests\RequestEstadoUsuario;
 
 class EstadosUsuariosController extends Controller
 {
@@ -14,7 +15,7 @@ class EstadosUsuariosController extends Controller
      */
     public function index()
     {
-        $estados_usuarios = EstadoUsuario::orderBy('id','ASC')->paginate(10);
+        $estados_usuarios = EstadoUsuario::orderBy('id','desc')->paginate(5);
         return view('admin.estados_usuarios.index')->with('estados_usuarios',$estados_usuarios);
     }
 
@@ -34,7 +35,7 @@ class EstadosUsuariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestEstadoUsuario $request)
     {
          $estados_usuarios = new EstadoUsuario($request->all());
         $estados_usuarios->save();
@@ -73,7 +74,7 @@ class EstadosUsuariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestEstadoUsuario $request, $id)
     {
         $estado_usuario = EstadoUsuario::find($id);
         $estado_usuario->descripcion = $request->descripcion;

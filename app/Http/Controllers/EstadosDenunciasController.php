@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\EstadoDenuncia;
+use App\Http\Requests\RequestEstadoDenuncia;
 
 class EstadosDenunciasController extends Controller
 {
@@ -14,7 +15,7 @@ class EstadosDenunciasController extends Controller
      */
     public function index()
     {
-        $estados_denuncias = EstadoDenuncia::orderBy('id','ASC')->paginate(10);
+        $estados_denuncias = EstadoDenuncia::orderBy('id','desc')->paginate(5);
         return view('admin.estados_denuncias.index')->with('estados_denuncias',$estados_denuncias);
     }
 
@@ -34,7 +35,7 @@ class EstadosDenunciasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestEstadoDenuncia $request)
     {
         $estados_denuncias = new EstadoDenuncia($request->all());
         $estados_denuncias->save();
@@ -73,7 +74,7 @@ class EstadosDenunciasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestEstadoDenuncia $request, $id)
     {
         $estado_denuncia = EstadoDenuncia::find($id);
         $estado_denuncia->descripcion = $request->descripcion;

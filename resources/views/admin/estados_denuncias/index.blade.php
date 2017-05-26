@@ -47,7 +47,7 @@
   <tr>
     <th class="ta-left">Id</th>
     <th class="ta-left">Estado de Denuncia</th>
-    <th class="ta-left">Acciones</th>
+    <th class="ta-right">Acciones</th>
   </tr>
 </thead>
 <tbody>
@@ -56,7 +56,7 @@
 			<td class="align-middle">{{$estado_denuncia->id}}</td>
 			<td class="align-middle">{{$estado_denuncia->descripcion}}</td>
 
-			<td>
+			<td class="ta-right">
         <button
 							data-toggle="modal" data-target="#modal-control"
 							data-action="{{route('estados_denuncias.update', $estado_denuncia)}}"
