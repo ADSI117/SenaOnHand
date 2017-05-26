@@ -54,8 +54,8 @@
 <tbody>
 	@foreach($subcategorias as $subcategoria)
 
-		<tr >
-			<td >{{$subcategoria->id}}</td>
+		<tr>
+			<td  class="align-middle">{{$subcategoria->id}}</td>
 			<td data-cato="td-{{$subcategoria->categoria->id}}">{{ $subcategoria->categoria->descripcion }}</td>
 			<td data-scato="td-{{$subcategoria->id}}">{{$subcategoria->descripcion}}</td>
 			<td class="middle">

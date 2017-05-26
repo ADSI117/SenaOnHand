@@ -1,54 +1,81 @@
- @extends('admin.template.main')
+{{-- llama main blade --}}
+@extends('template.main')
+{{-- seteamos el titulo --}}
 @section('title','Programas')
-@section('nombre','Listar Programas')
- 
-
+{{-- Ponemos el vertical nav  --}}
+@section('vNavbar')
+  @include('template.v-navbar')
+@endsection
+{{-- horizontal nav --}}
+@section('hNavbar')
+  @include('template.h-navbar')
+@endsection
+{{-- titulo del contenido --}}
+@section('title-content', 'Programas')
+{{-- poner el buscar al lado del titulo --}}
+@section('search-content')
+  <!-- BUSCADOR -->
+  	{!!Form::open(['route'=>'programas.index','method'=>'GET'])!!}
+  	<div class="input-group">
+  			{!! Form::text('descripcion',null,
+          ['placeholder'=>'Buscar...', 'class' => 'form-control'])!!}
+          <span class="input-group-addon">
+            <i class="fa fa-search"></i>
+        </span>
+  	</div>
+  	{!!Form::close() !!}
+  <!--  FIN BUSCADOR -->
+@endsection
 @section('content')
 
+<div class='btn-float'>
+  <button data-toggle="modal" data-target="#modal-control"
+      type="button"
+      data-action="{{route('programas.store')}}"
+      data-method="POST"
+      onclick="showModalAccion(this.dataset)"
+      class="btn btn-danger btn-icon btn-round">
+    <i class="fa fa-plus"></i>
+  </button>
+</div>
 
-<a href="{{route('programas.create')}}" class="">Registrar Nuevo Programa</a><hr>
-
-<!-- BUSCADOR -->
-	{!!Form::open(['route'=>'programas.index','method'=>'GET'])!!}
-	<div class="form-group">
-			{!! Form::text('descripcion',null,['placeholder'=>'buscar programas'])!!}
-	</div>
-	{!!Form::close() !!}
-<!--  FIN BUSCADOR -->
-
-<table class="">
+<table class="table table-hover">
 <thead>
-	<th>Id</th>
-	<th>Acronimo</th>
-	<th>Nombre del Programa</th>
-	<th>Editar</th>
-	<th>Eliminar</th>
+  <tr>
+    <th class="ta-left">Id</th>
+    <th class="ta-left">Acronimo</th>
+    <th class="ta-left">Nombre del Programa</th>
+    <th class="ta-left">Acciones</th>
+  </tr>
 </thead>
 <tbody>
 	@foreach($programas as $programa)
 		<tr>
-			<td>{{$programa->id}}</td>
-			<td>{{$programa->acronimo}}</td>
-			<td>{{$programa->descripcion}}</td>
-			
-			<td>
-				<a href="{{route('programas.edit',$programa->id)}}" class="">editar</a>
-			</td>
-			<td>				
+			<td class="align-middle">{{$programa->id}}</td>
+			<td class="align-middle">{{$programa->acronimo}}</td>
+			<td class="align-middle">{{$programa->descripcion}}</td>
 
-				{{ Form::open(['method' => 'DELETE', 'route' => ['programas.destroy', $programa->id]]) }}
-                    <!-- {{ Form::submit('X', ['class' => 'btn btn-danger']) }} -->
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                {{ Form::close() }}
+			<td class="ta-right">
+        <button
+							data-toggle="modal" data-target="#modal-control"
+							data-action="{{route('programas.update', $programa)}}"
+							data-method="PUT"
+							data-i="{{$programa->id}}"
+							onclick="showModalAccion(this.dataset)"
+							class="btn btn-neutral btn-icon  btn-icon-mini btn-round">
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+						</button>
+
+				{{ Form::open(['class' => 'd-inline-block', 'method' => 'DELETE', 'route' => ['programas.destroy', $programa->id]]) }}
+            <button type="submit" class="btn btn-neutral btn-icon btn-icon-mini btn-round">
+              <i class="fa fa-trash"></i>
+            </button>
+        {{ Form::close() }}
 			</td>
 		</tr>
-
-
 	@endforeach
 </tbody>
-
-
 </table>
-{!!$programas->render()!!}
+{!!$programas->links('vendor.pagination.custom')!!}
 
 @endsection

@@ -1,43 +1,86 @@
- @extends('admin.template.main')
-@section('title','Estados de Comentarios')
-@section('nombre','Listar Estados de Comentarios')
- 
+@extends('template.main')
+
+@section('title','Estados comentarios')
+
+@section('hNavbar')
+	@include('template.h-navbar')
+@endsection
+
+@section('vNavbar')
+	@include('template.v-navbar')
+@endsection
+
+@section('title-content', 'Estados de comentarios')
+
+@section('search-content')
+	<div class="col-4">
+		<div class="search-content">
+		<!-- BUSCADOR -->
+		{!! Form::open(['route'=>'estados_comentarios.index', 'method'=>'GET','class' => 'f-right form-search']) !!}
+		<div class="input-group">
+			{!! Form::text('descripcion', null,
+				['placeholder' => 'Buscar...', 'class' => 'form-control', 'id' => 'buscar_estado_comentario']) !!}
+				<span class="input-group-addon">
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</span>
+			</div>
+			{!! Form::close() !!}
+			<!--  FIN BUSCADOR -->
+		</div>
+	</div>
+@endsection
+
 
 @section('content')
 
+<!-- Colored FAB button -->
+	<div class="btn-float">
+			<button data-toggle="modal" data-target="#modal-control"
+			data-action="{{route('estados_comentarios.store')}}"
+			data-method="POST"
+			onclick="showModalAccion(this.dataset)"
+			class="btn btn-danger btn-icon btn-round">
+			<i class="fa fa-plus"></i>
+		</button>
+	</div>
 
-<a href="{{route('estados_comentarios.create')}}" class="">Registrar Estado Comentario</a><hr>
-<table class="">
+<table class="table table-hover table-sm" id="table">
 <thead>
-	<th>Id</th>
-	<th>Estado de Comentario</th>
-	<th>Editar</th>
-	<th>Eliminar</th>
+  <tr>
+    <th class="ta-left">Id</th>
+    <th class="ta-left">Estado de Comentario</th>
+    <th class="ta-left">Acciones</th>
+  </tr>
 </thead>
 <tbody>
 	@foreach($estados_comentarios as $estado_comentario)
 		<tr>
-			<td>{{$estado_comentario->id}}</td>
-			<td>{{$estado_comentario->descripcion}}</td>
-			
-			<td>
-				<a href="{{route('estados_comentarios.edit',$estado_comentario->id)}}" class="">editar</a>
-			</td>
-			<td>				
+			<td class="align-middle">{{$estado_comentario->id}}</td>
+			<td class="align-middle">{{$estado_comentario->descripcion}}</td>
 
-				{{ Form::open(['method' => 'DELETE', 'route' => ['estados_comentarios.destroy', $estado_comentario->id]]) }}
-                    <!-- {{ Form::submit('X', ['class' => 'btn btn-danger']) }} -->
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                {{ Form::close() }}
+			<td class="ta-right">
+        <button
+							data-toggle="modal" data-target="#modal-control"
+							data-action="{{route('estados_comentarios.update', $estado_comentario)}}"
+							data-method="PUT"
+							data-i="{{$estado_comentario->id}}"
+							onclick="showModalAccion(this.dataset)"
+							class="btn btn-neutral btn-icon  btn-icon-mini btn-round">
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+						</button>
+				{{ Form::open(['class'=>'d-ib m-0','method' => 'DELETE', 'route' =>
+        ['estados_comentarios.destroy', $estado_comentario->id]]) }}
+        <button type="submit" class="btn btn-neutral btn-icon btn-icon-mini btn-round">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+        {{ Form::close() }}
 			</td>
 		</tr>
-
-
 	@endforeach
 </tbody>
 
 
 </table>
-{!!$estados_comentarios->render()!!}
+{!!$estados_comentarios->links('vendor.pagination.custom')!!}
 
 @endsection

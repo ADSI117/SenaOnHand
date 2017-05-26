@@ -1,44 +1,82 @@
- @extends('admin.template.main')
-@section('title','Listar Estados de Denuncias')
-@section('nombre','Listar Estados de Denuncias')
- 
+@extends('template.main')
 
+@section('title','Categorias')
+
+@section('hNavbar')
+	@include('template.h-navbar')
+@endsection
+
+@section('vNavbar')
+	@include('template.v-navbar')
+@endsection
+
+@section('title-content', 'Categorias')
+
+@section('search-content')
+	<div class="col-4">
+		<div class="search-content">
+		<!-- BUSCADOR -->
+		{!! Form::open(['route'=>'estados_denuncias.index', 'method'=>'GET','class' => 'f-right form-search']) !!}
+		<div class="input-group">
+			{!! Form::text('descripcion', null,
+				['placeholder' => 'Buscar...', 'class' => 'form-control', 'id' => 'buscar_estado_denuncia']) !!}
+				<span class="input-group-addon">
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</span>
+			</div>
+			{!! Form::close() !!}
+			<!--  FIN BUSCADOR -->
+		</div>
+	</div>
+	@endsection
 @section('content')
 
+<!-- Colored FAB button -->
+		<div class="btn-float">
+			<button data-toggle="modal" data-target="#modal-control"
+			data-action="{{route('estados_denuncias.store')}}"
+			data-method="POST"
+			onclick="showModalAccion(this.dataset)"
+			class="btn btn-danger btn-icon btn-round">
+			<i class="fa fa-plus"></i>
+		</button>
+	</div>
 
-<a href="{{route('estados_denuncias.create')}}" class="">Registrar Estado de Denuncia</a><hr>
-<table class="">
+<table class="table table-hover table-sm" id="table">
 <thead>
-	<th>Id</th>
-	<th>Estado de Denuncia</th>
-	<th>Editar</th>
-	<th>Eliminar</th>
+  <tr>
+    <th class="ta-left">Id</th>
+    <th class="ta-left">Estado de Denuncia</th>
+    <th class="ta-left">Acciones</th>
+  </tr>
 </thead>
 <tbody>
 	@foreach($estados_denuncias as $estado_denuncia)
 		<tr>
-			<td>{{$estado_denuncia->id}}</td>
-			<td>{{$estado_denuncia->descripcion}}</td>
-			
-			<td>
-				<a href="{{route('estados_denuncias.edit',$estado_denuncia->id)}}" class="">editar</a>
-			</td>
-			<td>
-				
+			<td class="align-middle">{{$estado_denuncia->id}}</td>
+			<td class="align-middle">{{$estado_denuncia->descripcion}}</td>
 
-				{{ Form::open(['method' => 'DELETE', 'route' => ['estados_denuncias.destroy', $estado_denuncia->id]]) }}
-                     {{ Form::submit('', ['class' => 'btn btn-danger']) }} 
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                {{ Form::close() }}
+			<td>
+        <button
+							data-toggle="modal" data-target="#modal-control"
+							data-action="{{route('estados_denuncias.update', $estado_denuncia)}}"
+							data-method="PUT"
+							data-i="{{$estado_denuncia->id}}"
+							onclick="showModalAccion(this.dataset)"
+							class="btn btn-neutral btn-icon  btn-icon-mini btn-round">
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+						</button>
+
+				{{ Form::open(['class'=>'d-ib m-0','method' => 'DELETE', 'route' => ['estados_denuncias.destroy', $estado_denuncia->id]]) }}
+          <button type="submit" class="btn btn-neutral btn-icon btn-icon-mini btn-round">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        {{ Form::close() }}
 			</td>
 		</tr>
-
-
 	@endforeach
 </tbody>
-
-
 </table>
-{!!$estados_denuncias->render()!!}
+{!!$estados_denuncias->links('vendor.pagination.custom')!!}
 
 @endsection
