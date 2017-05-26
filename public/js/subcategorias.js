@@ -1,18 +1,18 @@
 const formAccion = document.querySelector('#form-accion');
 
 function showModalAccion(dataset) {
-  let scat = datasetElement('[data-scato="td-' + dataset.scati + '"]');
 
   formAccion.action = dataset.action;
   formAccion.dataset.method = dataset.method;
 
   if (dataset.method == "PUT") {
-    //console.log(cat, scat);
-    formAccion.categoria_id.selectedIndex = parseInt(dataset.cati);
-    formAccion.descripcion.value = scat.textContent;
-
+    let cells = arrCells(dataset.td);
+    let item = selectOption(cells[1].dataset.index);
+    formAccion.categoria_id.selectedIndex = item.index;
+    formAccion.descripcion.value = cells[2].textContent;
     formAccion.btnSubmit.textContent = "Guardar";
   } else {
+    formAccion.categoria_id.selectedIndex = 0;
     formAccion.descripcion.value = "";
     formAccion.btnSubmit.textContent = "Registrar";
   }
@@ -32,7 +32,7 @@ formAccion.addEventListener('submit', (ev) => {
   do_send(form.action, "POST", request)
   .then(JSON.parse)
   .then( response => {
-    console.log(response);
+    window.location.reload();
   })
   .catch( err => {
     console.log(err);
@@ -43,6 +43,6 @@ formAccion.addEventListener('submit', (ev) => {
 
 
 
-function datasetElement(data) {
-  return document.querySelector(data);
+function selectOption(value) {
+  return document.querySelector('option[value="' + value + '"]');
 }

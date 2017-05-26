@@ -15,7 +15,7 @@ class SubcategoriasController extends Controller
      */
     public function index(Request $request)
     {
-        $subcategorias = Subcategoria::search($request->descripcion)->orderBy('id','ASC')->paginate(10);
+        $subcategorias = Subcategoria::search($request->descripcion)->orderBy('id','DESC')->paginate(5);
         $categorias = Categoria::orderBy('id', 'asc')->pluck('descripcion', 'id');
 
         return view('admin.subcategorias.index', compact('subcategorias', 'categorias'));
@@ -46,7 +46,7 @@ class SubcategoriasController extends Controller
     {
         $subcategorias = new Subcategoria($request->all());
         $subcategorias->save();
-        return "{ 'listo': 'Registro exitoso.' }";
+         return '{ "estado": 1, "mensaje": "Registro guardado"}';
     }
 
     /**
@@ -92,12 +92,11 @@ class SubcategoriasController extends Controller
         $subcategoria->categoria_id = $request->categoria_id;
 
         if ($subcategoria->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
+           return '{ "estado": 1, "mensaje": "Registro actualizado"}';
         }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
         }
 
-        return redirect()->route('subcategorias.index');
     }
 
     /**

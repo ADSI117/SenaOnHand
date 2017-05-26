@@ -6,9 +6,9 @@
   @include('template.h-navbar')
 @endsection
 
-{{-- @section('vNavbar')
+@section('vNavbar')
   @include('template.v-navbar')
-@endsection --}}
+@endsection
 
 @section('title-content', 'Soy home admin')
 

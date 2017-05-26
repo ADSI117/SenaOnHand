@@ -22,3 +22,7 @@ function do_send(_url, _method, _request) {
     req.send(_request)
   });
 }
+
+function arrCells(data) {
+  return document.querySelector('[data-tr="' + data + '"]').cells;
+}

@@ -6,10 +6,10 @@
 	<meta name="description" content="SenaOnHand, ADSI 117" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 	<title>@yield('title','empresary') | panel de administrasion</title>
-	<link rel="stylesheet" href="{{asset('plugins/font-awesome/font-awesome.min.css')}}">
+	<link rel="stylesheet" href="{{asset('plugins/font-awesome/font-awesome.min.css')}}" />
 	<link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700&amp;subset=latin-ext" rel="stylesheet" />
-	<link rel="stylesheet" href="{{asset('plugins/NowKit/css/bootstrap.min.css')}}">
-	<link rel="stylesheet" href="{{asset('plugins/NowKit/css/now-ui-kit.css')}}">
+	<link rel="stylesheet" href="{{asset('plugins/NowKit/css/bootstrap.min.css')}}" />
+	<link rel="stylesheet" href="{{asset('plugins/NowKit/css/now-ui-kit.css')}}" />
 	{{-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> --}}
 	{{-- <link rel="stylesheet"  href="{{asset('plugins/chosen/chosen.css')}}"> --}}
 	<link rel="stylesheet" href="{{ asset('css/generales.css') }}" />

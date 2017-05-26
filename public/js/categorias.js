@@ -1,13 +1,12 @@
 const formAccion = document.querySelector('#form-accion');
 
 function showModalAccion(dataset) {
-  let desc = datasetElement('[data-o="td-' + dataset.i + '"]');
-
   formAccion.action = dataset.action;
   formAccion.dataset.method = dataset.method;
 
   if (dataset.method == "PUT") {
-    formAccion.descripcion.value = desc.textContent;
+    let cells = arrCells(dataset.td);
+    formAccion.descripcion.value = cells[1].textContent;
     formAccion.btnSubmit.textContent = "Guardar";
   } else {
     formAccion.descripcion.value = "";
@@ -36,7 +35,3 @@ formAccion.addEventListener('submit', function(ev) {
     console.log(err);
   })
 });
-
-function datasetElement(data) {
-  return document.querySelector(data);
-}
