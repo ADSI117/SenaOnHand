@@ -14,7 +14,7 @@ class CategoriasController extends Controller
      */
     public function index(Request $request)
     {
-        $categorias = Categoria::search($request->descripcion)->orderBy('id','ASC')->paginate(5);
+        $categorias = Categoria::search($request->descripcion)->orderBy('id','DESC')->paginate(5);
         return view('admin.categorias.index')->with('categorias',$categorias);
     }
 
@@ -79,9 +79,9 @@ class CategoriasController extends Controller
         $categoria->descripcion = $request->descripcion;
 
         if ($categoria->save()){
-           return '{ "estado": 1, "mensaje": "Registro actualizado", "ref": "' . $id . '"}';
+           return '{ "estado": 1, "mensaje": "Registro actualizado"}';
         }else{
-           return " { estado: '0', mensaje: 'Registro no pudo ser editado' } ";
+           return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
         }
     }
 

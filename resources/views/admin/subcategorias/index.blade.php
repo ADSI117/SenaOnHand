@@ -48,17 +48,17 @@
         <th>Id</th>
         <th>Categoria</th>
         <th>Subcategoria</th>
-        <th>Acciones</th>
+        <th class="ta-right">Acciones</th>
       </tr>
     </thead>
     <tbody>
       @foreach($subcategorias as $subcategoria)
 
         <tr data-tr="{{$subcategoria->id}}">
-          <td  class="align-middle">{{$subcategoria->id}}</td>
+          <td>{{$subcategoria->id}}</td>
           <td data-index="{{$subcategoria->categoria->id}}">{{ $subcategoria->categoria->descripcion }}</td>
           <td>{{$subcategoria->descripcion}}</td>
-          <td class="middle">
+          <td class="ta-right">
             <button data-toggle="modal" data-target="#modal-control"
             data-action="{{route('subcategorias.update', $subcategoria->id) }}"
             data-method="PUT"

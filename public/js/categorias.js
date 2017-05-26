@@ -27,9 +27,7 @@ formAccion.addEventListener('submit', function(ev) {
   do_send(form.action,"POST",datos)
   .then(JSON.parse)
   .then( res => {
-    datasetElement('[data-o="td-' + res.ref + '"]').textContent = form.descripcion.value;
-    $('#modal-control').modal('hide')
-    console.log(res);
+    window.location.reload();
   })
   .catch( err => {
     console.log(err);
