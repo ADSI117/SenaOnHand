@@ -14,7 +14,9 @@ class TiposDenunciasController extends Controller
      */
     public function index()
     {
+      // dd('Soy tipos de denuncias');
        $tipos_denuncias = TipoDenuncia::orderBy('id','ASC')->paginate(10);
+      //  dd($tipos_denuncias);
         return view('admin.tipos_denuncias.index')->with('tipos_denuncias',$tipos_denuncias);
     }
 
@@ -77,7 +79,7 @@ class TiposDenunciasController extends Controller
     {
         $tipo_denuncia = TipoDenuncia::find($id);
         $tipo_denuncia->descripcion = $request->descripcion;
-        
+
         if ($tipo_denuncia->save()){
            //Flash::success('el tipo_denuncia fue editado')->important();
         }else{

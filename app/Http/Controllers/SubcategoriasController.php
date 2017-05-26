@@ -15,11 +15,11 @@ class SubcategoriasController extends Controller
      */
     public function index(Request $request)
     {
-        $subcategorias = Subcategoria::search($request->descripcion)->orderBy('id','ASC')->paginate(10);
-        // dd($subcategorias);
-        //return view('admin.subcategorias.index')->with('subcategorias',$subcategorias);
-        return view('admin.subcategorias.index', compact('subcategorias'));
-        
+        $subcategorias = Subcategoria::search($request->descripcion)->orderBy('id','DESC')->paginate(5);
+        $categorias = Categoria::orderBy('id', 'asc')->pluck('descripcion', 'id');
+
+        return view('admin.subcategorias.index', compact('subcategorias', 'categorias'));
+
     }
 
     /**
@@ -32,7 +32,7 @@ class SubcategoriasController extends Controller
         //return view ('admin.subcategorias.create');
         $categorias = Categoria::orderBy('descripcion', 'desc')->pluck('descripcion', 'id');
 
-                             
+
         return view('admin.subcategorias.create',compact('categorias'));
     }
 
@@ -46,8 +46,7 @@ class SubcategoriasController extends Controller
     {
         $subcategorias = new Subcategoria($request->all());
         $subcategorias->save();
-       // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('subcategorias.index');
+         return '{ "estado": 1, "mensaje": "Registro guardado"}';
     }
 
     /**
@@ -58,6 +57,7 @@ class SubcategoriasController extends Controller
      */
     public function show($id)
     {
+      return "{ 'listo': 'Errorrr al store.' }";
         //
     }
 
@@ -90,14 +90,13 @@ class SubcategoriasController extends Controller
         $subcategoria = Subcategoria::find($id);
         $subcategoria->descripcion = $request->descripcion;
         $subcategoria->categoria_id = $request->categoria_id;
-        
+
         if ($subcategoria->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
+           return '{ "estado": 1, "mensaje": "Registro actualizado"}';
         }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
         }
 
-        return redirect()->route('subcategorias.index');
     }
 
     /**

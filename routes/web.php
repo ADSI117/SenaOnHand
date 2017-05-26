@@ -13,6 +13,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('admin', 'AdminController@index');
 // para colo colocar rutas con variables solo es necesario colocar un slash y poner dos llaver, dentro contendra la variable, para uqe no sea obligatorio se pone signo de pregunta a lo ultimo, la funcion resibe la variable que creamos dentro de la ruta
 
 
@@ -36,27 +38,27 @@ Route::resource('tipos_denuncias','TiposDenunciasController');
  // rutas de EStadosComentarios
 Route::resource('estados_comentarios','EstadosComentariosController');
 /*Route::get('estados_comentarios/{id}/destroy',[
- 		
+
 		'uses' => 'EstadosComentariosController@destroy',
- 		'as' => 'admin.estados_comentarios.destroy'    
- 
+ 		'as' => 'admin.estados_comentarios.destroy'
+
 	]);*/
 
 // rutas de Programas
 Route::resource('programas','ProgramasController');
 /*Route::get('programas/{id}/destroy',[
- 		
+
 		'uses' => 'ProgramasController@destroy',
- 		'as' => 'admin.programas.destroy'    
- 
+ 		'as' => 'admin.programas.destroy'
+
 	]);*/
 // rutas de EStadosUsuarios
 Route::resource('estados_usuarios','EstadosUsuariosController');
 /*Route::get('estados_usuarios/{id}/destroy',[
- 		
+
 		'uses' => 'EstadosUsuariosController@destroy',
- 		'as' => 'admin.estados_usuarios.destroy'    
- 
+ 		'as' => 'admin.estados_usuarios.destroy'
+
 	]);*/
 // rutas de EStadosDenuncias
 Route::resource('estados_denuncias','EstadosDenunciasController');
@@ -145,5 +147,3 @@ Route::resource('sedes','SedesController');
  Route::get('probar', function(){
  	return 'Hay algo malo?';
  });
-
-
