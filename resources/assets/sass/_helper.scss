@@ -1,0 +1,32 @@
+
+// tamaños
+.full-width {
+  width: 100%;
+  max-width: 100%;
+}
+
+// Alineamientos
+.ta-left {
+  text-align: left !important;
+}
+.ta-right {
+  text-align: right !important;
+}
+// Float
+.f-right {
+  float: right;
+}
+.f-left {
+  float: left;
+}
+// Display
+.d-ib {
+  display: inline-block;
+}
+// Textos
+.fw-bold {
+  font-weight: bold;
+}
+.upcase {
+  text-transform: uppercase;
+}

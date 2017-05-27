@@ -15,7 +15,7 @@ class Anuncio extends Model {
     protected $fillable = ['id', 'tipo_id', 'user_id', 'titulo', 'contenido', 'url_imagen', 'fecha', 'lugar', 'telefono', 'email'];
 
 
-    public function TipoAnuncio() {
+    public function tipo_anuncio() {
         return $this->belongsTo('App\TipoAnuncio','tipo_id', 'id');
     }
 

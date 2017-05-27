@@ -18,19 +18,19 @@ class User extends Authenticatable
          'email', 'password','rol_id','estado_id','grupo_id','sede_id','tipo_doc_id','num_doc','nombres','apellidos','fecha_nac','profesion','url_foto'
     ];
 
-    public function Rol() {
+    public function rol() {
         return $this->belongsTo('App\Rol','rol_id', 'id');
     }
-    public function EstadoUsuario() {
+    public function estado_usuario() {
         return $this->belongsTo('App\EstadoUsuario','estado_id', 'id');
     }
-    public function Grupo() {
+    public function grupo() {
         return $this->belongsTo('App\Grupo','grupo_id', 'id');
     }
-    public function Sede() {
+    public function sede() {
         return $this->belongsTo('App\Sede','sede_id', 'id');
     }
-    public function TipoDoc() {
+    public function tipo_doc() {
         return $this->belongsTo('App\TipoDoc','tipo_doc_id', 'id');
     }
 

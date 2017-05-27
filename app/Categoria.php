@@ -13,6 +13,11 @@ class Categoria extends Model {
     protected $table = 'tb_categorias';
     protected $fillable = ['id', 'descripcion'];
 
-
+public function subcategoria(){
+    	return $this->hasMany('App\Subcategoria');
+    }
+public function scopeSearch($query,$descripcion) {
+        return $query->where('descripcion','LIKE', "%$descripcion%");
+    }
 
 }

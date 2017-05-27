@@ -4,17 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TiposDenuncia extends Model {
+class TipoDenuncia extends Model {
 
     /**
      * Generated
      */
 
     protected $table = 'tb_tipos_denuncias';
-    protected $fillable = ['id', 'descripcion'];
+    protected $fillable = ['descripcion'];
 
 
-    public function Denuncias() {
+    public function denuncias() {
         return $this->hasMany('App\Denuncia','tipo_id', 'id');
     }
 

@@ -1,0 +1,48 @@
+.full-width {
+  width: 100%;
+  max-width: 100%; }
+
+.ta-left {
+  text-align: left !important; }
+
+.ta-right {
+  text-align: right !important; }
+
+.f-right {
+  float: right; }
+
+.f-left {
+  float: left; }
+
+.d-ib {
+  display: inline-block; }
+
+.fw-bold {
+  font-weight: bold; }
+
+.upcase {
+  text-transform: uppercase; }
+
+* {
+  font-family: "Comfortaa", cursive; }
+
+html, body {
+  overflow-x: hidden; }
+
+.table th, .table td {
+  vertical-align: middle !important; }
+
+.title-header {
+  text-transform: uppercase; }
+
+.btn-float {
+  position: fixed !important;
+  bottom: 20px;
+  right: 20px; }
+
+.hnav {
+  position: fixed;
+  max-height: 100vh;
+  overflow-y: scroll; }
+
+/*# sourceMappingURL=generales.css.map */

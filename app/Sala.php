@@ -14,7 +14,7 @@ class Sala extends Model {
     protected $fillable = ['id', 'usuario_creador_id', 'usuario_amigo_id', 'grupo_id'];
 
 
-    public function Grupo() {
+    public function grupo() {
         return $this->belongsTo('App\Grupo','grupo_id', 'id');
     }
 
@@ -30,7 +30,7 @@ class Sala extends Model {
         return $this->belongsToMany('App\User','mensajes', 'sala_id', 'user_id');
     }
 
-    public function Mensajes() {
+    public function mensajes() {
         return $this->hasMany('App\Mensaje','sala_id','id');
     }
 

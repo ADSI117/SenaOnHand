@@ -16,7 +16,7 @@ class AddProgramasTable extends Migration
         Schema::create('tb_programas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('acronimo',45)->unique();
-            $table->string('descripcion',45)->unique();
+            $table->string('descripcion',100)->unique();
             $table->timestamps();
         });
     }

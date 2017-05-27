@@ -13,11 +13,11 @@ class Comentario extends Model {
     protected $fillable = ['id', 'publicacion_id', 'user_id', 'estado_id', 'comentario'];
 
 
-    public function EstadoPublicacion() {
+    public function estado_publicacion() {
         return $this->belongsTo('App\EstadoPublicacion','estado_id', 'id');
     }
 
-    public function Publicacione() {
+    public function publicacione() {
         return $this->belongsTo('App\Publicacion','publicacion_id', 'id');
     }
 
@@ -25,7 +25,7 @@ class Comentario extends Model {
         return $this->belongsTo('App\Models\User','user_id', 'id');
     }
 
-    public function Denuncias() {
+    public function denuncias() {
         return $this->hasMany('App\Denuncia','comentario_id', 'id');
     }
 

@@ -13,7 +13,7 @@ class Tag extends Model {
     protected $table = 'tb_tags';
     protected $fillable = ['id', 'publicacion_id', 'descripcion'];
 
-public function Publicaciones() {
+public function publicaciones() {
         return $this->belongsToMany('App\Publicacion');
     }
 

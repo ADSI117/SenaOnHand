@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TbTipoAnuncio extends Model {
+class TipoAnuncio extends Model {
 
     /**
      * Generated
@@ -18,9 +18,11 @@ class TbTipoAnuncio extends Model {
         return $this->belongsToMany('App\User','tb_anuncios', 'tipo_id','user_id');
     }
 
-    public function tbAnuncios() {
+    public function anuncios() {
         return $this->hasMany('App\TbAnuncio','tipo_id', 'id');
     }
 
-
+public function scopeSearch($query,$nombre) {
+        return $query->where('nombre','LIKE', "%$nombre%");
+    }
 }

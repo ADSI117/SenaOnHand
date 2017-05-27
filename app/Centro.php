@@ -22,5 +22,7 @@ class Centro extends Model {
         return $this->hasMany('App\Sede','centro_id', 'id');
     }
 
-
+    public function scopeSearch($query,$descripcion) {
+        return $query->where('descripcion','LIKE', "%$descripcion%");
+    }
 }

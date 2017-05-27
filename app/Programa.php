@@ -13,8 +13,12 @@ class Programa extends Model {
     protected $fillable = ['id', 'acronimo', 'descripcion'];
 
 
-    public function Grupos() {
+    public function grupos() {
         return $this->hasMany('App\Grupo','programa_id', 'id');
+    }
+
+    public function scopeSearch($query,$descripcion) {
+        return $query->where('descripcion','LIKE', "%$descripcion%");
     }
 
 
