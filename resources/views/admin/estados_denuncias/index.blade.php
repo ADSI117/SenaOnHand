@@ -47,7 +47,8 @@
   <tr>
     <th class="ta-left">Id</th>
     <th class="ta-left">Estado de Denuncia</th>
-    <th class="ta-left">Acciones</th>
+
+    <th class="ta-right">Acciones</th>
   </tr>
 </thead>
 <tbody>
@@ -55,6 +56,7 @@
 		<tr>
 			<td class="align-middle">{{$estado_denuncia->id}}</td>
 			<td class="align-middle">{{$estado_denuncia->descripcion}}</td>
+<<<<<<< HEAD
 
 			<td>
         <button
@@ -67,6 +69,20 @@
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 						</button>
 
+=======
+
+			<td class="ta-right">
+        <button
+							data-toggle="modal" data-target="#modal-control"
+							data-action="{{route('estados_denuncias.update', $estado_denuncia)}}"
+							data-method="PUT"
+							data-i="{{$estado_denuncia->id}}"
+							onclick="showModalAccion(this.dataset)"
+							class="btn btn-neutral btn-icon  btn-icon-mini btn-round">
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+						</button>
+
+>>>>>>> b2d51d2e975cfea5c1fa6b33b67ed2e494377019
 				{{ Form::open(['class'=>'d-ib m-0','method' => 'DELETE', 'route' => ['estados_denuncias.destroy', $estado_denuncia->id]]) }}
           <button type="submit" class="btn btn-neutral btn-icon btn-icon-mini btn-round">
             <i class="fa fa-trash" aria-hidden="true"></i>

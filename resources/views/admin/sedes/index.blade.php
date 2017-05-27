@@ -48,7 +48,8 @@
     <th class="ta-left">Centro</th>
     <th class="ta-left">Acrónimo</th>
     <th class="ta-left">Sede</th>
-    <th class="ta-left">Acciones</th>
+
+    <th class="ta-right">Acciones</th>
   </tr>
 </thead>
 <tbody>
@@ -59,7 +60,11 @@
 			<td class="align-middle">{{$sede->centro->descripcion}}</td>
 			<td class="align-middle">{{$sede->acronimo}}</td>
 			<td class="align-middle">{{$sede->descripcion}}</td>
+<<<<<<< HEAD
 			<td>
+=======
+			<td class="ta-right">
+>>>>>>> b2d51d2e975cfea5c1fa6b33b67ed2e494377019
         <button data-toggle="modal" data-target="#modal-control"
             data-action="{{route('sedes.update', $sede->id) }}"
             data-method="PUT"

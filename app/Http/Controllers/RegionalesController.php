@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Regional;
+use App\Http\Requests\RequestRegional;
 
 class RegionalesController extends Controller
 {
@@ -14,7 +15,7 @@ class RegionalesController extends Controller
      */
     public function index(Request $request)
     {
-        $regionales = Regional::search($request->descripcion)->orderBy('id','ASC')->paginate(10);
+        $regionales = Regional::search($request->descripcion)->orderBy('id','desc')->paginate(5);
         return view('admin.regionales.index')->with('regionales',$regionales);
     }
 
@@ -34,7 +35,7 @@ class RegionalesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestRegional $request)
     {
         $regionales = new Regional($request->all());
         $regionales->save();
@@ -73,7 +74,7 @@ class RegionalesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestRegional $request, $id)
     {
         $regional = Regional::find($id);
         $regional->descripcion = $request->descripcion;

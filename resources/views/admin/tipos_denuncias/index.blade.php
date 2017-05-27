@@ -48,7 +48,8 @@
   <tr>
     <th class="ta-left">Id</th>
     <th class="ta-left">Tipo de Denuncia</th>
-    <th class="ta-left">Editar</th>
+
+    <th class="ta-right">Editar</th>
   </tr>
 </thead>
 <tbody>
@@ -57,7 +58,11 @@
 			<td class="align-middle">{{$tipo_denuncia->id}}</td>
 			<td class="align-middle">{{$tipo_denuncia->descripcion}}</td>
 
+<<<<<<< HEAD
 			<td>
+=======
+			<td class="ta-right">
+>>>>>>> b2d51d2e975cfea5c1fa6b33b67ed2e494377019
         <button
 							data-toggle="modal" data-target="#modal-control"
 							data-action="{{route('tipos_denuncias.update', $tipo_denuncia)}}"

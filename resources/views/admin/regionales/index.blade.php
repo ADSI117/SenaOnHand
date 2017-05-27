@@ -49,7 +49,8 @@
   <tr>
     <th class="ta-left">Id</th>
     <th class="ta-left">Regional</th>
-    <th class="ta-left">Acciones</th>
+
+    <th class="ta-right">Acciones</th>
   </tr>
 </thead>
 <tbody>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\EstadoComentario;
+use App\Http\Requests\RequestEstadoComentario;
 
 class EstadosComentariosController extends Controller
 {
@@ -14,7 +15,7 @@ class EstadosComentariosController extends Controller
      */
     public function index()
     {
-       $estados_comentarios = EstadoComentario::orderBy('id','ASC')->paginate(10);
+       $estados_comentarios = EstadoComentario::orderBy('id','desc')->paginate(5);
         return view('admin.estados_comentarios.index')->with('estados_comentarios',$estados_comentarios);
     }
 
@@ -34,7 +35,7 @@ class EstadosComentariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestEstadoComentario $request)
     {
         $estados_comentarios = new EstadoComentario($request->all());
         $estados_comentarios->save();
@@ -73,7 +74,7 @@ class EstadosComentariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestEstadoComentario $request, $id)
     {
         $estado_comentario = EstadoComentario::find($id);
         $estado_comentario->descripcion = $request->descripcion;

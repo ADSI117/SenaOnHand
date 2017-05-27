@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Subcategoria;
 use App\Categoria;
+use App\Http\Requests\RequestSubcategoria;
 
 class SubcategoriasController extends Controller
 {
@@ -16,7 +17,9 @@ class SubcategoriasController extends Controller
     public function index(Request $request)
     {
         $subcategorias = Subcategoria::search($request->descripcion)->orderBy('id','DESC')->paginate(5);
-        $categorias = Categoria::orderBy('id', 'asc')->pluck('descripcion', 'id');
+
+        $categorias = Categoria::orderBy('id', 'desc')->pluck('descripcion', 'id');
+
 
         return view('admin.subcategorias.index', compact('subcategorias', 'categorias'));
 
@@ -42,7 +45,7 @@ class SubcategoriasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestSubcategoria $request)
     {
         $subcategorias = new Subcategoria($request->all());
         $subcategorias->save();
@@ -84,7 +87,7 @@ class SubcategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestSubcategoria $request, $id)
     {
         //dd($request->all());
         $subcategoria = Subcategoria::find($id);
