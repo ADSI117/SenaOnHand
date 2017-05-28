@@ -40,7 +40,7 @@ class EstadosDenunciasController extends Controller
         $estados_denuncias = new EstadoDenuncia($request->all());
         $estados_denuncias->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('estados_denuncias.index');
+       return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -78,14 +78,12 @@ class EstadosDenunciasController extends Controller
     {
         $estado_denuncia = EstadoDenuncia::find($id);
         $estado_denuncia->descripcion = $request->descripcion;
-        
-        if ($estado_denuncia->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
-        }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
-        }
 
-        return redirect()->route('estados_denuncias.index');
+        if ($estado_denuncia->save()){
+          return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+       }else{
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
+       }
     }
 
     /**

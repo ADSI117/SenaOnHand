@@ -6,10 +6,10 @@ function showModalAccion(dataset) {
 
   if (dataset.method == "PUT") {
     let cells = arrCells(dataset.td);
-    FORM.descripcion.value = cells[1].textContent;
+    FORM.nombre.value = cells[1].textContent;
     FORM.btnSubmit.textContent = "Guardar";
   } else {
-    FORM.descripcion.value = "";
+    FORM.nombre.value = "";
     FORM.btnSubmit.textContent = "Registrar";
   }
 
@@ -22,7 +22,7 @@ FORM.addEventListener('submit', function(ev) {
   if (form.dataset.method == "PUT") {
     datos += "&_method=PUT";
   }
-  datos += "&descripcion="+form.descripcion.value;
+  datos += "&nombre="+form.nombre.value;
 
   do_send(form.action,"POST",datos)
   .then(JSON.parse)

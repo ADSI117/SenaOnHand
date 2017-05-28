@@ -24,8 +24,8 @@ class RequestSede extends FormRequest
     public function rules()
     {
         return [
-            'centro_id'=>'required', 
-            'acronimo'=>'min:2|max:45|required', 
+            'centro_id'=>'required',
+            'acronimo'=>'min:1|max:45|required', 
             'descripcion'=>'min:4|max:45|required'
         ];
     }

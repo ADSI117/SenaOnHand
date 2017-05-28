@@ -43,38 +43,32 @@
 		</button>
 	</div>
 
-<table class="table table-hover table-sm" id="table">
+<table class="table table-hover" id="table">
 <thead>
   <tr>
     <th class="ta-left">Id</th>
     <th class="ta-left">Tipo de Denuncia</th>
-
-    <th class="ta-right">Editar</th>
+    <th class="ta-right">Acciones</th>
   </tr>
 </thead>
 <tbody>
 	@foreach($tipos_denuncias as $tipo_denuncia)
-		<tr>
+		<tr data-tr="{{$tipo_denuncia->id}}">
 			<td class="align-middle">{{$tipo_denuncia->id}}</td>
 			<td class="align-middle">{{$tipo_denuncia->descripcion}}</td>
-
-<<<<<<< HEAD
-			<td>
-=======
 			<td class="ta-right">
->>>>>>> b2d51d2e975cfea5c1fa6b33b67ed2e494377019
         <button
 							data-toggle="modal" data-target="#modal-control"
 							data-action="{{route('tipos_denuncias.update', $tipo_denuncia)}}"
 							data-method="PUT"
-							data-i="{{$tipo_denuncia->id}}"
+							data-td="{{$tipo_denuncia->id}}"
 							onclick="showModalAccion(this.dataset)"
-							class="btn btn-neutral btn-icon  btn-icon-mini btn-round">
+							class="btn btn-warning btn-icon  btn-icon-mini btn-round">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 						</button>
 				{{ Form::open(['class'=>'d-ib m-0','method' => 'DELETE', 'route' =>
         ['tipos_denuncias.destroy', $tipo_denuncia->id]]) }}
-          <button type="submit" class="btn btn-neutral btn-icon btn-icon-mini btn-round">
+          <button type="submit" class="btn btn-danger btn-icon btn-icon-mini btn-round">
             <i class="fa fa-trash" aria-hidden="true"></i>
           </button>
         {{ Form::close() }}
@@ -85,4 +79,33 @@
 </table>
 {!!$tipos_denuncias->links('vendor.pagination.custom')!!}
 
+@endsection
+
+
+@section('modal-control')
+	@extends('template.modal')
+	@section('modal-title','tipos de denuncias')
+	@section('modal-content')
+		{!!Form::open(['id' => 'form-accion'])!!}
+		<div class="modal-body">
+		    <div class="form-group">
+					{!! Form::text('descripcion',null,
+						['placeholder' => 'Nombre' ,
+						 	'required',
+							'class' => 'form-control',
+							'id' => 'nombre'])!!}
+		    </div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancelar</button>
+			<button type="submit" name="btnSubmit" class="btn btn-info btn-simple">Registrar</button>
+			{{-- {!! Form::submit('Registrar',['class'=>'mdl-button'])!!} --}}
+		</div>
+		{!!Form::close() !!}
+	@endsection
+@endsection
+
+@section('js')
+
+	<script src="{{asset('js/tipos_denuncias.js')}}" charset="utf-8"></script>
 @endsection

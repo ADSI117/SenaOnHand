@@ -40,7 +40,7 @@ class ProgramasController extends Controller
         $programas = new Programa($request->all());
         $programas->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('programas.index');
+       return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -79,14 +79,12 @@ class ProgramasController extends Controller
         $programa = Programa::find($id);
         $programa->acronimo = $request->acronimo;
         $programa->descripcion = $request->descripcion;
-        
-        if ($programa->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
-        }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
-        }
 
-        return redirect()->route('programas.index');
+        if ($programa->save()){
+          return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+       }else{
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
+       }
     }
 
     /**

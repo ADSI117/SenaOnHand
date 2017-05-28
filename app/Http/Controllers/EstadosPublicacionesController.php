@@ -40,7 +40,7 @@ class EstadosPublicacionesController extends Controller
         $estados_publicaciones = new EstadoPublicacion($request->all());
         $estados_publicaciones->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('estados_publicaciones.index');
+       return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -78,15 +78,13 @@ class EstadosPublicacionesController extends Controller
     {
         $estado_publicacion = EstadoPublicacion::find($id);
         $estado_publicacion->descripcion = $request->descripcion;
-        
-        if ($estado_publicacion->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
-        }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
-        }
 
-        return redirect()->route('estados_publicaciones.index');
-    }
+        if ($estado_publicacion->save()){
+          return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+         }else{
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
+         }
+     }
 
     /**
      * Remove the specified resource from storage.

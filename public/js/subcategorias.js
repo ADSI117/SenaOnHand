@@ -1,25 +1,25 @@
-const formAccion = document.querySelector('#form-accion');
+const FORM = document.querySelector('#form-accion');
 
 function showModalAccion(dataset) {
 
-  formAccion.action = dataset.action;
-  formAccion.dataset.method = dataset.method;
+  FORM.action = dataset.action;
+  FORM.dataset.method = dataset.method;
 
   if (dataset.method == "PUT") {
     let cells = arrCells(dataset.td);
     let item = selectOption(cells[1].dataset.index);
-    formAccion.categoria_id.selectedIndex = item.index;
-    formAccion.descripcion.value = cells[2].textContent;
-    formAccion.btnSubmit.textContent = "Guardar";
+    FORM.categoria_id.selectedIndex = item.index;
+    FORM.descripcion.value = cells[2].textContent;
+    FORM.btnSubmit.textContent = "Guardar";
   } else {
-    formAccion.categoria_id.selectedIndex = 0;
-    formAccion.descripcion.value = "";
-    formAccion.btnSubmit.textContent = "Registrar";
+    FORM.categoria_id.selectedIndex = 0;
+    FORM.descripcion.value = "";
+    FORM.btnSubmit.textContent = "Registrar";
   }
 
 }
 
-formAccion.addEventListener('submit', (ev) => {
+FORM.addEventListener('submit', (ev) => {
   ev.preventDefault();
   // Selecciona el formulario
   let form = ev.target;
@@ -40,9 +40,3 @@ formAccion.addEventListener('submit', (ev) => {
 
 
 });
-
-
-
-function selectOption(value) {
-  return document.querySelector('option[value="' + value + '"]');
-}

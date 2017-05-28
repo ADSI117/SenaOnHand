@@ -101,8 +101,7 @@
 					{!! Form::text('descripcion',null,
 						['placeholder' => 'Nombre categoria' ,
 						 	'required',
-							'class' => 'form-control',
-							'id' => 'nombre'])!!}
+							'class' => 'form-control'])!!}
 		    </div>
 		</div>
 		<div class="modal-footer">

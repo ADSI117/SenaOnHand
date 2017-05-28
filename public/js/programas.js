@@ -6,9 +6,11 @@ function showModalAccion(dataset) {
 
   if (dataset.method == "PUT") {
     let cells = arrCells(dataset.td);
-    FORM.descripcion.value = cells[1].textContent;
+    FORM.acronimo.value = cells[1].textContent;
+    FORM.descripcion.value = cells[2].textContent;
     FORM.btnSubmit.textContent = "Guardar";
   } else {
+    FORM.acronimo.value = "";
     FORM.descripcion.value = "";
     FORM.btnSubmit.textContent = "Registrar";
   }
@@ -22,6 +24,7 @@ FORM.addEventListener('submit', function(ev) {
   if (form.dataset.method == "PUT") {
     datos += "&_method=PUT";
   }
+  datos += "&acronimo="+form.acronimo.value;
   datos += "&descripcion="+form.descripcion.value;
 
   do_send(form.action,"POST",datos)

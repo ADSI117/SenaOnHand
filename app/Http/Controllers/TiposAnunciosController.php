@@ -40,7 +40,7 @@ class TiposAnunciosController extends Controller
         $tipos_anuncios = new TipoAnuncio($request->all());
         $tipos_anuncios->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('tipos_anuncios.index');
+       return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -78,14 +78,13 @@ class TiposAnunciosController extends Controller
     {
         $tipo_anuncio = TipoAnuncio::find($id);
         $tipo_anuncio->nombre = $request->nombre;
-        
+
         if ($tipo_anuncio->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
-        }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
+          return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+       }else{
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
         }
 
-        return redirect()->route('tipos_anuncios.index');
     }
 
     /**

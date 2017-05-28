@@ -95,7 +95,7 @@
 
         {!! Form::select('categoria_id', $categorias, null,
           ['class'=>'form-control',
-          'place-holder'=>'Seleccionar',
+          'placeholder'=>'Seleccionar',
           'required'])!!}
         </div>
         <div class="form-group">

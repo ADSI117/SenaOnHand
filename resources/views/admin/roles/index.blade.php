@@ -1,6 +1,6 @@
 @extends('template.main')
 
-@section('title','Categorias')
+@section('title','Roles')
 
 @section('hNavbar')
 	@include('template.h-navbar')
@@ -45,7 +45,7 @@
 
 
 
-<table class="table table-hover table-sm" id="table">
+<table class="table table-hover" id="table">
 <thead>
   <tr>
     <th class="ta-left">Id</th>
@@ -56,7 +56,7 @@
 </thead>
 <tbody>
 	@foreach($roles as $rol)
-		<tr>
+		<tr data-tr="{{$rol->id}}">
 			<td class="align-middle">{{$rol->id}}</td>
 			<td class="align-middle">{{$rol->descripcion}}</td>
 
@@ -65,13 +65,13 @@
 							data-toggle="modal" data-target="#modal-control"
 							data-action="{{route('roles.update', $rol)}}"
 							data-method="PUT"
-							data-i="{{$rol->id}}"
+							data-td="{{$rol->id}}"
 							onclick="showModalAccion(this.dataset)"
-							class="btn btn-neutral btn-icon  btn-icon-mini btn-round">
+							class="btn btn-warning btn-icon  btn-icon-mini btn-round">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 				</button>
 				{{ Form::open(['class'=>'d-ib m-0','method' => 'DELETE', 'route' => ['roles.destroy', $rol->id]]) }}
-                    <button type="submit" class="btn btn-neutral btn-icon btn-icon-mini btn-round">
+                    <button type="submit" class="btn btn-danger btn-icon btn-icon-mini btn-round">
                       <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 {{ Form::close() }}
@@ -82,4 +82,32 @@
 </table>
 {!!$roles->links('vendor.pagination.custom')!!}
 
+@endsection
+
+@section('modal-control')
+	@extends('template.modal')
+	@section('modal-title','Roles')
+	@section('modal-content')
+		{!!Form::open(['id' => 'form-accion'])!!}
+		<div class="modal-body">
+		    <div class="form-group">
+					{!! Form::text('descripcion',null,
+						['placeholder' => 'Nombre' ,
+						 	'required',
+							'class' => 'form-control',
+							'id' => 'nombre'])!!}
+		    </div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancelar</button>
+			<button type="submit" name="btnSubmit" class="btn btn-info btn-simple">Registrar</button>
+			{{-- {!! Form::submit('Registrar',['class'=>'mdl-button'])!!} --}}
+		</div>
+		{!!Form::close() !!}
+	@endsection
+@endsection
+
+@section('js')
+
+	<script src="{{asset('js/roles.js')}}" charset="utf-8"></script>
 @endsection

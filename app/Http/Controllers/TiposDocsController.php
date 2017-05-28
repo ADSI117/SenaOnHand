@@ -40,7 +40,7 @@ class TiposDocsController extends Controller
         $tipos_docs = new TipoDoc($request->all());
         $tipos_docs->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('tipos_docs.index');
+        return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -78,14 +78,13 @@ class TiposDocsController extends Controller
     {
         $tipo_doc = TipoDoc::find($id);
         $tipo_doc->nombre = $request->nombre;
-        
-        if ($tipo_doc->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
-        }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
-        }
 
-        return redirect()->route('tipos_docs.index');
+        if ($tipo_doc->save()){
+          return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+       }else{
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
+       }
+
     }
 
     /**

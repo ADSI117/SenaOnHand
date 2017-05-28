@@ -5,10 +5,17 @@ function showModalAccion(dataset) {
   FORM.dataset.method = dataset.method;
 
   if (dataset.method == "PUT") {
+    // Editar
     let cells = arrCells(dataset.td);
-    FORM.descripcion.value = cells[1].textContent;
+    let index = selectOption(cells[1].dataset.index);
+    FORM.regional_id.selectedIndex = parseInt(index.value);
+    FORM.acronimo.value = cells[2].textContent;
+    FORM.descripcion.value = cells[3].textContent;
     FORM.btnSubmit.textContent = "Guardar";
   } else {
+    // Crear
+    FORM.regional_id.selectedIndex = 0;
+    FORM.acronimo.value = "";
     FORM.descripcion.value = "";
     FORM.btnSubmit.textContent = "Registrar";
   }
@@ -22,6 +29,8 @@ FORM.addEventListener('submit', function(ev) {
   if (form.dataset.method == "PUT") {
     datos += "&_method=PUT";
   }
+  datos += "&regional_id="+form.regional_id.value;
+  datos += "&acronimo="+form.acronimo.value;
   datos += "&descripcion="+form.descripcion.value;
 
   do_send(form.action,"POST",datos)
