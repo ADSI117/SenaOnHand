@@ -48,6 +48,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            //'rol_id' => 'required',
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
@@ -62,10 +63,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+      $dominio = explode("@", $data['email'])[1];
+      $rol = 0;
+      switch (strtolower($dominio)) {
+        case 'misena.edu.co':
+          $rol = 1;
+          break;
+        case 'sena.edu.co':
+          $rol = 2;
+          break;
+        default:
+          dd("Equivocación");
+          break;
+      }
+      // Se debe construir primero y despues pasar el parametro
+      $data['rol_id'] = $rol;
+      $data['password'] = bcrypt($data['password']);
+
+      return User::create($data);
     }
 }

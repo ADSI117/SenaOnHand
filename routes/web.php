@@ -147,3 +147,7 @@ Route::resource('sedes','SedesController');
  Route::get('probar', function(){
  	return 'Hay algo malo?';
  });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
