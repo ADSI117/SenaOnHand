@@ -10,7 +10,7 @@
   @include('template.v-navbar')
 @endsection
 
-@section('title-content', 'Soy home admin')
+@section('title-content', 'Panel administrativo SenaOnHand')
 
 
 @section('content')

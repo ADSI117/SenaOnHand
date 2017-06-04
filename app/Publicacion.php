@@ -38,8 +38,20 @@ class Publicacion extends Model {
         return $this->hasMany('App\Comentario','publicacion_id', 'id');
     }
 
+    public function imagenes() {
+        return $this->hasMany('App\Imagen','publicacion_id', 'id');
+    }
+
+    public function archivos() {
+        return $this->hasMany('App\Archivo','publicacion_id', 'id');
+    }
+
+    public function videos() {
+        return $this->hasMany('App\Video','publicacion_id', 'id');
+    }
+
     public function tags() {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag', 'publicacion_tag')->withTimestamps();
     }
 
 

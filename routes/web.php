@@ -10,8 +10,21 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'PublicPanelController@index');
+
+Route::get('info-mensaje', function(){
+  return view ('info-mensaje');
+});
+
+Route::get('info-suspendido', function(){
+  return view ('info-suspendido');
+});
+
+Route::group(['prefix'=>'main-panel'], function (){
+
+  Route::resource('publicaciones', 'PublicacionesController');
+
+
 });
 
 Route::get('admin', 'AdminController@index');
@@ -150,4 +163,4 @@ Route::resource('sedes','SedesController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/main-panel', 'MainPanelController@index')->name('main-panel');

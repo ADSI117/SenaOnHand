@@ -27,7 +27,11 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+        return '/admin';
+    }
 
     /**
      * Create a new controller instance.
@@ -78,6 +82,7 @@ class RegisterController extends Controller
       }
       // Se debe construir primero y despues pasar el parametro
       $data['rol_id'] = $rol;
+      $data['estado_id'] = 1;
       $data['password'] = bcrypt($data['password']);
 
       return User::create($data);

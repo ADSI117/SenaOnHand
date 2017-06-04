@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Publicacion;
+use App\Imagen;
 
-class HomeController extends Controller
+class MainPanelController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -14,6 +16,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('estado');
     }
 
     /**
@@ -23,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      $publicaciones = Publicacion::all();
+      $imagenes = Imagen::all();
+        return view('main-panel')->
+        with('imagenes', $imagenes)
+        ->with('publicaciones', $publicaciones);
     }
 }

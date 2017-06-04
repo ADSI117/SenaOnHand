@@ -17,7 +17,15 @@ class User extends Authenticatable
     protected $fillable = [
          'email', 'password','rol_id','estado_id','grupo_id','sede_id','tipo_doc_id','num_doc','nombres','apellidos','fecha_nac','profesion','url_foto'
     ];
-    
+
+    public function getRol(){
+      return $this->rol_id;
+    }
+
+    public function getEstado(){
+      return $this->estado_id;
+    }
+
     public function rol() {
         return $this->belongsTo('App\Rol','rol_id', 'id');
     }

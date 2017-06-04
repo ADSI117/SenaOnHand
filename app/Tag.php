@@ -14,7 +14,7 @@ class Tag extends Model {
     protected $fillable = ['id', 'publicacion_id', 'descripcion'];
 
 public function publicaciones() {
-        return $this->belongsToMany('App\Publicacion');
+        return $this->belongsToMany('App\Publicacion')->withTimestamps();
     }
 
 }
