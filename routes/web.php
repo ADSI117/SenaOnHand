@@ -23,6 +23,7 @@ Route::get('info-suspendido', function(){
 Route::group(['prefix'=>'main-panel'], function (){
 
   Route::resource('publicaciones', 'PublicacionesController');
+  Route::resource('usuarios', 'UsuariosController');
 
 
 });

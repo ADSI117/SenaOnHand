@@ -11,7 +11,21 @@
                         <td width="25%">Lateral derecho</td>
                       </tr>
                       <tr>
-                        <td></td>
+                        <td>
+                          <div>
+                            <!-- Imagen de péfil -->
+                            @if(Auth::user()->url_foto)
+                                <img src="/imagenes/perfiles/{{Auth::user()->url_foto}}" alt="" class="img-responsive img-circle">
+                            @else
+                              <img src="/imagenes/perfiles/soh_profile_default.png" alt="" class="img-responsive img-circle">
+                            @endif
+
+                          </div>
+                          <div>
+                            <h3>{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</h3>
+                          </div>
+                          <a href="{{route('usuarios.edit', Auth::user()->id)}}" class=" btn btn-primary">Edit perfil</a>
+                        </td>
                         <td>
                           <h1>Nueva publicacion</h1>
                           <a href="{{route('publicaciones.create')}}">IR</a>
@@ -34,7 +48,11 @@
                         <td>
                           <h1>Últimas imagenes</h1>
                           @foreach ($imagenes as $imagen)
-                            <img src="/imagenes/publicaciones/{{$imagen->descripcion}}" alt="">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <img src="/imagenes/publicaciones/{{$imagen->descripcion}}" alt="" class="img-responsive">
+                              </div>
+                            </div>
                           @endforeach
                         </td>
                         <td></td>

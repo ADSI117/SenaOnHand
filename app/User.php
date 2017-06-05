@@ -15,7 +15,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-         'email', 'password','rol_id','estado_id','grupo_id','sede_id','tipo_doc_id','num_doc','nombres','apellidos','fecha_nac','profesion','url_foto'
+         'email', 'password',
+         'rol_id','estado_id','grupo_id',
+         'sede_id','tipo_doc_id','num_doc',
+         'nombres','apellidos','fecha_nac',
+         'profesion','url_foto'
     ];
 
     public function getRol(){
