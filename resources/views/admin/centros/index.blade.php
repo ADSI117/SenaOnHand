@@ -1,14 +1,6 @@
-@extends('template.main')
+@extends('template.admin')
 
 @section('title','Centros')
-
-@section('hNavbar')
-	@include('template.h-navbar')
-@endsection
-
-@section('vNavbar')
-	@include('template.v-navbar')
-@endsection
 
 @section('title-content', 'Centros')
 

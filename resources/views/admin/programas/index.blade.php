@@ -1,15 +1,8 @@
 {{-- llama main blade --}}
-@extends('template.main')
+@extends('template.admin')
 {{-- seteamos el titulo --}}
 @section('title','Programas')
-{{-- Ponemos el vertical nav  --}}
-@section('vNavbar')
-  @include('template.v-navbar')
-@endsection
-{{-- horizontal nav --}}
-@section('hNavbar')
-  @include('template.h-navbar')
-@endsection
+
 {{-- titulo del contenido --}}
 @section('title-content', 'Programas')
 {{-- poner el buscar al lado del titulo --}}
