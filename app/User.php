@@ -30,6 +30,10 @@ class User extends Authenticatable
       return $this->estado_id;
     }
 
+    public function publicaciones() {
+        return $this->hasMany('App\Publicacion');
+    }
+
     public function rol() {
         return $this->belongsTo('App\Rol','rol_id', 'id');
     }
@@ -50,12 +54,14 @@ class User extends Authenticatable
     public function categorias() {
             return $this->belongsToMany('App\Categoria', 'usuario_categoria')->withTimestamps();
         }
-        public function seguidos() {
-                return $this->belongsToMany('App\User')->withTimestamps();
-            }
-            public function seguidores() {
-                    return $this->belongsToMany('App\User')->withTimestamps();
-                }
+
+    public function seguidos() {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
+
+    public function seguidores() {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
 
     /**
      * The attributes that should be hidden for arrays.

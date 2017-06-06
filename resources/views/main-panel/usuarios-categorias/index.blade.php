@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+<!-- Mostrar listado de categorias iniciales para que el usuario haga primeros pasos -->
+
 <div class="container">
   <div class="row">
     <h1>Primeros pasos</h1>

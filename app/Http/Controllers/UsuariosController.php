@@ -8,6 +8,7 @@ use App\TipoDoc;
 use App\Sede;
 use App\Grupo;
 use Auth;
+use App\Categoria;
 
 class UsuariosController extends Controller
 {
@@ -25,19 +26,24 @@ class UsuariosController extends Controller
     public function getlink(){
       $usuario = User::find(Auth::user()->id);
       // dd(Auth::user()->id);
-      $url = url('/').'/activar'.'?'.'usuario_id=' . Auth::user()->id . '&key=' . bcrypt($usuario->nombres);
+      $url = url('/').'/activar'.'?'.'usuario_id=' . Auth::user()->id . '&key=' . bcrypt($usuario->email);
       //TODO: Enviar correo con $url
-      dd($url);
+      dd('Enlace de activación: ' . $url);
     }
 
     //Activar usuario
     public function activarUsuario(){
       $usuario = User::find($_GET['usuario_id']);
       // dd($_GET['key']);
-      if (strcmp(bcrypt($usuario->nombres) , $_GET['key'])){
+      if (strcmp(bcrypt($usuario->email) , $_GET['key'])){
         $usuario->estado_id = 2;
         $usuario->save();
-        dd('Usuario activado');
+
+        $categorias = Categoria::all();
+          return view ('main-panel.usuarios-categorias.index', compact('categorias'));
+
+        //dd('Usuario activado');
+        // Agregar categorias_usuarios
       }else{
         dd('Hubo un error!');
       }

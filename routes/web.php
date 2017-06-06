@@ -31,6 +31,7 @@ Route::group(['prefix'=>'main-panel'], function (){
   Route::resource('publicaciones', 'PublicacionesController');
   Route::resource('usuarios', 'UsuariosController');
   Route::resource('categoria-usuario', 'CategoriasUsuariosController');
+  Route::resource('instructores', 'InstructoresController');
 
 });
 

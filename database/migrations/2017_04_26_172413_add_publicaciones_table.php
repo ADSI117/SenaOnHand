@@ -15,7 +15,7 @@ class AddPublicacionesTable extends Migration
     {
         Schema::create('tb_publicaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('usuario_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('subcategoria_id')->unsigned();
             $table->integer('estado_id')->unsigned();
             $table->string('titulo',45);

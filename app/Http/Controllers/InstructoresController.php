@@ -1,13 +1,11 @@
 <?php
 
-// Se ha creado este panel para mostrar las vista principal de bienvenida antes de login, y asuntos publicos
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Publicacion;
+use App\User;
 
-class PublicPanelController extends Controller
+class InstructoresController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,7 @@ class PublicPanelController extends Controller
      */
     public function index()
     {
-      // dd('esta bien');
-      
-        return view ('welcome');
+        //
     }
 
     /**
@@ -50,7 +46,11 @@ class PublicPanelController extends Controller
      */
     public function show($id)
     {
-        //
+      $instructor = User::find($id);
+      $publicaciones = $instructor->publicaciones->all();
+
+      // dd($publicaciones);
+        return view ('main-panel.instructores.detalle', compact('instructor', 'publicaciones'));
     }
 
     /**

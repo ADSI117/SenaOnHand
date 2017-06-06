@@ -10,6 +10,7 @@ use Auth;
 use App\Imagen;
 // use Storage;
 use App\EstadoPublicacion;
+use App\Archivo;
 
 class PublicacionesController extends Controller
 {
@@ -63,7 +64,7 @@ class PublicacionesController extends Controller
       $publicacion->contenido = $request->contenido;
       $publicacion->subcategoria_id = $request->subcategoria_id;
       // $publicacion->usuario_id = Auth::user()->id;
-      $publicacion->usuario_id = 2;
+      $publicacion->user_id = Auth::user()->id;
       $publicacion->estado_id = $request->estado_id;
 
       if ($publicacion->save()){
@@ -116,7 +117,18 @@ class PublicacionesController extends Controller
      */
     public function show($id)
     {
-        //
+
+      $publicacion = Publicacion::find($id);
+
+      $imagenes = $publicacion->imagenes->all();
+
+      $archivos = $publicacion->archivos->all();
+
+      $videos = $publicacion->videos->all();
+
+      // dd($imagenes);
+
+        return view ('main-panel.publicaciones.detalle', compact('publicacion', 'imagenes', 'archivos', 'videos'));
     }
 
     /**

@@ -5,22 +5,29 @@
 @section('main')
 <div class="container-fluid">
 
+@foreach($publicaciones as $publicacion)
+
   <div class="tarjeta">
     <h4 class="cabezera">
-      <a href="#">titulo</a>
-      <small class="text-muted"><a href="#">Jhonathan calderon</a></small>
+      <a href="{{route('publicaciones.show', [$publicacion->id])}}">{{$publicacion->titulo}}</a>
+      <small class="text-muted">
+        <a href="{{route('instructores.show', [$publicacion->user_id])}}">
+          {{$publicacion->user->nombres}} {{$publicacion->user->apellidos}}
+        </a>
+    </small>
 
       <div class="imagen">
-        <img src="/imagenes/perfiles/{{Auth::user()->url_foto}}" alt="" width="60" height="60">
+        <img src="/imagenes/perfiles/{{$publicacion->user->url_foto}}" alt="" width="60" height="60">
       </div>
     </h4>
 
 
     <div class="contenido">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati libero alias, eius corrupti animi eligendi deleniti. Sunt adipisci, quibusdam. Atque, accusamus. Odit totam sed mollitia laboriosam alias praesentium modi fugit.</p>
+      <p>{{substr($publicacion->contenido, 0, 140)}} ... </p>
     </div>
 
   </div>
+@endforeach
 
 
 </div>
