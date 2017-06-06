@@ -19,5 +19,8 @@ public function subcategoria(){
 public function scopeSearch($query,$descripcion) {
         return $query->where('descripcion','LIKE', "%$descripcion%");
     }
+    public function usuarios() {
+            return $this->belongsToMany('App\User')->withTimestamps();
+        }
 
 }

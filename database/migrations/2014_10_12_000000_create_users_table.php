@@ -27,9 +27,20 @@ class CreateUsersTable extends Migration
             $table->string('email',45)->unique();
             $table->string('profesion',45)->nullable();
             $table->string('url_foto',100)->nullable();
-            $table->string('password',60); 
+            $table->string('password',60);
             $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::create('seguido_seguidor', function (Blueprint $table){
+          $table->increments('id');
+          $table->integer('seguido_id')->unsigned();
+          $table->integer('seguidor_id')->unsigned();
+
+          $table->foreign('seguido_id')->references('id')->on('users');
+          $table->foreign('seguidor_id')->references('id')->on('users');
+
+          $table->timestamps();
         });
     }
 

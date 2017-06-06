@@ -46,6 +46,17 @@ class User extends Authenticatable
         return $this->belongsTo('App\TipoDoc','tipo_doc_id', 'id');
     }
 
+
+    public function categorias() {
+            return $this->belongsToMany('App\Categoria', 'usuario_categoria')->withTimestamps();
+        }
+        public function seguidos() {
+                return $this->belongsToMany('App\User')->withTimestamps();
+            }
+            public function seguidores() {
+                    return $this->belongsToMany('App\User')->withTimestamps();
+                }
+
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -12,6 +12,12 @@
 */
 Route::get('/', 'PublicPanelController@index');
 
+// Para generar enlace de activacion
+Route::get('getlink', 'UsuariosController@getLink');
+
+// Activar usuario
+Route::get('activar', 'UsuariosController@activarUsuario');
+
 Route::get('info-mensaje', function(){
   return view ('info-mensaje');
 });
@@ -24,7 +30,7 @@ Route::group(['prefix'=>'main-panel'], function (){
 
   Route::resource('publicaciones', 'PublicacionesController');
   Route::resource('usuarios', 'UsuariosController');
-
+  Route::resource('categoria-usuario', 'CategoriasUsuariosController');
 
 });
 

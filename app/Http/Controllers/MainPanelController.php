@@ -26,6 +26,7 @@ class MainPanelController extends Controller
      */
     public function index()
     {
+      
       $publicaciones = Publicacion::all();
       $imagenes = Imagen::all();
         return view('main-panel')->
