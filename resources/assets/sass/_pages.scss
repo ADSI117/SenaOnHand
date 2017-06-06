@@ -22,3 +22,34 @@ html, body {
   max-height: 100vh;
   overflow-y: scroll;
 }
+.tarjeta {
+  width: 400px;
+  margin: 10px 5px;
+  box-shadow: 0px 5px 25px #eee;
+  .cabezera {
+    padding: 10px 10px 5px 24px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    position: relative;
+    background-color: #C5E1A5;
+    height: 75px;
+  }
+  .imagen {
+    overflow: hidden;
+    text-align: center;
+    background-color: #ffF;
+    position: absolute;
+    // padding: 5px;
+    border-radius: 100%;
+    top: 5px;
+    right: 20px;
+  }
+  small {
+    font-style: italic;
+    display: block;
+    text-transform: capitalize;
+  }
+  .contenido {
+    padding: 10px 10px 5px 24px;
+  }
+}

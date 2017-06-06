@@ -1,6 +1,9 @@
-.full-width {
+.full-w {
   width: 100%;
   max-width: 100%; }
+
+.full-h {
+  min-height: 100vh; }
 
 .ta-left {
   text-align: left !important; }
@@ -23,6 +26,12 @@
 .upcase {
   text-transform: uppercase; }
 
+.green {
+  background-color: #9CCC65; }
+
+.white {
+  background-color: #FFF; }
+
 * {
   font-family: "Comfortaa", cursive; }
 
@@ -44,5 +53,31 @@ html, body {
   position: fixed;
   max-height: 100vh;
   overflow-y: scroll; }
+
+.tarjeta {
+  width: 400px;
+  margin: 10px 5px;
+  box-shadow: 0px 5px 25px #eee; }
+  .tarjeta .cabezera {
+    padding: 10px 10px 5px 24px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    position: relative;
+    background-color: #C5E1A5;
+    height: 75px; }
+  .tarjeta .imagen {
+    overflow: hidden;
+    text-align: center;
+    background-color: #ffF;
+    position: absolute;
+    border-radius: 100%;
+    top: 5px;
+    right: 20px; }
+  .tarjeta small {
+    font-style: italic;
+    display: block;
+    text-transform: capitalize; }
+  .tarjeta .contenido {
+    padding: 10px 10px 5px 24px; }
 
 /*# sourceMappingURL=generales.css.map */
