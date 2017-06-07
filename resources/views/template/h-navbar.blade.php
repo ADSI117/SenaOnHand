@@ -38,9 +38,6 @@
                   Publicar
                 </a>
               </li>
-            <li class="nav-item d-flex align-items-center pl-1">
-
-            </li>
             @endif
           </ul>
 
