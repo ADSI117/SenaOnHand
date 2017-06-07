@@ -23,10 +23,12 @@ html, body {
   overflow-y: scroll;
 }
 .tarjeta {
+  display: inline-block;
   width: 400px;
   margin: 10px 5px;
   box-shadow: 0px 5px 25px #eee;
   .cabezera {
+    margin-top: 0px;
     padding: 10px 10px 5px 24px;
     font-size: 1.2em;
     text-transform: uppercase;
@@ -49,13 +51,15 @@ html, body {
     display: block;
     text-transform: capitalize;
   }
-  .contenido {
+  .contenido p {
     padding: 10px 10px 5px 24px;
+    max-height: 81px;
+    overflow:hidden;
   }
 }
 .collapse.navbar-collapse {
   justify-content: flex-end;
   .nav-ul {
-    margin-right: auto; 
+    margin-right: auto;
   }
 }
