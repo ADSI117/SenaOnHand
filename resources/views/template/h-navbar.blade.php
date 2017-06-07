@@ -32,6 +32,9 @@
             <li class="nav-item d-flex align-items-center pl-1">
               <a href="{{route('publicaciones.create')}}" class="nav-link">Publicar</a>
             </li>
+            <li class="nav-item d-flex align-items-center pl-1">
+              <a href="{{route('main-panel')}}" class="nav-link">Inicio</a>
+            </li>
             @endif
             @if (!Auth::guest())
               <li class="nav-item dropdown">
