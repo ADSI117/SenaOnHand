@@ -53,3 +53,9 @@ html, body {
     padding: 10px 10px 5px 24px;
   }
 }
+.collapse.navbar-collapse {
+  justify-content: flex-end;
+  .nav-ul {
+    margin-right: auto; 
+  }
+}

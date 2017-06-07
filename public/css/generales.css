@@ -80,4 +80,9 @@ html, body {
   .tarjeta .contenido {
     padding: 10px 10px 5px 24px; }
 
+.collapse.navbar-collapse {
+  justify-content: flex-end; }
+  .collapse.navbar-collapse .nav-ul {
+    margin-right: auto; }
+
 /*# sourceMappingURL=generales.css.map */
