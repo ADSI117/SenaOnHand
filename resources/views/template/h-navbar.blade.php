@@ -11,8 +11,11 @@
     	    <span class="navbar-toggler-bar bar2"></span>
     	    <span class="navbar-toggler-bar bar3"></span>
      	  </button>
-
-        <a class="navbar-brand" href="{{ url('/') }}">
+        @if (!Auth::guest())
+          <a class="navbar-brand" href="{{route('main-panel')}}" >
+        @else
+          <a class="navbar-brand" href="{{ url('/') }}">
+        @endif
           {{ config('app.name', 'SenaOnHand') }}
         </a>
 
@@ -35,6 +38,9 @@
                   Publicar
                 </a>
               </li>
+            <li class="nav-item d-flex align-items-center pl-1">
+
+            </li>
             @endif
           </ul>
 

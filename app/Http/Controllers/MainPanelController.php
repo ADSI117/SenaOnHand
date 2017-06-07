@@ -26,8 +26,8 @@ class MainPanelController extends Controller
      */
     public function index()
     {
-      
-      $publicaciones = Publicacion::all();
+
+      $publicaciones = Publicacion::orderBy('created_at', 'desc')->get();
       $imagenes = Imagen::all();
         return view('main-panel')->
         with('imagenes', $imagenes)

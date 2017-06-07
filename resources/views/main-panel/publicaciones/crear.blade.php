@@ -1,8 +1,13 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+@extends('template.layout')
 
+@include('template.h-navbar')
+
+@section('main')
+
+<div class="container">
 <h1>Formulario de nueva publicacion</h1>
 
-{!! Form::open(['route' => 'publicaciones.store', 'method' => 'POST', 'files' => true, 'class' => 'form-control']) !!}
+{!! Form::open(['route' => 'publicaciones.store', 'method' => 'POST', 'files' => true, 'class' => '']) !!}
 
   {!!Form::text('titulo', null, ['id' => 'nombre', 'placeholder' => 'Título', 'required', 'class' => 'form-control'])!!}
   <br>
@@ -26,7 +31,9 @@
   {!! Form::select('tags', $tags, null, ['multiple'=>'multiple', 'name'=>'tags[]',  'required', 'class' => 'form-control']) !!}
 
   <br>
-  {!! Form::submit('Publicar', ['class' => 'form-control']) !!}
+  {!! Form::submit('Publicar', ['class' => 'form-control btn-primary']) !!}
 
 
 {!! Form::close()!!}
+</div>
+@endsection
