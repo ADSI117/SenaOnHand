@@ -32,6 +32,16 @@ Route::group(['prefix'=>'main-panel'], function (){
   Route::resource('usuarios', 'UsuariosController');
   Route::resource('categoria-usuario', 'CategoriasUsuariosController');
   Route::resource('instructores', 'InstructoresController');
+  Route::resource('tags', 'TagsController');
+  Route::resource('imagenes', 'ImagenesController');
+  Route::resource('archivos', 'ArchivosController');
+  Route::resource('videos', 'VideosController');
+
+  //Andres Peña
+  Route::get('seguir/{id}/','SeguidosController@seguirInstructor')->name('seguirInstructor');
+  Route::get('dejarDeguir/{id}','SeguidosController@dejarDeseguir')->name('DejarDeSeguirInstructor');
+
+
 
 });
 

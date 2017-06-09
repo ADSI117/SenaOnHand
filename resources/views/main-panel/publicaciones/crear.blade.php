@@ -25,9 +25,14 @@
           {!! Form::file('imagen', ['class' => 'form-control']) !!}
         </div>
 
-        <div class="form-group form-group-no-border">
+        <div class="form-group form-group-no-border ">
           {!! Form::label('archivo', 'Archivo') !!}
           {!! Form::file('archivo', ['class' => 'form-control']) !!}
+        </div>
+
+        <div class="form-group form-group-no-border">
+          {!! Form::label('video', 'Video') !!}
+          {!!Form::text('video', null, ['id' => 'video', 'placeholder' => 'URL del video', 'class' => 'form-control'])!!}
         </div>
 
         <div class="form-group form-group-no-border">

@@ -11,6 +11,7 @@ use App\Imagen;
 // use Storage;
 use App\EstadoPublicacion;
 use App\Archivo;
+use App\Video;
 
 class PublicacionesController extends Controller
 {
@@ -59,6 +60,7 @@ class PublicacionesController extends Controller
     public function store(Request $request)
     {
 
+
       $publicacion = new Publicacion();
       $publicacion->titulo = $request->titulo;
       $publicacion->contenido = $request->contenido;
@@ -79,7 +81,7 @@ class PublicacionesController extends Controller
 
         }
 
-        //verificar si hay archivo y guardarlo
+        //verificar si hay imagen y guardar
         if ($request->file('imagen')){
           //Manipular las imagenes.
           $imagen = $request->file('imagen');
@@ -90,23 +92,52 @@ class PublicacionesController extends Controller
 
           $respuesta = $imagen->move($direccion, $nombre);
           // dd($respuesta);
+          //Guardar el registro en tabla imagenes enlazado a la publicacion
+          $ima = new Imagen();
+          $ima->descripcion = $nombre;
+          $ima->publicacion()->associate($publicacion);
+          $ima->save();
         }
 
-        //Guardar el registro en tabla imagenes enlazado a la publicacion
-        $ima = new Imagen();
-        $ima->descripcion = $nombre;
-        $ima->publicacion()->associate($publicacion);
-        $ima->save();
-        dd('Publicacion guardada');
+        //verificar si hay archivo y guardarlo
+        if ($request->file('archivo')){
+          // dd($request->file('archivo')->getClientOriginalExtension());
+          //Manipular las imagenes.
+          $archivo = $request->file('archivo');
+
+          //cambiar nombre a imagen
+          $nombre = 'soh_arh_' . time() . '.'. $archivo->getClientOriginalExtension();
+          //definir la ubicacion
+
+          $direccion = public_path() . '/archivos/publicaciones/';
+
+          $respuesta = $archivo->move($direccion, $nombre);
+          // dd($respuesta);
+          //Guardar el registro en tabla archivos enlazado a la publicacion
+          $arh = new Archivo();
+
+          $arh->descripcion = $nombre;
+          $arh->publicacion()->associate($publicacion);
+          $arh->save();
+        }
+
+        //verificar si hay url de video y guardarlo
+        if ($request->video){
+
+          $video = new video();
+
+          $video->descripcion = $request->video;
+          $video->publicacion()->associate($publicacion);
+          $video->save();
+        }
+
+
+
+        return back();
       }else{
         dd('Hubo un error!');
       }
 
-
-
-
-
-        dd($path);
     }
 
     /**
@@ -139,7 +170,17 @@ class PublicacionesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $publicacion = Publicacion::find($id);
+
+        $estados = EstadoPublicacion::orderBy('descripcion', 'ASC')->pluck('descripcion', 'id');
+        $subcategorias = Subcategoria::orderBy('descripcion', 'ASC')->pluck('descripcion', 'id');
+        $tags = Tag::orderBy('descripcion', 'ASC')->pluck('descripcion', 'id');
+        // dd($estados);
+          return view ('main-panel.publicaciones.editar')
+                      ->with('publicacion', $publicacion)
+                      ->with('subcategorias', $subcategorias)
+                      ->with('tags', $tags)
+                      ->with('estados', $estados);
     }
 
     /**
@@ -151,7 +192,82 @@ class PublicacionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $publicacion = Publicacion::find($id);
+      $publicacion->titulo = $request->titulo;
+      $publicacion->contenido = $request->contenido;
+      $publicacion->subcategoria_id = $request->subcategoria_id;
+      // $publicacion->usuario_id = Auth::user()->id;
+      $publicacion->user_id = Auth::user()->id;
+      $publicacion->estado_id = $request->estado_id;
+
+      if ($publicacion->save()){
+
+        //ingresar tags
+        if ($request->tags){
+          // $tags = explode(',', $request->tags);
+
+          // foreach ($request->tags as $tag) {
+            $publicacion->tags()->sync($request->tags);
+          // }
+
+        }
+
+        //verificar si hay archivo y guardarlo
+        if ($request->file('imagen')){
+          //Manipular las imagenes.
+          $imagen = $request->file('imagen');
+          //cambiar nombre a imagen
+          $nombre = 'soh_' . time() . '.'. $imagen->getClientOriginalExtension();
+          //definir la ubicacion
+          $direccion = public_path() . '/imagenes/publicaciones/';
+
+          $respuesta = $imagen->move($direccion, $nombre);
+          // dd($respuesta);
+          //Guardar el registro en tabla imagenes enlazado a la publicacion
+          $ima = new Imagen();
+          $ima->descripcion = $nombre;
+          $ima->publicacion()->associate($publicacion);
+          $ima->save();
+        }
+
+        //verificar si hay archivo y guardarlo
+        if ($request->file('archivo')){
+          // dd($request->file('archivo')->getClientOriginalExtension());
+          //Manipular las imagenes.
+          $archivo = $request->file('archivo');
+
+          //cambiar nombre a imagen
+          $nombre = 'soh_arh_' . time() . '.'. $archivo->getClientOriginalExtension();
+          //definir la ubicacion
+
+          $direccion = public_path() . '/archivos/publicaciones/';
+
+          $respuesta = $archivo->move($direccion, $nombre);
+          // dd($respuesta);
+          //Guardar el registro en tabla archivos enlazado a la publicacion
+          $arh = new Archivo();
+
+          $arh->descripcion = $nombre;
+          $arh->publicacion()->associate($publicacion);
+          $arh->save();
+        }
+
+        //verificar si hay url de video y guardarlo
+        if ($request->video){
+
+          $video = new video();
+
+          $video->descripcion = $request->video;
+          $video->publicacion()->associate($publicacion);
+          $video->save();
+        }
+
+        return back();
+
+      }else{
+        dd('Hubo un error!');
+      }
+
     }
 
     /**

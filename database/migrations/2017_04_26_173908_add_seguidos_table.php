@@ -17,6 +17,7 @@ class AddSeguidosTable extends Migration
             $table->increments('id');
             $table->integer('usuario_seguidor_id')->unsigned();
             $table->integer('usuario_seguido_id')->unsigned();
+            $table->integer('estado_id');
             $table->timestamps();
         });
     }
