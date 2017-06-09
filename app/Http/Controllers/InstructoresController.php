@@ -47,10 +47,15 @@ class InstructoresController extends Controller
     public function show($id)
     {
       $instructor = User::find($id);
-      $publicaciones = $instructor->publicaciones->all();
+      if ($instructor->rol_id == 2){
+        $publicaciones = $instructor->publicaciones->all();
 
-      // dd($publicaciones);
-        return view ('main-panel.instructores.detalle', compact('instructor', 'publicaciones'));
+        // dd($publicaciones);
+          return view ('main-panel.instructores.detalle', compact('instructor', 'publicaciones'));
+      }else{
+        return back();
+      }
+
     }
 
     /**
