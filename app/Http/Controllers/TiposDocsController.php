@@ -13,9 +13,9 @@ class TiposDocsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tipos_docs = TipoDoc::orderBy('id','desc')->paginate(5);
+        $tipos_docs = TipoDoc::search($request->nombre)->orderBy('id','desc')->paginate(5);
         return view('admin.tipos_docs.index')->with('tipos_docs',$tipos_docs);
     }
 

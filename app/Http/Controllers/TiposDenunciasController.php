@@ -13,11 +13,11 @@ class TiposDenunciasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
       // dd('Soy tipos de denuncias');
 
-       $tipos_denuncias = TipoDenuncia::orderBy('id','DESC')->paginate(5);
+       $tipos_denuncias = TipoDenuncia::search($request->descripcion)->orderBy('id','DESC')->paginate(5);
 
       //  dd($tipos_denuncias);
         return view('admin.tipos_denuncias.index')->with('tipos_denuncias',$tipos_denuncias);

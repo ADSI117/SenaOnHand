@@ -9,6 +9,7 @@ use App\Sede;
 use App\Grupo;
 use Auth;
 use App\Categoria;
+use Illuminate\Validation\Rule;
 
 class UsuariosController extends Controller
 {
@@ -109,6 +110,7 @@ class UsuariosController extends Controller
     {
         $usuario = User::find($id);
 
+
         $usuario->nombres = $request->nombres;
         $usuario->apellidos = $request->apellidos;
         $usuario->profesion = $request->profesion;
@@ -119,6 +121,8 @@ class UsuariosController extends Controller
         $usuario->grupo_id = $request->grupo_id;
 
         if ($request->file('imagen')){
+
+     
           $imagen = $request->file('imagen');
 
           $nombre = 'soh_profile_' . time() . '.'. $imagen->getClientOriginalExtension();
