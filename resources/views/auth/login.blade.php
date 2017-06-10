@@ -8,24 +8,27 @@
       <source src="{{asset('media/Wall-Sketching.mp4')}}" type="video/mp4">
     </video>
   </div> --}}
-  <div class="section section-signup full-h green">
+  <div class="page-header-image" style="background-image:url({{asset('imagenes/background/fondo_1.jpg')}})"></div>
     <div class="container">
-      <div class="row">
-        <div class="card card-signup">
+      <div class="row full-h justify-content-center align-items-center">
+      <div class="col-md-4">
+
+        <div class="card card-login pl-5 pr-5">
           <form class="form" role="form" method="POST" action="{{ route('login') }}">
             <div class="header header-primary text-center">
               <h4 class="title title-up">Inicio</h4>
             </div>
+            <hr />
             <div class="content">
               {{ csrf_field() }}
-              <div class="input-group form-group-no-border input-lg">
+              <div class="input-group input-lg">
                 <span class="input-group-addon">
                     <i class="fa fa-envelope"></i>
                 </span>
-                <input id="email" type="email" class="form-control" name="email" placeholder="Correo electronico" required>
+                <input id="email" type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" name="email" placeholder="Correo electronico" required>
               </div>
 
-              <div class="input-group form-group-no-border input-lg">
+              <div class="input-group input-lg">
                 <span class="input-group-addon">
                     <i class="fa fa-unlock-alt"></i>
                 </span>
@@ -33,8 +36,7 @@
               </div>
 
             </div>
-
-            <div class="footer text-center p-0">
+            <div class="footer text-center mt-2">
               <div class="checkbox">
                 <input id="checkbox1" type="checkbox" name="remember"  {{ old('remember') ? 'checked' : '' }}>
                 <label for="checkbox1">
@@ -44,8 +46,8 @@
               <button type="submit" class="btn btn-primary btn-round btn-lg">
                   Ingresar
               </button>
-              <br>
-              <a class="btn btn-link" href="{{ route('password.request') }}">
+              <br /> <br />
+              <a class="link" href="{{ route('password.request') }}">
                 ¿Olvidó su contraseña?
               </a>
             </div>
