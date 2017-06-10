@@ -73,3 +73,20 @@ html, body {
   height: 100vh;
   z-index: -1;
 }
+.page-banner {
+  padding-top: 3em;
+  padding-bottom: 3em;
+  margin-top: -20px;
+  margin-bottom: 3em;
+  color: white;
+  background-color: rgb(180, 76, 76);
+  position: relative;
+  h1 {
+    margin: 0px;
+  }
+  .btn-float-page{
+    position: absolute;
+    bottom: -20px;
+    right: 75px;
+  }
+}
