@@ -3,6 +3,31 @@
 @include('template.h-navbar')
 
 @section('main')
+
+<div class="contaner-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-4">
+
+    </div>
+    <div class="col-xs-12 col-md-4"></div>
+    <div class="col-xs-12 col-md-4">
+      <h2>Siguiendo</h2>
+      @foreach($usuario->seguidos as $seguido)
+        {{ Form::open(['method' => 'DELETE', 'route' => ['seguidos.destroy', $seguido->id]]) }}
+        @if($seguido->seguido->url_foto)
+          <img src="/imagenes/perfiles/{{$seguido->seguido->url_foto}}" alt="" width="50" height="50">
+        @else
+          <img src="/imagenes/perfiles/soh_profile_default.png" alt="" width="50" height="50">
+        @endif
+        {{$seguido->seguido->nombres}} id: {{$seguido->id}}
+        {!!Form::submit('Sejar de seguir', ['class'=>'btn btn-warning'])!!}
+        {{ Form::close() }}
+      @endforeach
+    </div>
+  </div>
+</div>
+
+
   <div class="row justify-content-center">
     {{-- <div class="col"> --}}
 

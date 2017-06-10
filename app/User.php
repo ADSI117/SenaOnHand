@@ -56,11 +56,13 @@ class User extends Authenticatable
         }
 
     public function seguidos() {
-        return $this->belongsToMany('App\User')->withTimestamps();
+        // return $this->belongsToMany('App\User')->withTimestamps();
+        return $this->hasMany('App\TbSeguido', 'usuario_seguidor_id', 'id');
     }
 
     public function seguidores() {
-        return $this->belongsToMany('App\User')->withTimestamps();
+        // return $this->belongsToMany('App\User')->withTimestamps();
+        return $this->hasMany('App\TbSeguido', 'usuario_seguido_id', 'id');
     }
 
     /**
@@ -72,10 +74,4 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function Seguido() {
-        return $this->belongsToMany('App\User');
-    }
-    public function Seguidor() {
-        return $this->belongsToMany('App\User');
-    }
 }

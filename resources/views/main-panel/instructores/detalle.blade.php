@@ -52,7 +52,9 @@
   <br>
   <a href="mail:to">{{$instructor->email}}</a>
   <br>
-  <button class="btn btn-primary">Seguir</button>
+    {!!Form::open(['route'=>'seguidos.store','method'=>'POST'])!!}
+    {!!Form::hidden('seguir_id', $instructor->id)!!}
+    {!!Form::submit('Seguir', ['class'=>'btn btn-primary'])!!}
   <div class="">
     <h1>Calificacion</h1>
 

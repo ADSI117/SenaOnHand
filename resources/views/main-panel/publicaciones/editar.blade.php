@@ -59,6 +59,7 @@
 
                 {!! Form::open(['method' => 'DELETE', 'route' => ['tags.destroy', $tag->id]]) !!}
                   {{$tag->descripcion}}
+                  <!-- Corregir modo hidden -->
                   {!!Form::text('publicacion_id', $publicacion->id, ['class'=>'invisible'])!!}
                   {!!Form::button('Borrar', ['class' => 'btn btn-warning', 'type' => 'submit'])!!}
                 {!! Form::close() !!}
@@ -103,7 +104,7 @@
 
         <br>
 
-        <!-- Desplegar archivos que tiene la publicacion -->
+        <!-- Desplegar VIDEOS que tiene la publicacion -->
         <p>
           @if($publicacion->videos->all())
             <h3>Videos</h3>

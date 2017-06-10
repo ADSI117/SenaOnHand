@@ -36,10 +36,11 @@ Route::group(['prefix'=>'main-panel'], function (){
   Route::resource('imagenes', 'ImagenesController');
   Route::resource('archivos', 'ArchivosController');
   Route::resource('videos', 'VideosController');
+  Route::resource('seguidos', 'SeguidosController');
 
   //Andres Peña
-  Route::get('seguir/{id}/','SeguidosController@seguirInstructor')->name('seguirInstructor');
-  Route::get('dejarDeguir/{id}','SeguidosController@dejarDeseguir')->name('DejarDeSeguirInstructor');
+  // Route::get('seguir/{id}/','SeguidosController@seguirInstructor')->name('seguirInstructor');
+  // Route::get('dejarDeguir/{id}','SeguidosController@dejarDeseguir')->name('DejarDeSeguirInstructor');
 
 
 

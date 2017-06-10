@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Publicacion;
 use App\Imagen;
+use App\TbSeguido;
+use Auth;
+use App\User;
 
 class MainPanelController extends Controller
 {
@@ -26,11 +29,17 @@ class MainPanelController extends Controller
      */
     public function index()
     {
+      // $seguidos = TbSeguido::all()->where('usuario_seguidor_id', '=', Auth::user()->id);
+      $usuario = User::find(Auth::user()->id);
+
 
       $publicaciones = Publicacion::orderBy('created_at', 'desc')->get();
+
       $imagenes = Imagen::all();
         return view('main-panel')->
         with('imagenes', $imagenes)
-        ->with('publicaciones', $publicaciones);
+        ->with('publicaciones', $publicaciones)
+        ->with('usuario', $usuario)
+        ;
     }
 }

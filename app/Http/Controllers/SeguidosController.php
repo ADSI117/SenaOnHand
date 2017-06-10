@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\TbSeguido;
+use Auth;
 
 class SeguidosController extends Controller
 {
@@ -34,7 +36,24 @@ class SeguidosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      if ($request->seguir_id == Auth::user()->id){
+        dd('NO se puede seguir a usted mismo');
+      }
+
+        $registro = TbSeguido::where('usuario_seguido_id', '=', $request->seguir_id)
+                              ->where('usuario_seguidor_id', '=', Auth::user()->id)
+                              ->first();
+
+        if(!$registro){
+          $seguidor =	TbSeguido::create([
+    				'usuario_seguidor_id'=>Auth::user()->id,
+    				'usuario_seguido_id'=>$request->seguir_id,
+    				'estado_id'=>1
+    			]);
+          dd('Registrado');
+        }else{
+          dd('Ya lo esta siguiendo');
+        }
     }
 
     /**
@@ -79,6 +98,13 @@ class SeguidosController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $registro = TbSeguido::find($id);
+      if($registro->delete()){
+          return back();
+      }else{
+        dd('Error');
+      }
+
+
     }
 }
