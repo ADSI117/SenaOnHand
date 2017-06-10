@@ -34,3 +34,4 @@ class AddImagenesTable extends Migration
         Schema::dropIfExists('imagenes');
     }
 }
+

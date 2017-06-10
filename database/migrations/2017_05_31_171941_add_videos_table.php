@@ -34,3 +34,4 @@ class AddVideosTable extends Migration
         Schema::dropIfExists('videos');
     }
 }
+
