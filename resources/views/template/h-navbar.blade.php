@@ -38,17 +38,34 @@
                   Publicar
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('mensajes.create')}}">
+                  Nuevo mensaje
+                </a>
+              </li>
+
+
             @endif
           </ul>
 
     	    <ul class="navbar-nav">
 
             @if (!Auth::guest())
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('notificaciones.index') }}">
+                Notificaciones
+                @if($count = Auth::user()->unreadNotifications->count())
+                  <span class="badge">{{$count}}</span>
+                @endif
+              </a>
+            </li>
+
               <li class="nav-item">
                 @if(Auth::user()->url_foto)
-                  <img src="/imagenes/perfiles/{{Auth::user()->url_foto}}" alt="" class="rounded white" width="45">
+                  <img src="{{url('/')}}/imagenes/perfiles/{{Auth::user()->url_foto}}" alt="" class="rounded white" width="45">
                 @else
-                  <img src="/imagenes/perfiles/soh_profile_default.png" alt="" class="rounded white" width="45">
+                  <img src="{{url('/')}}/imagenes/perfiles/soh_profile_default.png" alt="" class="rounded white" width="45">
                 @endif
               </li>
               <li class="nav-item dropdown">

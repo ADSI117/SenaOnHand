@@ -43,7 +43,7 @@
             </small>
 
             <div class="imagen">
-              <img src="/imagenes/perfiles/{{$publicacion->user->url_foto}}" class="rounded-circle" width="60" height="60">
+              <img src="{{url('/')}}/imagenes/perfiles/{{$publicacion->user->url_foto}}" class="rounded-circle" width="60" height="60">
             </div>
           </h4>
 
@@ -56,7 +56,7 @@
       @endforeach
 
       <!-- Paginado -->
-      
+
       <div class="text-center">{{ $publicaciones->links() }}</div>
     {{-- </div> --}}
 

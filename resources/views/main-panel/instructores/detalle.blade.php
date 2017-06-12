@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-3">
       <div class="card">
-        <img class="card-img-top img-fluid" src="/imagenes/perfiles/{{$instructor->url_foto}}" alt="Card image cap">
+        <img class="card-img-top img-fluid" src="{{url('/')}}/imagenes/perfiles/{{$instructor->url_foto}}" alt="Card image cap">
         <div class="card-block">
           <h4 class="card-title">
             {{$instructor->nombres}} {{$instructor->apellidos}}
@@ -69,7 +69,7 @@
             <small class="text-muted"><a href="{{route('instructores.show', [$publicacion->user_id])}}">{{$publicacion->user->nombres}}</a></small>
 
             <div class="imagen">
-              <img src="/imagenes/perfiles/{{$publicacion->user->url_foto}}" alt="" width="60" height="60">
+              <img src="{{url('/')}}/imagenes/perfiles/{{$publicacion->user->url_foto}}" alt="" width="60" height="60">
             </div>
           </h4>
 

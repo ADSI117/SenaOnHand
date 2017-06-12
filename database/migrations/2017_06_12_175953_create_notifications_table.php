@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddMensajesTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class AddMensajesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_mensajes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('usuario_id')->unsigned();
-            $table->integer('sala_id')->unsigned();
-            $table->text('mensaje');
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable');
+            $table->text('data');
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class AddMensajesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_mensajes');
+        Schema::dropIfExists('notifications');
     }
 }
