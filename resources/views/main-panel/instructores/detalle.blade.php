@@ -80,6 +80,9 @@
 
         </div>
       @endforeach
+
+      <!-- Paginado -->
+      <div class="text-center">{{ $publicaciones->links() }}</div>
     </div>
 
   </div>

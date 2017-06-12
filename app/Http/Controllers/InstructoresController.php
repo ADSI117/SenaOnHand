@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Publicacion;
 
 class InstructoresController extends Controller
 {
@@ -48,7 +49,8 @@ class InstructoresController extends Controller
     {
       $instructor = User::find($id);
       if ($instructor->rol_id == 2){
-        $publicaciones = $instructor->publicaciones->all();
+        $publicaciones = $instructor->publicaciones()->paginate(6);
+        // $publicaciones = Publicacion::where('user_id', '=', $id)->paginate(4);
 
         // dd($publicaciones);
           return view ('main-panel.instructores.detalle', compact('instructor', 'publicaciones'));
