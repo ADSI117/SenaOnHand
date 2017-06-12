@@ -15,9 +15,9 @@
       @foreach($usuario->seguidos as $seguido)
         {{ Form::open(['method' => 'DELETE', 'route' => ['seguidos.destroy', $seguido->id]]) }}
         @if($seguido->seguido->url_foto)
-          <img src="/imagenes/perfiles/{{$seguido->seguido->url_foto}}" alt="" width="50" height="50">
+          <img src="{{url('/')}}/imagenes/perfiles/{{$seguido->seguido->url_foto}}" alt="" width="50" height="50">
         @else
-          <img src="/imagenes/perfiles/soh_profile_default.png" alt="" width="50" height="50">
+          <img src="{{url('/')}}/imagenes/perfiles/soh_profile_default.png" alt="" width="50" height="50">
         @endif
         {{$seguido->seguido->nombres}} id: {{$seguido->id}}
         {!!Form::submit('Sejar de seguir', ['class'=>'btn btn-warning'])!!}

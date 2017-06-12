@@ -41,13 +41,15 @@ class MensajeEnviado extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    // public function toMail($notifiable)
-    // {
-    //     return (new MailMessage)
-    //                 ->line('The introduction to the notification.')
-    //                 ->action('Notification Action', url('/'))
-    //                 ->line('Thank you for using our application!');
-    // }
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+                    ->greeting($notifiable->nombres . ',')
+                    ->subject('Mensaje recibido desde SenaOnHand')
+                    ->line('Tienes un nuevo mensaje.')
+                    ->action('Ver mensaje', route('mensajes.show', $this->mensaje->id))
+                    ->line('Gracias por usar nuestra SenaOnHand!');
+    }
 
     /**
      * Get the array representation of the notification.

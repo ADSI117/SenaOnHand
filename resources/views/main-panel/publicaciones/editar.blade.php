@@ -75,7 +75,7 @@
             @foreach($publicacion->imagenes as $imagen)
 
               {!! Form::open(['method' => 'DELETE', 'route' => ['imagenes.destroy', $imagen->id]]) !!}
-                <img src="/imagenes/publicaciones/{{$imagen->descripcion}}" alt="" width="150" height="150">
+                <img src="{{url('/')}}/imagenes/publicaciones/{{$imagen->descripcion}}" alt="" width="150" height="150">
                 {!!Form::button('Borrar', ['class' => 'btn btn-warning', 'type' => 'submit'])!!}
               {!! Form::close() !!}
 

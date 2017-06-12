@@ -11,6 +11,18 @@ use App\Notifications\MensajeEnviado;
 
 class MensajesController extends Controller
 {
+
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+      $this->middleware('auth');
+      $this->middleware('estado');
+  }
+
     /**
      * Display a listing of the resource.
      *
@@ -63,6 +75,8 @@ class MensajesController extends Controller
         $receptor = User::find($request->usuario_amigo_id);
 
         $receptor->notify(new MensajeEnviado($mensaje));
+
+        return back();
 
     }
 

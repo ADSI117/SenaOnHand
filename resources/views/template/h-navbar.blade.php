@@ -39,11 +39,6 @@
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="{{route('mensajes.create')}}">
-                  Nuevo mensaje
-                </a>
-              </li>
 
 
             @endif
@@ -52,6 +47,11 @@
     	    <ul class="navbar-nav">
 
             @if (!Auth::guest())
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('mensajes.create')}}">
+                Nuevo mensaje
+              </a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('notificaciones.index') }}">
                 Notificaciones
@@ -74,10 +74,11 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                   @if(Auth::user()->url_foto)
-                    <img src="/imagenes/perfiles/{{Auth::user()->url_foto}}" alt="" class="rounded-0 white">
+                    <img src="{{url('/')}}/imagenes/perfiles/{{Auth::user()->url_foto}}" alt="" class="rounded-0 white">
                   @else
-                    <img src="/imagenes/perfiles/soh_profile_default.png" alt="" class="rounded-0 white">
+                    <img src="{{url('/')}}/imagenes/perfiles/soh_profile_default.png" alt="" class="rounded-0 white">
                   @endif
+                  <a class="dropdown-header">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</a>
                   <a class="dropdown-header">Configuración</a>
                   <a class="dropdown-item"  href="{{route('usuarios.edit', Auth::user()->id)}}" >Editar perfil</a>
                   <div class="divider"></div>
