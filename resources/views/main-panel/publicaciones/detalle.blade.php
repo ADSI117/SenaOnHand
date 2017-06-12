@@ -2,132 +2,115 @@
 
 @include('template.h-navbar')
 
-<style media="screen">
-  #form {
-  width: 250px;
-  margin: 0 auto;
-  height: 50px;
-  }
-
-  #form p {
-  text-align: center;
-  }
-
-  #form label {
-  font-size: 20px;
-  }
-
-  input[type="radio"] {
-  display: none;
-  }
-
-  label {
-  color: grey;
-  }
-
-  .clasificacion {
-  direction: rtl;
-  unicode-bidi: bidi-override;
-  }
-
-  label:hover,
-  label:hover ~ label {
-  color: orange;
-  }
-
-  input[type="radio"]:checked ~ label {
-  color: orange;
-  }
-
-</style>
-
 @section('main')
-<div class="container">
-
-    <h1>Detalle de una publicacion</h1>
+  <div class="page-banner" style="background-color:#2196F3;">
+    <div class="container">
+      <h1>
+        {{$publicacion->titulo}}
+      </h1>
+      <div class="d-flex">
+        <img  class="mr-3"
+              src="/imagenes/perfiles/{{$publicacion->user->url_foto}}"
+              alt="foto de perfil"
+              width="50" height="50"/>
+        <span class="d-flex align-items-center">
+          Autor:
+          <a href="{{route('instructores.show', [$publicacion->user_id])}}" class="link-autor">
+            {{$publicacion->user->nombres}} {{$publicacion->user->apellidos}}
+          </a>
+        </span>
+      </div>
+    </div>
     @if(Auth::user()->id == $publicacion->user_id)
-      <p>
-        <a href="{{route('publicaciones.edit', $publicacion->id)}}">
-          <button class="btn btn-warning"> Editar </button>
-        </a>
-      </p>
+    <div class="btn-float-page">
+      <a href="{{route('publicaciones.edit', $publicacion->id)}}" class="btn btn-warning btn-icon btn-round">
+        <i class="fa fa-pencil"></i>
+      </a>
+    </div>
     @endif
+  </div>
+  <div class="container mb-5">
 
-    <h2>Título: {{$publicacion->titulo}}</h2>
+    <div class="row">
 
-    <h3>Autor:
-      <a href="{{route('instructores.show', [$publicacion->user_id])}}">
-      {{$publicacion->user->nombres}} {{$publicacion->user->apellidos}}
-    </a>
-    </h3>
+      <div class="col-6 justify-content-start">
+        Fecha creado: {{ date('Y-m-d', strtotime($publicacion->created_at)) }}
+        <br />
+        {{-- Fecha actualizado: {{ date('Y-m-d', strtotime($publicacion->created_at)) }} --}}
+      </div>
+      <div class="col-6 justify-content-end">
+        <form id="form">
+          <p class="clasificacion">
+            <input id="radio1" type="radio" name="estrellas" value="5"><!--
+            --><label for="radio1">★</label><!--
+            --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+            --><label for="radio2">★</label><!--
+            --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+            --><label for="radio3">★</label><!--
+            --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+            --><label for="radio4">★</label><!--
+            --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+            --><label for="radio5">★</label>
+          </p>
+        </form>
+      </div>
 
+      <div class="w-100"></div>
 
-    <h3>Subcategoria: {{$publicacion->subcategoria->descripcion}}</h3>
-    <h3>Categoria: {{$publicacion->subcategoria->categoria->descripcion}}</h3>
-    <p>Fecha creado: {{ date('Y-m-d', strtotime($publicacion->created_at)) }}</p>
-    <p>Fecha actualizado: {{ date('Y-m-d', strtotime($publicacion->created_at)) }}</p>
+      <div class="col">
+        <h4 class="display-4">{{$publicacion->titulo}}</h4>
+        <p class="lead pt-2">
+          {{$publicacion->contenido}}
+        </p>
+        @if($imagenes)
+          <h3>Imagenes</h3>
+          @foreach($imagenes as $imagen)
+            <img src="/imagenes/publicaciones/{{$imagen->descripcion}}" alt="" width="150" height="150">
+          @endforeach
+        @endif
+        <div>
+          @if($publicacion->archivos->all())
+            <h3>Archivos</h3>
+            @foreach($publicacion->archivos as $archivo)
 
-    <p><img src="/imagenes/perfiles/{{$publicacion->user->url_foto}}" alt="" width="50" height="50"></p>
-    <p>{{$publicacion->contenido}}</p>
+              <!-- TODO: como mostrar los archivos -->
+              {{$archivo->descripcion}}
 
-    <p>
-      @if($publicacion->tags)
-        <h3>Tags</h3>
-        @foreach($publicacion->tags as $tag)
-          {{$tag->descripcion}} ,
-        @endforeach
+            @endforeach
+          @endif
+        </div>
+        @if($publicacion->videos->all())
+        <div class="p-5">
+            <div class="embed-responsive embed-responsive-21by9">
+            @foreach($publicacion->videos as $video)
+              <!-- TODO: como mostrar los videos -->
+                <iframe class="embed-responsive-item" src="{{$video->descripcion}}" frameborder="0" allowfullscreen></iframe>
+            @endforeach
+          </div>
+        </div>
       @endif
-    </p>
 
-    @if($imagenes)
-      <h3>Imagenes</h3>
-      @foreach($imagenes as $imagen)
-        <img src="/imagenes/publicaciones/{{$imagen->descripcion}}" alt="" width="150" height="150">
-      @endforeach
-    @endif
+      </div>
 
-    <!-- Desplegar archivos que tiene la publicacion -->
-    <p>
-      @if($publicacion->archivos->all())
-        <h3>Archivos</h3>
-        @foreach($publicacion->archivos as $archivo)
+      <div class="w-100"></div>
 
-          <!-- TODO: como mostrar los archivos -->
-          {{$archivo->descripcion}}
+      <div class="col mt-4">
+        <h5>tags</h5>
+        <span class="chip">
+          {{$publicacion->subcategoria->descripcion}}
+        </span>
+        <span class="chip">
+          {{$publicacion->subcategoria->categoria->descripcion}}
+        </span>
+        @if($publicacion->tags)
+          @foreach($publicacion->tags as $tag)
+            <span class="chip">
+              {{$tag->descripcion}}
+            </span>
+          @endforeach
+        @endif
+      </div>
 
-        @endforeach
-      @endif
-    </p>
-
-    <br>
-
-    <!-- Desplegar VIDEOS que tiene la publicacion -->
-    <p>
-      @if($publicacion->videos->all())
-        <h3>Videos</h3>
-        @foreach($publicacion->videos as $video)
-          <!-- TODO: como mostrar los videos -->
-          <iframe width="560" height="315" src="{{$video->descripcion}}" frameborder="0" allowfullscreen></iframe>
-            <!-- <img src="/imagenes/publicaciones/{{$imagen->descripcion}}" alt="" width="150" height="150"> -->
-
-        @endforeach
-      @endif
-    </p>
-
-    <form id="form">
-      <p class="clasificacion">
-        <input id="radio1" type="radio" name="estrellas" value="5"><!--
-        --><label for="radio1">★</label><!--
-        --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-        --><label for="radio2">★</label><!--
-        --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-        --><label for="radio3">★</label><!--
-        --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-        --><label for="radio4">★</label><!--
-        --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-        --><label for="radio5">★</label>
-      </p>
-    </form>
-  </else>
+    </div>
 </div>
 @endsection

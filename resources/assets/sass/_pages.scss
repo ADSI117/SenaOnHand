@@ -24,10 +24,12 @@ html, body {
 }
 .tarjeta {
   display: inline-block;
+  vertical-align: top;
   width: 25%;
   margin: 10px 10px;
   box-shadow: 0px 5px 25px #eee;
   .cabezera {
+    text-align: left;
     margin-top: 0px;
     padding: 10px 10px 5px 60px;
     font-size: 1.2em;
@@ -74,8 +76,8 @@ html, body {
   z-index: -1;
 }
 .page-banner {
-  padding-top: 3em;
-  padding-bottom: 3em;
+  padding-top: 4em;
+  padding-bottom: 2em;
   margin-top: -20px;
   margin-bottom: 3em;
   color: white;
@@ -89,4 +91,41 @@ html, body {
     bottom: -20px;
     right: 75px;
   }
+}
+
+#form {
+  padding-right: 30px;
+  p {
+    text-align: right;
+    margin: 0px;
+  }
+  label {
+    font-size: 35px;
+    color: grey;
+  }
+  label:hover,
+  label:hover ~ label {
+    color: orange;
+  }
+  input[type="radio"] {
+    display: none;
+  }
+  .clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+  }
+  input[type="radio"]:checked ~ label {
+    color: orange;
+  }
+}
+.link-autor {
+  color: white;
+}
+
+.chip {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: .8em;
+  border-radius: 25px;
+  background-color: #f1f1f1;
 }

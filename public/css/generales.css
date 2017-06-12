@@ -29,6 +29,9 @@
 .bg-green {
   background-color: #77a777; }
 
+.bg-teal {
+  background-color: #009688; }
+
 .white {
   background-color: #FFF; }
 
@@ -56,10 +59,12 @@ html, body {
 
 .tarjeta {
   display: inline-block;
+  vertical-align: top;
   width: 25%;
   margin: 10px 10px;
   box-shadow: 0px 5px 25px #eee; }
   .tarjeta .cabezera {
+    text-align: left;
     margin-top: 0px;
     padding: 10px 10px 5px 60px;
     font-size: 1.2em;
@@ -100,8 +105,8 @@ html, body {
   z-index: -1; }
 
 .page-banner {
-  padding-top: 3em;
-  padding-bottom: 3em;
+  padding-top: 4em;
+  padding-bottom: 2em;
   margin-top: -20px;
   margin-bottom: 3em;
   color: white;
@@ -113,5 +118,34 @@ html, body {
     position: absolute;
     bottom: -20px;
     right: 75px; }
+
+#form {
+  padding-right: 30px; }
+  #form p {
+    text-align: right;
+    margin: 0px; }
+  #form label {
+    font-size: 35px;
+    color: grey; }
+  #form label:hover,
+  #form label:hover ~ label {
+    color: orange; }
+  #form input[type="radio"] {
+    display: none; }
+  #form .clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override; }
+  #form input[type="radio"]:checked ~ label {
+    color: orange; }
+
+.link-autor {
+  color: white; }
+
+.chip {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: .8em;
+  border-radius: 25px;
+  background-color: #f1f1f1; }
 
 /*# sourceMappingURL=generales.css.map */

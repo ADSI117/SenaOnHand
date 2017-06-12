@@ -3,7 +3,7 @@
   @if (Auth::user()->rol_id == 3)
     <nav class="navbar navbar-toggleable-md bg-info m-0 p-0">
   @else
-    <nav class="navbar navbar-toggleable-md bg-green p-0">
+    <nav class="navbar navbar-toggleable-md bg-teal p-0">
   @endif
       <div class="container">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
