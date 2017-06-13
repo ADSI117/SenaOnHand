@@ -7,7 +7,16 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-3">
+      <div class="col text-right">
+        {!!Form::open(['route'=>'seguidos.store','method'=>'POST', 'class' => 'text-right'])!!}
+        {!!Form::hidden('seguir_id', $instructor->id)!!}
+        {!!Form::submit('Seguir', ['class'=>'btn btn-primary'])!!}
+        {!!Form::close()!!}
+      </div>
+
+      <div class="w-100"></div>
+
+      <div class="col-xs-10 col-md-4 col-lg-3">
         <div class="card">
           <div class="card-header">Foto de perfil</div>
           <img class="card-img-top img-fluid" src="{{url('/')}}/imagenes/perfiles/{{$instructor->url_foto}}" alt="Card image cap">
@@ -18,7 +27,7 @@
         </div>
       </div>
 
-      <div class="col-9">
+      <div class="col-xs-10 col-md-8 col-lg-9">
         <h4 class="display-4">
           {{$instructor->nombres}} {{$instructor->apellidos}}
           <br />
@@ -39,12 +48,7 @@
     </div>
   </div>
   {{--
-  <div class="col-6">
-  {!!Form::open(['route'=>'seguidos.store','method'=>'POST', 'class' => 'text-right'])!!}
-  {!!Form::hidden('seguir_id', $instructor->id)!!}
-  {!!Form::submit('Seguir', ['class'=>'btn btn-primary'])!!}
-  {!!Form::close()!!}
-</div>
+
 <form id="form" class="p-0 m-0 d-flex">
 <p class="clasificacion">
 <input id="radio1" type="radio" name="estrellas" value="5"><!--

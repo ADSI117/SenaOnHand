@@ -33,16 +33,27 @@
 .upcase {
   text-transform: uppercase;
 }
-// colors
+// background colors
 .bg-green {
   background-color: rgb(119, 167, 119);
 }
 .bg-teal {
-  background-color: #009688;
+  background-color: #009688 !important;
 }
-.white {
-  background-color: #FFF;
+.bg-white {
+  background-color: #FFF !important;
 }
+.bg-indigo {
+  background-color: #3F51B5 !important;
+}
+.bg-brown {
+  background-color: #795548 !important;
+}
+// Color letras
+.black {
+  color: #333 !important;
+}
+
 .small {
   font-size: .2em;
 }
