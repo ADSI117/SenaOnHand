@@ -38,14 +38,10 @@
                   Publicar
                 </a>
               </li>
-
-
-
             @endif
           </ul>
 
     	    <ul class="navbar-nav">
-
             @if (!Auth::guest())
             <li class="nav-item">
               <a class="nav-link" href="{{route('mensajes.create')}}">
@@ -53,11 +49,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('notificaciones.index') }}">
-                Notificaciones
-                @if($count = Auth::user()->unreadNotifications->count())
+              <a class="nav-link notify" href="{{ route('notificaciones.index') }}" data-badge="{{Auth::user()->unreadNotifications->count()}}">
+                <i class="fa fa-bell"></i>
+                {{-- @if($count = Auth::user()->unreadNotifications->count())
                   <span class="badge">{{$count}}</span>
-                @endif
+                @endif --}}
               </a>
             </li>
 

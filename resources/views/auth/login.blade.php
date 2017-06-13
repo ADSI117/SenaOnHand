@@ -43,7 +43,7 @@
                   Recordarme
                 </label>
               </div>
-              <button type="submit" class="btn btn-primary btn-round btn-lg">
+              <button type="submit" class="btn btn-primary btn-round">
                   Ingresar
               </button>
               <br /> <br />
