@@ -69,12 +69,12 @@
                   <i class="now-ui-icons ui-1_settings-gear-63" aria-hidden="true"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <span class="dropdown-header black text-center">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</span>
                   @if(Auth::user()->url_foto)
                     <img src="{{url('/')}}/imagenes/perfiles/{{Auth::user()->url_foto}}" alt="" class="rounded-0 white">
                   @else
                     <img src="{{url('/')}}/imagenes/perfiles/soh_profile_default.png" alt="" class="rounded-0 white">
                   @endif
-                  <a class="dropdown-header">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</a>
                   <a class="dropdown-header">Configuración</a>
                   <a class="dropdown-item"  href="{{route('usuarios.edit', Auth::user()->id)}}" >Editar perfil</a>
                   <a class="dropdown-item"  href="{{route('suscripciones.index')}}" >Mis suscripciones</a>

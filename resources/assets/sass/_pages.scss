@@ -152,3 +152,12 @@ html, body {
     z-index: 2;
   }
 }
+
+.photo-container {
+  padding: 50px;
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+}
