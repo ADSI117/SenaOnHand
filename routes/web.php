@@ -39,6 +39,7 @@ Route::group(['prefix'=>'main-panel'], function (){
   Route::resource('seguidos', 'SeguidosController');
   Route::resource('mensajes', 'MensajesController');
   Route::resource('notificaciones', 'NotificacionesController');
+  Route::resource('suscripciones', 'SeguidosController');
 
   //Andres Peña
   // Route::get('seguir/{id}/','SeguidosController@seguirInstructor')->name('seguirInstructor');

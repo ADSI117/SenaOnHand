@@ -77,6 +77,7 @@
                   <a class="dropdown-header">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</a>
                   <a class="dropdown-header">Configuración</a>
                   <a class="dropdown-item"  href="{{route('usuarios.edit', Auth::user()->id)}}" >Editar perfil</a>
+                  <a class="dropdown-item"  href="{{route('suscripciones.index')}}" >Mis suscripciones</a>
                   <div class="divider"></div>
                   <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     Salir

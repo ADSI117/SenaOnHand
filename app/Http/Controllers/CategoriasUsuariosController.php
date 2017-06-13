@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Categoria;
 use App\User;
 use Auth;
+use App\UsuarioCategoria;
 
 class CategoriasUsuariosController extends Controller
 {
@@ -87,6 +88,13 @@ class CategoriasUsuariosController extends Controller
      */
     public function destroy($id)
     {
-        //
+      // dd('eliminar relacion usuario categoria');
+
+        $usuario = User::find(Auth::user()->id);
+        if($usuario->categorias()->detach($id)){
+            return back();
+        }else{
+          dd('Error');
+        }
     }
 }
