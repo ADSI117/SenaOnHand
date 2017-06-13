@@ -33,7 +33,7 @@ class MainPanelController extends Controller
       $usuario = User::find(Auth::user()->id);
 
 
-      $publicaciones = Publicacion::orderBy('created_at', 'desc')->paginate(6);
+      $publicaciones = Publicacion::orderBy('created_at', 'desc')->paginate(12);
       // dd($publicaciones);
 
       $imagenes = Imagen::all();
