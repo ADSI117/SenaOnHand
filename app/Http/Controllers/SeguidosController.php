@@ -15,7 +15,9 @@ class SeguidosController extends Controller
      */
     public function index()
     {
-        //
+        $usuario = Auth::user();
+
+        return view ('main-panel.suscripciones.index', compact('usuario'));
     }
 
     /**
@@ -50,9 +52,9 @@ class SeguidosController extends Controller
     				'usuario_seguido_id'=>$request->seguir_id,
     				'estado_id'=>1
     			]);
-          dd('Registrado');
+          return back();
         }else{
-          dd('Ya lo esta siguiendo');
+          return back();
         }
     }
 
