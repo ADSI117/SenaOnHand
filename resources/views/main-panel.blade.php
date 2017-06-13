@@ -4,17 +4,12 @@
 
 @section('main')
 
-<<<<<<< HEAD
-<div class="page-banner">
-  <div class="container">
-    <h1>Últimas publicaciones</h1>
-=======
   <div class="page-banner bg-indigo">
     <div class="container">
       <h1>
-        Ultimas publicacion
+        Últimas publicaciones
       </h1>
->>>>>>> origin/Jhonathan
+    </div>
   </div>
 
   <div class="container">

@@ -22,7 +22,7 @@
 	@yield('modal-control')
 
   <script src="{{asset('js/AjaxRequest.js')}}"></script>
-  <script src="{{asset('plugins/nowkit/js/core/jquery.3.2.1.min.js')}}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="{{asset('plugins/NowKit/js/now-ui-kit.js')}}"></script>
   <script src="{{asset('plugins/NowKit/js/core/tether.min.js')}}"></script>
   <script src="{{asset('plugins/NowKit/js/core/bootstrap.min.js')}}"></script>

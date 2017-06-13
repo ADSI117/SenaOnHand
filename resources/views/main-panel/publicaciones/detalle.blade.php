@@ -112,5 +112,59 @@
       </div>
 
     </div>
+
+</div>
+
+<hr>
+
+<div class="container">
+  <div>
+    @include('flash::message')
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Comentarios</h3>
+      <!-- Formulario para comentarios. -->
+      {!!Form::open(['route'=>'comentarios.store', 'method' => 'POST'])!!}
+        <div class="form-group">
+          {!!Form::hidden('publicacion_id', $publicacion->id)!!}
+          {!!Form::textarea('comentario', null, ['plcaholder'=>'Ingresa tu comentario', 'class'=>'form-control'])!!}
+        </div>
+        <div class="form-group">
+          {!!Form::submit('Enviar', ['class'=>'btn btn-primary'])!!}
+        </div>
+      {!!Form::close()!!}
+    </div>
+  </div>
+</div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Listado</h3>
+      @foreach($publicacion->comentarios as $comentario)
+        <span>{{$comentario->comentario}}</span>
+        <small>Publicado por: {{$comentario->user->nombres}}</small>
+        {!!Form::open(['route'=>'denuncias.store', 'method' => 'POST'])!!}
+        {!!Form::hidden('comentario_id', $comentario->id)!!}
+        {!!Form::hidden('publicacion_id', $publicacion->id)!!}
+        <!-- TODO: Hacer el siguiente campo visible cuando se termine el frontend -->
+        {!!Form::text('comentario', 'Comentario', ['class' => 'form-control'])!!}
+        {!!Form::select('tipo_denuncia', $tipos_denuncias, $comentario->tipo_id, ['class'=>'form-control'])!!}
+
+        <br>
+        {!!Form::submit('Denunciar', ['class'=>'btn btn-primary'])!!}
+        {!!Form::close()!!}
+
+        <!-- Formulario de eliminacion -->
+        @if(Auth::user()->id == $comentario->usuario_id || Auth::user()->id == $publicacion->usuario_id || Auth::user()->rol_id == 3)
+          {!!Form::open(['route' => ['comentarios.destroy', $comentario->id], 'method' => 'DELETE'])!!}
+          {!!Form::submit('Eliminar', ['class'=>'btn btn-primary'])!!}
+          {!!Form::close()!!}
+        @endif
+      @endforeach
+    </div>
+  </div>
+  <br><br><br>
 </div>
 @endsection

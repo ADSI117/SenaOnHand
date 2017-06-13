@@ -170,6 +170,7 @@ return [
         /// mis providers
           Collective\Html\HtmlServiceProvider::class,
           Laravel\Tinker\TinkerServiceProvider::class,
+          Laracasts\Flash\FlashServiceProvider::class,
 
         //
 

@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('template.layout')
 
-@section('content')
+@include('template.h-navbar')
+
+@section('main')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

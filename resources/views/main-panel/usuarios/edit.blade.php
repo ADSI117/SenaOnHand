@@ -62,6 +62,9 @@
           <div class="photo-container">
             <img src="{{url('/')}}/imagenes/perfiles/{{$usuario->url_foto}}" alt="Foto de perfil" />
           </div>
+          <div>
+            @include('flash::message')
+          </div>
         </div>
       </div>
     </div>

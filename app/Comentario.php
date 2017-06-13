@@ -17,12 +17,12 @@ class Comentario extends Model {
         return $this->belongsTo('App\EstadoPublicacion','estado_id', 'id');
     }
 
-    public function publicacione() {
+    public function publicacion() {
         return $this->belongsTo('App\Publicacion','publicacion_id', 'id');
     }
 
     public function user() {
-        return $this->belongsTo('App\Models\User','user_id', 'id');
+        return $this->belongsTo('App\User','usuario_id', 'id');
     }
 
     public function denuncias() {

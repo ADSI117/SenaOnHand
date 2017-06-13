@@ -12,6 +12,7 @@ use App\Imagen;
 use App\EstadoPublicacion;
 use App\Archivo;
 use App\Video;
+use App\TipoDenuncia;
 
 class PublicacionesController extends Controller
 {
@@ -156,10 +157,11 @@ class PublicacionesController extends Controller
       $archivos = $publicacion->archivos->all();
 
       $videos = $publicacion->videos->all();
+      $tipos_denuncias = TipoDenuncia::orderBy('descripcion', 'ASC')->pluck('descripcion', 'id');
 
       // dd($imagenes);
 
-        return view ('main-panel.publicaciones.detalle', compact('publicacion', 'imagenes', 'archivos', 'videos'));
+        return view ('main-panel.publicaciones.detalle', compact('publicacion', 'imagenes', 'archivos', 'videos', 'tipos_denuncias'));
     }
 
     /**

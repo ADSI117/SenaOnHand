@@ -135,7 +135,8 @@ class UsuariosController extends Controller
         }
 
         if ($usuario->save()){
-          dd('Perfil actualizado');
+          flash('Perfil actualizado con exito')->success()->important();
+          return back();
         }else{
           dd('Opps Hubo un error!!!');
         }
