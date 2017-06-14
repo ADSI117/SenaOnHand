@@ -71,7 +71,7 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                   <span class="dropdown-header black text-center">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</span>
                   @if(Auth::user()->url_foto)
-                    <img src="{{url('/')}}/imagenes/perfiles/{{Auth::user()->url_foto}}" alt="" class="rounded-0 white">
+                    <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded-0 white">
                   @else
                     <img src="{{url('/')}}/imagenes/perfiles/soh_profile_default.png" alt="" class="rounded-0 white">
                   @endif
