@@ -17,6 +17,9 @@
           <form class="form" role="form" method="POST" action="{{ route('login') }}">
             <div class="header header-primary text-center">
               <h4 class="title title-up">Inicio</h4>
+              <div>
+                @include('flash::message')
+              </div>
             </div>
             <hr />
             <div class="content">

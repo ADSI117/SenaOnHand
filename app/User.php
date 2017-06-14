@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Response;
+use Mail;
 
 class User extends Authenticatable
 {
@@ -23,20 +24,14 @@ class User extends Authenticatable
          'profesion','url_foto'
     ];
 
-    public function getImagen(){
-      $ruta = storage_path("app/avatars/$this->url_foto");
+    public function enviarEmailActivacion($datos){
 
-      if (!\File::exists($ruta)) abort(404);
-
-      $archivo = \File::get($ruta);
-
-      $tipo = \File::mimeType($ruta);
-
-      $respuesta = Response::make($archivo, 200);
-
-      $respuesta->header('Content-Type', $tipo);
-      return $respuesta;
-      // var_dump ($respuesta);
+      Mail::send('emails.nuevo-usuario', ['datos' => $datos], function ($msj) use ($datos)
+      {
+        $msj->subject('Activa tu cuenta de SenaOnHand');
+        $msj->from('djbolanos8@misena.edu.co');
+        $msj->to($datos->email);
+      });
     }
 
     public function getRol(){

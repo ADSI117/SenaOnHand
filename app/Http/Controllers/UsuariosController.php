@@ -30,7 +30,14 @@ class UsuariosController extends Controller
       // dd(Auth::user()->id);
       $url = url('/').'/activar'.'?'.'usuario_id=' . Auth::user()->id . '&key=' . bcrypt($usuario->email);
       //TODO: Enviar correo con $url
-      dd('Enlace de activación: ' . $url);
+      $datos['email'] = $usuario->email;
+      $datos['url'] = $url;
+      $usuario->enviarEmailActivacion($datos);
+
+      flash('Por favor revisa tu correo para activar la cuenta')->warning()->important();
+      return redirect('login');
+
+      // dd('Enlace de activación: ' . $url);
     }
 
     //Activar usuario
@@ -126,7 +133,7 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-      
+
 
         $usuario = User::find($id);
 
