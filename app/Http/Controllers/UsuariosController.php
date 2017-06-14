@@ -126,16 +126,7 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-      // Guardar imagen con nombres personalizado
-      // $path = $request->file('imagen')->storeAs('avatars', Auth::user()->id . '.jpg');
-
-      // Guardar imagen con nombre aleatorio
-      // $path = Storage::putFile('avatars', $request->file('imagen'));
-      // dd(url('/').'/'.$path);
-      // dd(storage_path('app'));
-      // $contents = Storage::get('//avatars/'.'2aZjxSUNzkn0IoulAtw0GflEbqZsDS41aFwLzD6u.png');
-      // dd(Storage::url('2aZjxSUNzkn0IoulAtw0GflEbqZsDS41aFwLzD6u.jpg'));
-      // dd($contents['name']);
+      
 
         $usuario = User::find($id);
 
