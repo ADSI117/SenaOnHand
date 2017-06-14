@@ -9,6 +9,7 @@ use App\Sede;
 use App\Grupo;
 use Auth;
 use App\Categoria;
+use Storage;
 
 class UsuariosController extends Controller
 {
@@ -90,6 +91,7 @@ class UsuariosController extends Controller
      */
     public function edit($id)
     {
+
       $usuario = User::find($id);
       $tipos_doc = TipoDoc::orderBy('nombre', 'desc')->pluck('nombre', 'id');
       $sedes = Sede::orderBy('descripcion', 'desc')->pluck('descripcion', 'id');
@@ -107,6 +109,17 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
+      // Guardar imagen con nombres personalizado
+      // $path = $request->file('imagen')->storeAs('avatars', Auth::user()->id . '.jpg');
+
+      // Guardar imagen con nombre aleatorio
+      // $path = Storage::putFile('avatars', $request->file('imagen'));
+      // dd(url('/').'/'.$path);
+      // dd(storage_path('app'));
+      // $contents = Storage::get('//avatars/'.'2aZjxSUNzkn0IoulAtw0GflEbqZsDS41aFwLzD6u.png');
+      // dd(Storage::url('2aZjxSUNzkn0IoulAtw0GflEbqZsDS41aFwLzD6u.jpg'));
+      // dd($contents['name']);
+
         $usuario = User::find($id);
 
         $usuario->nombres = $request->nombres;
@@ -122,15 +135,12 @@ class UsuariosController extends Controller
           $imagen = $request->file('imagen');
 
           $nombre = 'soh_profile_' . time() . '.'. $imagen->getClientOriginalExtension();
+          // $path = $request->file('imagen')->storeAs('avatars', $nombre);
+          $path = Storage::putFile('public', $request->file('imagen'));
 
-          $direccion = public_path() . '/imagenes/perfiles/';
 
-
-
-          $respuesta = $imagen->move($direccion, $nombre);
-
-          if ($respuesta){
-            $usuario->url_foto = $nombre;
+          if ($path){
+            $usuario->url_foto = $path;
           }
         }
 

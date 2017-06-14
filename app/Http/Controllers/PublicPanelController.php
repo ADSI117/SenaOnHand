@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Publicacion;
+use Storage;
 
 class PublicPanelController extends Controller
 {
@@ -16,8 +17,9 @@ class PublicPanelController extends Controller
      */
     public function index()
     {
-      // dd('esta bien');
-      
+      // dd(storage_path('app'));
+      // dd(Storage::get('file.jpg'));
+
         return view ('welcome');
     }
 
