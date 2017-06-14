@@ -29,7 +29,7 @@ class User extends Authenticatable
       Mail::send('emails.nuevo-usuario', ['datos' => $datos], function ($msj) use ($datos)
       {
         $msj->subject('Activa tu cuenta de SenaOnHand');
-        $msj->from('djbolanos8@misena.edu.co', 'SenaOnHand');
+        $msj->from('contacto1.diego@gmail.com', 'SenaOnHand');
         $msj->to($datos['email']);
       });
     }
