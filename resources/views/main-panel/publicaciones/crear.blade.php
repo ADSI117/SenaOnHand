@@ -3,8 +3,6 @@
 @include('template.h-navbar')
 
 @section('main')
-
-
   {!! Form::open(['route' => 'publicaciones.store', 'method' => 'POST', 'files' => true, 'class' => '']) !!}
   <div class="page-banner">
     <div class="container">

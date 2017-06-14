@@ -1,12 +1,65 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-@extends('layouts.app')
+@extends('template.layout')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+@section('title','Registro')
+
+@section('main')
+{{-- <div class="page-header-image" style="background-image:url({{asset('imagenes/background/bg-registrer_1.jpg')}})"></div> --}}
+<div class="container-fluid">
+  <div class="row justify-content-start">
+
+    <div class="col-xs-12 col-md-4 col-lg-3 bg-white full-h">
+      <h3 class="titulo">Registro</h3>
+      <form class="h-100 pl-4 pr-4" role="form" method="POST" action="{{ route('register') }}">
+        {{ csrf_field() }}
+        <div class="form-group material{{ $errors->has('name') ? ' has-error' : '' }}">
+            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" autofocus required>
+            <label for="name">Nombre</label>
+            @if ($errors->has('name'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('name') }}</strong>
+                </span>
+            @endif
+        </div>
+
+        <div class="form-group material{{ $errors->has('email') ? ' has-error' : '' }}">
+            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+            <label for="email">Correo</label>
+            @if ($errors->has('email'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
+        </div>
+
+        <div class="form-group material{{ $errors->has('password') ? ' has-error' : '' }}">
+            <input id="password" type="password" class="form-control" name="password" required>
+            <label for="password">Clave</label>
+            @if ($errors->has('password'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+            @endif
+        </div>
+
+        <div class="form-group material">
+          <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+          <label for="password-confirm">Confirmar clave</label>
+        </div>
+
+        <div class="text-center mt-5">
+            <button type="submit" class="m-btn btn-indigo">
+                Register
+            </button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="hidden-sm-down col-md-8 col-lg-9 bg-indigo"></div>
+
+  </div>
+</div>
+                {{-- <div class="panel-heading">Register</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
@@ -69,9 +122,6 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                </div> --}}
+
 @endsection

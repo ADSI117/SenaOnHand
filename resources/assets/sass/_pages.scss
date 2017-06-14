@@ -161,3 +161,57 @@ html, body {
     max-width: 100%;
   }
 }
+
+.titulo {
+  margin-top: 50px;
+  padding-bottom: .8em;
+  font-size: 2.6em;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.form-group.material {
+  padding-top: 16px;
+  position: relative;
+  label {
+    font-size: .8em;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    top: 24px;
+    transition:0.2s ease all;
+    -moz-transition:0.2s ease all;
+    -webkit-transition:0.2s ease all;
+  }
+  .form-control {
+    font-size: .8em;
+    padding: 8px 0px 8px 0px;
+    transition: all .5s;
+    border-radius: unset;
+    border: unset;
+    border-bottom: 2px solid $out;
+    &:focus {
+      border-bottom: 2px solid $indigo;
+      & ~ label, &:valid ~ label {
+        top: 0px;
+        color: $indigo;
+        font-size:.7em;
+     }
+    }
+    &:invalid {
+      border-bottom: 2px solid $error;
+    }
+  }
+}
+
+.m-btn {
+  border-radius: 2px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  min-height: 36px;
+  border: unset;
+  font-family: inherit;
+  font-weight: bold;
+}

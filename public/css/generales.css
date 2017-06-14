@@ -44,6 +44,14 @@
 .black {
   color: #333 !important; }
 
+.btn-indigo {
+  transition: all .5s;
+  background-color: #3F51B5 !important;
+  color: #fff;
+  box-shadow: 0px 3px 10px rgba(124, 124, 124, 0.85) !important; }
+  .btn-indigo:hover {
+    box-shadow: 0px 8px 20px rgba(124, 124, 124, 0.85) !important; }
+
 .small {
   font-size: .2em; }
 
@@ -185,5 +193,51 @@ html, body {
     width: 100%;
     height: auto;
     max-width: 100%; }
+
+.titulo {
+  margin-top: 50px;
+  padding-bottom: .8em;
+  font-size: 2.6em;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #eee; }
+
+.form-group.material {
+  padding-top: 16px;
+  position: relative; }
+  .form-group.material label {
+    font-size: .8em;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    top: 24px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all; }
+  .form-group.material .form-control {
+    font-size: .8em;
+    padding: 8px 0px 8px 0px;
+    transition: all .5s;
+    border-radius: unset;
+    border: unset;
+    border-bottom: 2px solid #aaa !important; }
+    .form-group.material .form-control:focus {
+      border-bottom: 2px solid #3F51B5 !important; }
+      .form-group.material .form-control:focus ~ label, .form-group.material .form-control:focus:valid ~ label {
+        top: 0px;
+        color: #3F51B5 !important;
+        font-size: .7em; }
+    .form-group.material .form-control:invalid {
+      border-bottom: 2px solid #EF5350; }
+
+.m-btn {
+  border-radius: 2px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  min-height: 36px;
+  border: unset;
+  font-family: inherit;
+  font-weight: bold; }
 
 /*# sourceMappingURL=generales.css.map */

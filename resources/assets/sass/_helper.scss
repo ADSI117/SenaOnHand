@@ -7,7 +7,6 @@
 .full-h {
   min-height: 100vh;
 }
-
 // Alineamientos
 .ta-left {
   text-align: left !important;
@@ -44,7 +43,7 @@
   background-color: #FFF !important;
 }
 .bg-indigo {
-  background-color: #3F51B5 !important;
+  background-color: $indigo;
 }
 .bg-brown {
   background-color: #795548 !important;
@@ -53,7 +52,17 @@
 .black {
   color: #333 !important;
 }
-
+// Colores de botones
+.btn-indigo {
+  transition: all .5s;
+  background-color: $indigo;
+  color: #fff;
+  box-shadow: 0px 3px 10px $btn-shadow;
+  &:hover {
+    // transform: translateY(-2px);
+    box-shadow: 0px 8px 20px $btn-shadow;
+  }
+}
 .small {
   font-size: .2em;
 }
