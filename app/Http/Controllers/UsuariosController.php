@@ -50,7 +50,7 @@ class UsuariosController extends Controller
         $usuario->save();
 
         $categorias = Categoria::all();
-        flash('Cuenta activada!, Inicia sesion para comenzar.')->warning()->important();
+        flash('Cuenta activada!, Inicia sesion para comenzar.')->success()->important();
         return view ('auth.login');
           // return view ('main-panel.usuarios-categorias.index', compact('categorias'));
 
