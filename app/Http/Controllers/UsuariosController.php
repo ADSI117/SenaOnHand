@@ -36,7 +36,7 @@ class UsuariosController extends Controller
       $usuario->enviarEmailActivacion($datos);
 
       flash('Por favor revisa tu correo para activar la cuenta')->warning()->important();
-      return redirect('/login');
+      return view ('auth.login');
 
       // dd('Enlace de activación: ' . $url);
     }
@@ -50,7 +50,8 @@ class UsuariosController extends Controller
         $usuario->save();
 
         $categorias = Categoria::all();
-        return redirect ('login');
+        flash('Cuenta activada!, Inicia sesion para comenzar.')->warning()->important();
+        return view ('auth.login');
           // return view ('main-panel.usuarios-categorias.index', compact('categorias'));
 
         //dd('Usuario activado');

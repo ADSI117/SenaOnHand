@@ -19,7 +19,7 @@ class EstadoMiddleware
       if (Auth::user()->getEstado() == 1){
         Auth::logout();
         flash('Por favor revisa tu correo para activar la cuenta')->warning()->important();
-        return redirect('login');
+        return view ('auth.login');
       }else if (Auth::user()->getEstado() == 3){
         Auth::logout();
         return redirect ('info-suspendido');
