@@ -49,7 +49,8 @@ class UsuariosController extends Controller
         $usuario->save();
 
         $categorias = Categoria::all();
-          return view ('main-panel.usuarios-categorias.index', compact('categorias'));
+        return redirect ('login');
+          // return view ('main-panel.usuarios-categorias.index', compact('categorias'));
 
         //dd('Usuario activado');
         // Agregar categorias_usuarios
