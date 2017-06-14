@@ -73,7 +73,7 @@
                   @if(Auth::user()->url_foto)
                     <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded-0 white">
                   @else
-                    <img src="{{url('/')}}/imagenes/perfiles/soh_profile_default.png" alt="" class="rounded-0 white">
+                    <img src="{{Storage::url(soh_profile_default.png) }}" alt="" class="rounded-0 white">
                   @endif
                   <a class="dropdown-header">Configuración</a>
                   <a class="dropdown-item"  href="{{route('usuarios.edit', Auth::user()->id)}}" >Editar perfil</a>
