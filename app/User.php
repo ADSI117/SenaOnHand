@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Response;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,22 @@ class User extends Authenticatable
          'nombres','apellidos','fecha_nac',
          'profesion','url_foto'
     ];
+
+    public function getImagen(){
+      $ruta = storage_path("app/avatars/$this->url_foto");
+
+      if (!\File::exists($ruta)) abort(404);
+
+      $archivo = \File::get($ruta);
+
+      $tipo = \File::mimeType($ruta);
+
+      $respuesta = Response::make($archivo, 200);
+
+      $respuesta->header('Content-Type', $tipo);
+      return $respuesta;
+      // var_dump ($respuesta);
+    }
 
     public function getRol(){
       return $this->rol_id;

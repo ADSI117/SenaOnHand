@@ -43,6 +43,25 @@ Route::group(['prefix'=>'main-panel'], function (){
   Route::resource('comentarios', 'ComentariosController');
   Route::resource('denuncias', 'DenunciasController');
 
+  // El siguiente bloque no se esta usando
+  Route::get('verarchivos/{nombre}', function ($nombre) {
+    // return "Ruta servir imagenes";
+    $ruta = storage_path("app/avatars/$nombre");
+
+    if (!\File::exists($ruta)) abort(404);
+
+    $archivo = \File::get($ruta);
+
+    $tipo = \File::mimeType($ruta);
+
+    $respuesta = Response::make($archivo, 200);
+
+    $respuesta->header('Content-Type', $tipo);
+
+    return $respuesta;
+
+  });
+
   //Andres Peña
   // Route::get('seguir/{id}/','SeguidosController@seguirInstructor')->name('seguirInstructor');
   // Route::get('dejarDeguir/{id}','SeguidosController@dejarDeseguir')->name('DejarDeSeguirInstructor');

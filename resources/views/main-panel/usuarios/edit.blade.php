@@ -60,8 +60,9 @@
           {!!Form::label('Imagen de perfil')!!}
           {!! Form::file('imagen', ['class' => 'form-control'])!!}
           <div class="photo-container">
-            <!-- <img src="{{url('/')}}/imagenes/perfiles/{{$usuario->url_foto}}" alt="Foto de perfil" /> -->
-            <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="Foto de perfil" />
+            
+            <img src="{{Storage::url($usuario->url_foto)}}" alt="">
+
           </div>
           <div>
             @include('flash::message')

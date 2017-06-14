@@ -10,6 +10,7 @@ use App\Grupo;
 use Auth;
 use App\Categoria;
 use Storage;
+use Response;
 
 class UsuariosController extends Controller
 {
@@ -83,6 +84,22 @@ class UsuariosController extends Controller
         //
     }
 
+    public function getImagen($url_foto){
+      $ruta = storage_path("app/avatars/$url_foto");
+
+      if (!\File::exists($ruta)) abort(404);
+
+      $archivo = \File::get($ruta);
+
+      $tipo = \File::mimeType($ruta);
+
+      $respuesta = Response::make($archivo, 200);
+
+      $respuesta->header('Content-Type', $tipo);
+      return $respuesta;
+      // var_dump ($respuesta);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -97,7 +114,7 @@ class UsuariosController extends Controller
       $sedes = Sede::orderBy('descripcion', 'desc')->pluck('descripcion', 'id');
       $grupos = Grupo::orderBy('nombre', 'desc')->pluck('nombre', 'id');
       // dd($usuario);
-      return view ('main-panel.usuarios.edit', compact('usuario', 'tipos_doc', 'sedes', 'grupos'));
+      return view ('main-panel.usuarios.edit', compact('usuario', 'tipos_doc', 'sedes', 'grupos', 'imagen'));
     }
 
     /**
@@ -131,16 +148,16 @@ class UsuariosController extends Controller
         $usuario->sede_id = $request->sede_id;
         $usuario->grupo_id = $request->grupo_id;
 
-        if ($request->file('imagen')){
+        if ($request->hasFile('imagen') && $request->imagen->isValid()){
           $imagen = $request->file('imagen');
 
           $nombre = 'soh_profile_' . time() . '.'. $imagen->getClientOriginalExtension();
           // $path = $request->file('imagen')->storeAs('avatars', $nombre);
-          $path = Storage::putFile('public', $request->file('imagen'));
+          $path = Storage::putFileAs('public', $request->file('imagen'), $nombre);
 
 
           if ($path){
-            $usuario->url_foto = $path;
+            $usuario->url_foto = $nombre;
           }
         }
 
