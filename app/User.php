@@ -30,7 +30,7 @@ class User extends Authenticatable
       {
         $msj->subject('Activa tu cuenta de SenaOnHand');
         $msj->from('djbolanos8@misena.edu.co');
-        $msj->to($datos->email);
+        $msj->to($datos['email']);
       });
     }
 

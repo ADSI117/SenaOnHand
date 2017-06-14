@@ -32,6 +32,7 @@ class UsuariosController extends Controller
       //TODO: Enviar correo con $url
       $datos['email'] = $usuario->email;
       $datos['url'] = $url;
+      // var_dump($datos);
       $usuario->enviarEmailActivacion($datos);
 
       flash('Por favor revisa tu correo para activar la cuenta')->warning()->important();
