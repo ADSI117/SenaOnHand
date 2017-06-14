@@ -83,6 +83,7 @@ class RegisterController extends Controller
       // Se debe construir primero y despues pasar el parametro
       $data['rol_id'] = $rol;
       $data['estado_id'] = 1;
+      $data['url_foto'] = 'soh_profile_default.png';
       $data['password'] = bcrypt($data['password']);
 
       return User::create($data);
