@@ -36,7 +36,7 @@ class UsuariosController extends Controller
       $usuario->enviarEmailActivacion($datos);
 
       flash('Por favor revisa tu correo para activar la cuenta')->warning()->important();
-      return redirect('login');
+      return redirect('/login');
 
       // dd('Enlace de activación: ' . $url);
     }
