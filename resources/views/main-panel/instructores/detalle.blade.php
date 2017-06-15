@@ -19,7 +19,7 @@
       <div class="col-xs-10 col-md-4 col-lg-3">
         <div class="card">
           <div class="card-header">Foto de perfil</div>
-          <img class="card-img-top img-fluid" src="{{url('/')}}/imagenes/perfiles/{{$instructor->url_foto}}" alt="Card image cap">
+          <img class="card-img-top img-fluid" src="{{Storage::url($instructor->url_foto )}}" alt="Card image cap">
           <div class="p-4">
             <h6>Correo</h6>
             <a href="mail:to">{{$instructor->email}}</a>
@@ -85,7 +85,7 @@
             <small class="text-muted"><a href="{{route('instructores.show', [$publicacion->user_id])}}">{{$publicacion->user->nombres}}</a></small>
 
             <div class="imagen">
-              <img src="{{url('/')}}/imagenes/perfiles/{{$publicacion->user->url_foto}}" alt="" width="60" height="60">
+              <img src="{{Storage::url($publicacion->user->url_foto)}}" alt="" width="60" height="60">
             </div>
           </h4>
 

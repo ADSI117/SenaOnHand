@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Response;
+use Mail;
 
 class User extends Authenticatable
 {
@@ -21,6 +23,16 @@ class User extends Authenticatable
          'nombres','apellidos','fecha_nac',
          'profesion','url_foto'
     ];
+
+    public function enviarEmailActivacion($datos){
+
+      Mail::send('emails.nuevo-usuario', ['datos' => $datos], function ($msj) use ($datos)
+      {
+        $msj->subject('Activa tu cuenta de SenaOnHand');
+        $msj->from('contacto1.diego@gmail.com', 'SenaOnHand');
+        $msj->to($datos['email']);
+      });
+    }
 
     public function getRol(){
       return $this->rol_id;

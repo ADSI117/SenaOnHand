@@ -10,6 +10,7 @@ use App\Grupo;
 use Auth;
 use App\Categoria;
 use Storage;
+use Response;
 
 class UsuariosController extends Controller
 {
@@ -29,7 +30,15 @@ class UsuariosController extends Controller
       // dd(Auth::user()->id);
       $url = url('/').'/activar'.'?'.'usuario_id=' . Auth::user()->id . '&key=' . bcrypt($usuario->email);
       //TODO: Enviar correo con $url
-      dd('Enlace de activación: ' . $url);
+      $datos['email'] = $usuario->email;
+      $datos['url'] = $url;
+      // var_dump($datos);
+      $usuario->enviarEmailActivacion($datos);
+
+      flash('Por favor revisa tu correo para activar la cuenta')->warning()->important();
+      return view ('auth.login');
+
+      // dd('Enlace de activación: ' . $url);
     }
 
     //Activar usuario
@@ -41,7 +50,9 @@ class UsuariosController extends Controller
         $usuario->save();
 
         $categorias = Categoria::all();
-          return view ('main-panel.usuarios-categorias.index', compact('categorias'));
+        flash('Cuenta activada!, Inicia sesion para comenzar.')->success()->important();
+        return view ('auth.login');
+          // return view ('main-panel.usuarios-categorias.index', compact('categorias'));
 
         //dd('Usuario activado');
         // Agregar categorias_usuarios
@@ -83,6 +94,22 @@ class UsuariosController extends Controller
         //
     }
 
+    public function getImagen($url_foto){
+      $ruta = storage_path("app/avatars/$url_foto");
+
+      if (!\File::exists($ruta)) abort(404);
+
+      $archivo = \File::get($ruta);
+
+      $tipo = \File::mimeType($ruta);
+
+      $respuesta = Response::make($archivo, 200);
+
+      $respuesta->header('Content-Type', $tipo);
+      return $respuesta;
+      // var_dump ($respuesta);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -97,7 +124,7 @@ class UsuariosController extends Controller
       $sedes = Sede::orderBy('descripcion', 'desc')->pluck('descripcion', 'id');
       $grupos = Grupo::orderBy('nombre', 'desc')->pluck('nombre', 'id');
       // dd($usuario);
-      return view ('main-panel.usuarios.edit', compact('usuario', 'tipos_doc', 'sedes', 'grupos'));
+      return view ('main-panel.usuarios.edit', compact('usuario', 'tipos_doc', 'sedes', 'grupos', 'imagen'));
     }
 
     /**
@@ -109,16 +136,7 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-      // Guardar imagen con nombres personalizado
-      // $path = $request->file('imagen')->storeAs('avatars', Auth::user()->id . '.jpg');
 
-      // Guardar imagen con nombre aleatorio
-      // $path = Storage::putFile('avatars', $request->file('imagen'));
-      // dd(url('/').'/'.$path);
-      // dd(storage_path('app'));
-      // $contents = Storage::get('//avatars/'.'2aZjxSUNzkn0IoulAtw0GflEbqZsDS41aFwLzD6u.png');
-      // dd(Storage::url('2aZjxSUNzkn0IoulAtw0GflEbqZsDS41aFwLzD6u.jpg'));
-      // dd($contents['name']);
 
         $usuario = User::find($id);
 
@@ -131,16 +149,16 @@ class UsuariosController extends Controller
         $usuario->sede_id = $request->sede_id;
         $usuario->grupo_id = $request->grupo_id;
 
-        if ($request->file('imagen')){
+        if ($request->hasFile('imagen') && $request->imagen->isValid()){
           $imagen = $request->file('imagen');
 
           $nombre = 'soh_profile_' . time() . '.'. $imagen->getClientOriginalExtension();
           // $path = $request->file('imagen')->storeAs('avatars', $nombre);
-          $path = Storage::putFile('public', $request->file('imagen'));
+          $path = Storage::putFileAs('public', $request->file('imagen'), $nombre);
 
 
           if ($path){
-            $usuario->url_foto = $path;
+            $usuario->url_foto = $nombre;
           }
         }
 

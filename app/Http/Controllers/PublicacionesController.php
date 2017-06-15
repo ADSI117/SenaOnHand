@@ -13,7 +13,7 @@ use App\EstadoPublicacion;
 use App\Archivo;
 use App\Video;
 use App\TipoDenuncia;
-
+use Storage;
 class PublicacionesController extends Controller
 {
   /**
@@ -83,16 +83,14 @@ class PublicacionesController extends Controller
         }
 
         //verificar si hay imagen y guardar
-        if ($request->file('imagen')){
+        if ($request->hasFile('imagen')  && $request->imagen->isValid()){
           //Manipular las imagenes.
           $imagen = $request->file('imagen');
           //cambiar nombre a imagen
-          $nombre = 'soh_' . time() . '.'. $imagen->getClientOriginalExtension();
+          $nombre = 'soh_img_' . time() . '.'. $imagen->getClientOriginalExtension();
           //definir la ubicacion
-          $direccion = public_path() . '/imagenes/publicaciones/';
+          $path = Storage::putFileAs('public', $request->file('imagen'), $nombre);
 
-          $respuesta = $imagen->move($direccion, $nombre);
-          // dd($respuesta);
           //Guardar el registro en tabla imagenes enlazado a la publicacion
           $ima = new Imagen();
           $ima->descripcion = $nombre;
@@ -101,18 +99,17 @@ class PublicacionesController extends Controller
         }
 
         //verificar si hay archivo y guardarlo
-        if ($request->file('archivo')){
+        if ($request->hasFile('archivo')  && $request->archivo->isValid()){
           // dd($request->file('archivo')->getClientOriginalExtension());
           //Manipular las imagenes.
           $archivo = $request->file('archivo');
 
           //cambiar nombre a imagen
           $nombre = 'soh_arh_' . time() . '.'. $archivo->getClientOriginalExtension();
-          //definir la ubicacion
 
-          $direccion = public_path() . '/archivos/publicaciones/';
 
-          $respuesta = $archivo->move($direccion, $nombre);
+          $path = Storage::putFileAs('public', $request->file('archivo'), $nombre);
+
           // dd($respuesta);
           //Guardar el registro en tabla archivos enlazado a la publicacion
           $arh = new Archivo();
@@ -214,17 +211,15 @@ class PublicacionesController extends Controller
 
         }
 
-        //verificar si hay archivo y guardarlo
-        if ($request->file('imagen')){
+        //verificar si hay imagen y guardar
+        if ($request->hasFile('imagen')  && $request->imagen->isValid()){
           //Manipular las imagenes.
           $imagen = $request->file('imagen');
           //cambiar nombre a imagen
-          $nombre = 'soh_' . time() . '.'. $imagen->getClientOriginalExtension();
+          $nombre = 'soh_img_' . time() . '.'. $imagen->getClientOriginalExtension();
           //definir la ubicacion
-          $direccion = public_path() . '/imagenes/publicaciones/';
+          $path = Storage::putFileAs('public', $request->file('imagen'), $nombre);
 
-          $respuesta = $imagen->move($direccion, $nombre);
-          // dd($respuesta);
           //Guardar el registro en tabla imagenes enlazado a la publicacion
           $ima = new Imagen();
           $ima->descripcion = $nombre;
@@ -233,18 +228,17 @@ class PublicacionesController extends Controller
         }
 
         //verificar si hay archivo y guardarlo
-        if ($request->file('archivo')){
+        if ($request->hasFile('archivo')  && $request->archivo->isValid()){
           // dd($request->file('archivo')->getClientOriginalExtension());
           //Manipular las imagenes.
           $archivo = $request->file('archivo');
 
           //cambiar nombre a imagen
           $nombre = 'soh_arh_' . time() . '.'. $archivo->getClientOriginalExtension();
-          //definir la ubicacion
 
-          $direccion = public_path() . '/archivos/publicaciones/';
 
-          $respuesta = $archivo->move($direccion, $nombre);
+          $path = Storage::putFileAs('public', $request->file('archivo'), $nombre);
+
           // dd($respuesta);
           //Guardar el registro en tabla archivos enlazado a la publicacion
           $arh = new Archivo();
@@ -264,8 +258,9 @@ class PublicacionesController extends Controller
           $video->save();
         }
 
-        return back();
 
+
+        return back();
       }else{
         dd('Hubo un error!');
       }

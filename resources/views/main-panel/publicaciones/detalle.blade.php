@@ -10,7 +10,7 @@
       </h1>
       <div class="d-flex">
         <img  class="mr-3"
-              src="{{url('/')}}/imagenes/perfiles/{{$publicacion->user->url_foto}}"
+              src="{{Storage::url($publicacion->user->url_foto)}}"
               alt="foto de perfil"
               width="50" height="50"/>
         <span class="d-flex align-items-center">
@@ -65,7 +65,7 @@
         @if($imagenes)
           <h3>Imagenes</h3>
           @foreach($imagenes as $imagen)
-            <img src="{{url('/')}}/imagenes/publicaciones/{{$imagen->descripcion}}" alt="" width="150" height="150">
+            <img src="{{ Storage::url($imagen->descripcion) }}" alt="" width="150" height="150">
           @endforeach
         @endif
         <div>
@@ -74,7 +74,8 @@
             @foreach($publicacion->archivos as $archivo)
 
               <!-- TODO: como mostrar los archivos -->
-              {{$archivo->descripcion}}
+              <!-- {{$archivo->descripcion}} -->
+              <a href="{{ Storage::url($archivo->descripcion) }}" target="_blank">{{$archivo->descripcion}}</a>
 
             @endforeach
           @endif

@@ -75,7 +75,7 @@
             @foreach($publicacion->imagenes as $imagen)
 
               {!! Form::open(['method' => 'DELETE', 'route' => ['imagenes.destroy', $imagen->id]]) !!}
-                <img src="{{url('/')}}/imagenes/publicaciones/{{$imagen->descripcion}}" alt="" width="150" height="150">
+                <img src="{{Storage::url($imagen->descripcion)}}" alt="" width="150" height="150">
                 {!!Form::button('Borrar', ['class' => 'btn btn-warning', 'type' => 'submit'])!!}
               {!! Form::close() !!}
 
@@ -93,7 +93,8 @@
 
               {!! Form::open(['method' => 'DELETE', 'route' => ['archivos.destroy', $archivo->id]]) !!}
               <!-- TODO: como mostrar los archivos -->
-              {{$archivo->descripcion}}
+
+                <a href="{{ Storage::url($archivo->descripcion) }}">{{$archivo->descripcion}}</a>
                 <!-- <img src="/imagenes/publicaciones/{{$imagen->descripcion}}" alt="" width="150" height="150"> -->
                 {!!Form::button('Borrar', ['class' => 'btn btn-warning', 'type' => 'submit'])!!}
               {!! Form::close() !!}
