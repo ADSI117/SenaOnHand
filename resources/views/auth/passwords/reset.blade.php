@@ -1,6 +1,4 @@
-<!-- @extends('template.layout')
-
-@include('template.h-navbar') -->
+<!-- poner la navegacion -->
 
 @section('main')
 <div class="container">
