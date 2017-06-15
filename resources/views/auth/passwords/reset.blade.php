@@ -1,4 +1,4 @@
-<!-- poner la navegacion -->
+@extends('layouts.app')
 
 @section('main')
 <div class="container">
