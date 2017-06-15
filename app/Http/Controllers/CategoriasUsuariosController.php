@@ -18,7 +18,7 @@ class CategoriasUsuariosController extends Controller
     public function index()
     {
       // dd('Index de categorias');
-      $categorias = Categoria::all();
+      $categorias = Categoria::paginate(12);
         return view ('main-panel.usuarios-categorias.index', compact('categorias'));
     }
 

@@ -148,6 +148,7 @@ class UsuariosController extends Controller
         $usuario->fecha_nac = $request->fecha_nac;
         $usuario->sede_id = $request->sede_id;
         $usuario->grupo_id = $request->grupo_id;
+        $usuario->perfil = $request->perfil;
 
         if ($request->hasFile('imagen') && $request->imagen->isValid()){
           $imagen = $request->file('imagen');

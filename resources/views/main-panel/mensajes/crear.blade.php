@@ -17,7 +17,7 @@
 
 
         <div class="form-group {{$errors->has('mensaje' ? 'has-error' : '')}}">
-          {!!Form::textarea('mensaje', null, ['class'=>'form-control', 'placeholder'=> 'Nuevo mensaje...'])!!}
+          {!!Form::textarea('mensaje', null, ['class'=>'', 'placeholder'=> 'Nuevo mensaje...'])!!}
           {!!$errors->first('mensaje', "<span class='help-block'>:message</span>")!!}
         </div>
 

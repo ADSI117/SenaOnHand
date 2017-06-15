@@ -24,15 +24,15 @@
         <div class="form-group">
           <label for="nombres">Nombre: </label>
           {!! Form::text('nombres', $usuario->nombres,
-            ['id' => 'nombres', 'placeholder' => 'Escriba su nombre', 'required', 'class' => 'form-control'])!!}
+            ['id' => 'nombres', 'placeholder' => 'Escriba su nombre', 'required', 'class' => 'material-input'])!!}
           </div>
           <div class="form-group">
             <label for="nombres">Apellido: </label>
-            {!! Form::text('apellidos', $usuario->apellidos, ['id' => 'apellidos', 'placeholder' => 'Escriba su apellido', 'required', 'class' => 'form-control'])!!}
+            {!! Form::text('apellidos', $usuario->apellidos, ['id' => 'apellidos', 'placeholder' => 'Escriba su apellido', 'required', 'class' => 'material-input'])!!}
           </div>
           <div class="form-group">
             <label for="nombres">Profesion: </label>
-            {!! Form::text('profesion', $usuario->profesion, ['id' => 'profesion', 'placeholder' => 'Escriba su profesion', 'required', 'class' => 'form-control'])!!}
+            {!! Form::text('profesion', $usuario->profesion, ['id' => 'profesion', 'placeholder' => 'Escriba su profesion', 'required', 'class' => 'material-input'])!!}
           </div>
           <div class="form-group">
             <label for="nombres">Tipo de documento: </label>
@@ -40,7 +40,7 @@
           </div>
           <div class="form-group">
             <label for="nombres">Número de documento: </label>
-            {!! Form::number('num_doc', $usuario->num_doc, ['id' => 'num_doc', 'placeholder' => 'Escriba su num de doc', 'required', 'class' => 'form-control'])!!}
+            {!! Form::number('num_doc', $usuario->num_doc, ['id' => 'num_doc', 'placeholder' => 'Escriba su num de doc', 'required', 'class' => 'material-input'])!!}
           </div>
           <div class="form-group">
             <label for="nombres">Fecha de nacimiento: </label>
@@ -57,10 +57,16 @@
 
         </div>
         <div class="col-xs-12 col-md-4">
-          {!!Form::label('Imagen de perfil')!!}
-          {!! Form::file('imagen', ['class' => 'form-control'])!!}
+          <div class="form-group">
+            {!!Form::label('Imagen de perfil')!!}
+            {!! Form::file('imagen', ['class' => 'form-control'])!!}
+          </div>
+          <div class="form-group">
+            {!!Form::label('Cuéntanos algo de ti.')!!}
+            {!! Form::textarea('perfil', $usuario->perfil,['class' => ''])!!}
+          </div>
           <div class="photo-container">
-            
+
             <img src="{{Storage::url($usuario->url_foto)}}" alt="">
 
           </div>
