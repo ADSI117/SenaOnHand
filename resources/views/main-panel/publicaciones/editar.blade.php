@@ -4,6 +4,14 @@
 
 @section('main')
 
+  <div class="page-banner" style="background-color:#2196F3;">
+    <div class="container">
+      <h1>
+        {{ $publicacion->titulo }}
+      </h1>
+    </div>
+  </div>
+
   <div class="container">
     <div class="row justify-content-center">
 

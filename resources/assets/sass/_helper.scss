@@ -36,23 +36,26 @@
 .bg-green {
   background-color: rgb(119, 167, 119);
 }
-.bg-teal {
-  background-color: #009688 !important;
-}
 .bg-white {
   background-color: #FFF !important;
 }
 .bg-indigo {
-  background-color: $indigo;
+  background-color: $indigo !important;
 }
 .bg-brown {
-  background-color: #795548 !important;
+  background-color: $brown !important;
 }
 .bg-cyan {
   background-color: $cyan !important;
 }
 .bg-teal {
   background-color: $teal !important;
+}
+.bg-pink {
+  background-color: $pink !important;
+}
+.bg-red {
+  background-color: $red !important;
 }
 // Color letras
 .black {
