@@ -42,6 +42,7 @@ Route::group(['prefix'=>'main-panel'], function (){
   Route::resource('suscripciones', 'SeguidosController');
   Route::resource('comentarios', 'ComentariosController');
   Route::resource('denuncias', 'DenunciasController');
+  Route::resource('busquedas', 'BusquedasController');
 
   // El siguiente bloque no se esta usando
   Route::get('verarchivos/{nombre}', function ($nombre) {

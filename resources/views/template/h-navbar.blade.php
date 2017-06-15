@@ -23,14 +23,15 @@
 
           <ul class="navbar-nav nav-ul">
             <li class="nav-item pl-5 pr-2 d-flex align-items-center">
-              <form class="nav-form form-inline m-0">
+              
+              {!!Form::open(['route' => 'busquedas.index', 'method'=> 'GET'])!!}
                 <div class="input-group form-group-no-border m-0">
                   <span class="input-group-addon">
                     <i class="fa fa-search"></i>
                   </span>
-                  <input class="form-control" type="search" placeholder="Buscar...">
+                  <input name= 'filtro' class="form-control" type="search" placeholder="Buscar...">
                 </div>
-              </form>
+              {!!Form::close()!!}
             </li>
             @if (Auth::user()->rol_id == 2)
               <li class="nav-item">
