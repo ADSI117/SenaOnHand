@@ -11,11 +11,9 @@
 	<link rel="stylesheet" href="{{asset('plugins/NowKit/css/bootstrap.min.css')}}" />
 	<link rel="stylesheet" href="{{asset('plugins/NowKit/css/now-ui-kit.css')}}" />
 	{{-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> --}}
-	{{-- <link rel="stylesheet"  href="{{asset('plugins/chosen/chosen.css')}}"> --}}
+	<link rel="stylesheet"  href="{{asset('plugins/animate/animate.css')}}">
 	<link rel="stylesheet" href="{{ asset('css/generales.css') }}" />
 </head>
-<body>
-
 
   @yield('main')
 
@@ -26,6 +24,7 @@
   <script src="{{asset('plugins/NowKit/js/now-ui-kit.js')}}"></script>
   <script src="{{asset('plugins/NowKit/js/core/tether.min.js')}}"></script>
   <script src="{{asset('plugins/NowKit/js/core/bootstrap.min.js')}}"></script>
+	<script src="{{asset('js/AlertasEmergentes.js')}}"></script>
   @yield('js')
 
 </body>

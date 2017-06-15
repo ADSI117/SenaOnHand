@@ -48,6 +48,12 @@
 .bg-brown {
   background-color: #795548 !important;
 }
+.bg-cyan {
+  background-color: $cyan !important;
+}
+.bg-teal {
+  background-color: $teal !important;
+}
 // Color letras
 .black {
   color: #333 !important;
@@ -62,6 +68,20 @@
     // transform: translateY(-2px);
     box-shadow: 0px 8px 20px $btn-shadow;
   }
+}
+// Avisos color
+.alert-success {
+  background-color: $success !important;
+}
+.alert-warning {
+  background-color: $warning !important;
+  color: #333;
+}
+.alert-info {
+  background-color: $info !important;
+}
+.alert-danger {
+  background-color: $err !important;
 }
 .small {
   font-size: .2em;

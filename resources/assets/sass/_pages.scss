@@ -3,6 +3,7 @@
 }
 html, body {
   overflow-x: hidden;
+
 }
 .table {
   th, td {
@@ -171,41 +172,66 @@ html, body {
   border-bottom: 1px solid #eee;
 }
 
-.form-group.material {
-  padding-top: 16px;
-  position: relative;
-  label {
-    font-size: .8em;
-    font-weight:normal;
-    position:absolute;
-    pointer-events:none;
-    top: 24px;
-    transition:0.2s ease all;
-    -moz-transition:0.2s ease all;
-    -webkit-transition:0.2s ease all;
-  }
-  .form-control {
-    font-size: .8em;
-    padding: 8px 0px 8px 0px;
-    transition: all .5s;
-    border-radius: unset;
-    border: unset;
-    border-bottom: 2px solid $out;
-    &:focus {
-      border-bottom: 2px solid $indigo;
-      & ~ label, &:valid ~ label {
-        top: 0px;
-        color: $indigo;
-        font-size:.7em;
-     }
-    }
-    &:invalid {
-      border-bottom: 2px solid $error;
+// .form-group.material {
+//   padding-top: 16px;
+//   position: relative;
+//   label {
+//     font-size: .8em;
+//     font-weight:normal;
+//     position:absolute;
+//     pointer-events:none;
+//     top: 24px;
+//     transition:0.2s ease all;
+//     -moz-transition:0.2s ease all;
+//     -webkit-transition:0.2s ease all;
+//   }
+//   .form-control {
+//     font-size: .8em;
+//     padding: 8px 0px 8px 0px;
+//     transition: all .5s;
+//     border-radius: unset;
+//     border: unset;
+//     border-bottom: 2px solid $out;
+//     &:focus {
+//       border-bottom: 2px solid $indigo;
+//       & ~ label, &:valid ~ label {
+//         top: 0px;
+//         color: $indigo;
+//         font-size:.7em;
+//      }
+//     }
+//   }
+// }
+.material-input::-webkit-input-placeholder {
+  transition: all 0.3s ease-in-out;
+}
+.material-input {
+  width: 100%;
+  display: block;
+  border: none;
+  padding: 10px 0;
+  border-bottom: solid 1px $indigo;
+  transition: all 0.4s cubic-bezier(.64,.09,.08,1);
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 97%, $indigo 3%);
+  background-position: -100em 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: darken($indigo, 20%);
+  font-family: $confa;
+  &:focus, &:valid {
+    box-shadow: none;
+    outline: none;
+    background-position: 0 0;
+    &::-webkit-input-placeholder {
+      color: $indigo;
+      font-size: 11px;
+      transform: translateY(-20px);
+      visibility: visible !important;
     }
   }
 }
 
-.m-btn {
+.material-btn {
   border-radius: 2px;
   text-align: center;
   text-transform: uppercase;
@@ -214,4 +240,24 @@ html, body {
   border: unset;
   font-family: inherit;
   font-weight: bold;
+}
+
+.material-link {
+  color: $blue;
+  &:hover, &:active, &:focus {
+    color: $blue;
+  }
+}
+
+div#ManejadorDeAvisos[role=alert] {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  & i.fa {
+    vertical-align: middle;
+    margin-right: 15px;
+  }
+  & strong {
+    font-weight: bold;
+  }
 }
