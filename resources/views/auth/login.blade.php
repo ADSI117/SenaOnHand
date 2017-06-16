@@ -8,10 +8,11 @@
       <source src="{{asset('media/Wall-Sketching.mp4')}}" type="video/mp4">
     </video>
   </div> --}}
+
   <div class="page-header-image" style="background-image:url({{asset('imagenes/background/fondo_1.jpg')}})"></div>
     <div class="container">
       <div class="row full-h justify-content-center align-items-center">
-      <div class="col-md-4">
+      <div class="col-md-3 col-md-5 col-lg-5">
 
         <div class="card card-login pl-5 pr-5">
           <form class="form" role="form" method="POST" action="{{ route('login') }}">

@@ -37,7 +37,7 @@
 		</button>
 	</div>
 
-	<table class="table table-hover" id="table">
+	<table class="table table-hover table-responsive" id="table">
 		<thead>
 			<tr>
 				<th>Id</th>
