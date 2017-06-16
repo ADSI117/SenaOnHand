@@ -40,7 +40,9 @@ class MensajesController extends Controller
      */
     public function create()
     {
-      $usuarios = User::orderBy('id', 'desc')->pluck('nombres', 'id');
+      // $usuarios = User::orderBy('id', 'desc')->pluck('nombres', 'id');
+      // $usuarios = User::where('id', '!=', Auth::user()->id);
+      $usuarios = User::all();
 
       // TODO: concatenar nombres y apellidos para llevar a la lista.
 

@@ -12,7 +12,12 @@
 
         <div class="form-group">
           {!!Form::label('A quien?')!!}
-          {!!Form::select('usuario_amigo_id', $usuarios, null,['class' => 'form-control', 'required'])!!}
+          <!-- {!!Form::select('usuario_amigo_id', $usuarios, null,['class' => 'form-control', 'required'])!!} -->
+          <select class="form-control" name="usuario_amigo_id">
+            @foreach($usuarios as $usuario)
+              <option value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}} [ {{$usuario->email}}]</option>
+            @endforeach
+          </select>
         </div>
 
 
