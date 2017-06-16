@@ -52,6 +52,8 @@ class MainPanelController extends Controller
                                       'p.contenido',
                                       'p.created_at',
                                       'p.updated_at',
+                                      'p.puntaje',
+                                      'p.cant_cal',
                                       'u.nombres',
                                       'u.apellidos',
                                       'u.url_foto')

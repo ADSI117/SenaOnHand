@@ -98,6 +98,10 @@
           {!! Form::textarea('perfil', $usuario->perfil,['class' => ''])!!}
         </div>
 
+        <div class="form-group form-group-no-border">
+          @include('flash::message')
+        </div>
+
         <div class="photo-container">
 
           <img src="{{Storage::url($usuario->url_foto)}}" alt="">

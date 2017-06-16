@@ -36,7 +36,7 @@
 
         <div class="text-center mt-4">
             <button type="submit" class="material-btn btn-indigo">
-                Register
+                Registrarse
             </button>
             <hr />
             <a href="{{ url('/login') }}" class="material-link">Ingresar</a>
