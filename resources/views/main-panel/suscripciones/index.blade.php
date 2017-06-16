@@ -11,7 +11,7 @@
         @foreach($usuario->categorias as $categoria)
           {{ Form::open(['method' => 'DELETE', 'route' => ['categoria-usuario.destroy', $categoria->id]]) }}
           <a href="#">{{$categoria->descripcion}}</a>
-          {!!Form::submit('Sejar de seguir', ['class'=>'btn btn-warning'])!!}
+          {!!Form::submit('Dejar de seguir', ['class'=>'btn btn-warning'])!!}
           {{ Form::close() }}
         @endforeach
 
