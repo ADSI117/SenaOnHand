@@ -29,14 +29,11 @@
 .bg-green {
   background-color: #77a777; }
 
-.bg-teal {
-  background-color: #009688 !important; }
-
 .bg-white {
   background-color: #FFF !important; }
 
 .bg-indigo {
-  background-color: #3F51B5; }
+  background-color: #3F51B5 !important; }
 
 .bg-brown {
   background-color: #795548 !important; }
@@ -46,6 +43,12 @@
 
 .bg-teal {
   background-color: #009688 !important; }
+
+.bg-pink {
+  background-color: #E91E63 !important; }
+
+.bg-red {
+  background-color: #EF5350 !important; }
 
 .black {
   color: #333 !important; }
@@ -149,7 +152,7 @@ html, body {
   margin-top: -20px;
   margin-bottom: 3em;
   color: white;
-  background-color: #b44c4c;
+  background-color: black;
   position: relative; }
   .page-banner h1 {
     margin: 0px; }
@@ -210,7 +213,6 @@ html, body {
   padding: 50px; }
   .photo-container img {
     width: 100%;
-    height: auto;
     max-width: 100%; }
 
 .titulo {
