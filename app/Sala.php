@@ -16,16 +16,17 @@ class Sala extends Model {
     public static function encontrarOCrear($sala_id, $usuario_creador_id, $usuario_amigo_id, $grupo_id){
 
       if($sala_id){
-        // echo "Hay sala id";
+        echo "Recibi variable sala";
         return Sala::find($sala_id);
 
       }else if ($usuario_amigo_id){
-        // echo "Hay usuario amigo";
-        if (empty(Sala::encontrarPorAmigo($usuario_creador_id, $usuario_amigo_id)->all())){
-          // echo "Crear por amigo";
+        echo "Hay usuario amigo";
+
+        if (Sala::encontrarPorAmigo($usuario_creador_id, $usuario_amigo_id) == null){
+          echo "Crear por amigo";
           return Sala::crearPorAmigo($usuario_creador_id, $usuario_amigo_id);
         }else{
-          // echo "Encontrar por amigo";
+          echo "Encontrar por amigo";
           return Sala::encontrarPorAmigo($usuario_creador_id, $usuario_amigo_id);
         }
 
@@ -37,13 +38,16 @@ class Sala extends Model {
     }
 
     public static function encontrarPorAmigo($usuario_creador_id, $usuario_amigo_id){
-
+      echo "--encontrar por amigo";
       return Sala::where('usuario_creador_id', '=', $usuario_creador_id)
-                  ->where('usuario_amigo_id', '=', $usuario_amigo_id)->get();
+                  ->where('usuario_amigo_id', '=', $usuario_amigo_id)
+                  ->orWhere('usuario_creador_id', '=', $usuario_amigo_id)
+                  ->where('usuario_amigo_id', '=', $usuario_creador_id)
+                  ->first();
     }
 
     public static function crearPorGrupo($usuario_creador_id, $usuario_amigo_id, $grupo_id){
-      // return "fx crear";
+      return "---fx crear";
       return Sala::create([
         'usuario_creador_id'  =>  $usuario_creador_id,
         'grupo_id'    =>  $grupo_id
@@ -51,8 +55,8 @@ class Sala extends Model {
     }
 
     public static function crearPorAmigo($usuario_creador_id, $usuario_amigo_id){
-      // return "fx crear";
-      return Sala::create([
+      echo "fx crear por amigo";
+      return  Sala::create([
         'usuario_creador_id'  =>  $usuario_creador_id,
         'usuario_amigo_id'    =>  $usuario_amigo_id
       ]);

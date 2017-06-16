@@ -60,19 +60,29 @@ class MensajesController extends Controller
 
         $this->validate($request, [
           'mensaje' => 'required',
-          'usuario_amigo_id'  => 'required|exists:users,id'
+          // 'usuario_amigo_id'  => 'required|exists:users,id'
         ]);
 
-        $sala_id = Sala::encontrarOCrear(null, Auth::user()->id, $request->usuario_amigo_id, null)->all()[0]->id;
-        // dd($sala_id);
+        // dd($request->sala_id);
+
+        $sala = Sala::encontrarOCrear($request->sala_id, Auth::user()->id, $request->usuario_amigo_id, null);
+        // dd($sala);
+        echo "--Sala id: " . $sala->id;
         $mensaje = Mensaje::create([
                     'usuario_id'  =>  Auth::user()->id,
-                    'sala_id'     => $sala_id,
+                    'sala_id'     => $sala->id,
                     'mensaje'     => $request->mensaje
                   ]);
 
         // Enviar notificacion
-        $receptor = User::find($request->usuario_amigo_id);
+        if (Auth::user()->id == $sala->usuario_amigo_id){
+          echo "--se alerta a usuario creador";
+          $receptor = User::find($sala->usuario_creador_id);
+        }else if (Auth::user()->id == $sala->usuario_creador_id) {
+          echo "--se alerta a usuario amigo";
+          $receptor = User::find($sala->usuario_amigo_id);
+        }
+
 
         $receptor->notify(new MensajeEnviado($mensaje));
 
@@ -89,8 +99,11 @@ class MensajesController extends Controller
     public function show($id)
     {
         $mensaje = Mensaje::findOrFail($id);
+        $sala = Sala::find($mensaje->sala_id);
 
-        return view ('main-panel.mensajes.detalle', compact('mensaje'));
+
+
+        return view ('main-panel.mensajes.detalle', compact('mensaje', 'sala'));
     }
 
     /**
