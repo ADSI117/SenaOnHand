@@ -77,7 +77,8 @@
                     <img src="{{Storage::url('soh_profile_default.png') }}" alt="" class="rounded-0 white">
                   @endif
                   <a class="dropdown-header">Configuración</a>
-                  <a class="dropdown-item"  href="{{route('categoria-usuario.index')}}" >Ver categorías</a>
+                  <a class="dropdown-item"  href="{{route('salas.index')}}" >Chats</a>
+                  <a class="dropdown-item"  href="{{route('categoria-usuario.index')}}" >Descubrir</a>
                   <a class="dropdown-item"  href="{{route('usuarios.edit', Auth::user()->id)}}" >Editar perfil</a>
                   <a class="dropdown-item"  href="{{route('suscripciones.index')}}" >Mis suscripciones</a>
                   <div class="divider"></div>

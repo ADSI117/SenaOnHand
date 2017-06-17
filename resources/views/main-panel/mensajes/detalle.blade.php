@@ -5,27 +5,23 @@
 @include('template.h-navbar')
 
 @section('main')
+<div class="page-banner bg-indigo">
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-12">
-        <h3>Mensajes</h3>
-        <div  class="alert alert-success" role="alert">
-          <table class="table">
-            @foreach($sala->mensajes as $mensaje)
-            <tr>
-              <td>
-                <small>{{$mensaje->user->nombres}} dice: </small>
-                {{$mensaje->mensaje}}
-              </td>
-            </tr>
-            @endforeach
-          </table>
-        </div>
-        <!-- <p>{{$mensaje->mensaje}}</p> -->
-        <!-- <small>Enviado por: {{$mensaje->user->nombres}}</small> -->
-      </div>
-    </div>
+
+      @if(Auth::user()->id == $sala->usuario_amigo_id)
+      <h3 class="list-group-item-heading">Mensajes con </h3>
+        <small>
+        {{$sala->user_creador->nombres}} {{$sala->user_creador->apellidos}}
+        </small>
+      @else
+        <h3 class="list-group-item-heading">Mensajes con </h3>
+          <small>
+            {{$sala->user_amigo->nombres}} {{$sala->user_amigo->apellidos}}
+          </small>
+      @endif
+
   </div>
+</div>
 
   <div class="container">
     <div class="row">
@@ -49,6 +45,36 @@
         </div>
 
         {!!Form::close()!!}
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <h3>Últimos mensajes</h3>
+            @foreach($sala->mensajes as $mensaje)
+            <!-- <tr>
+              <td>
+                <small>{{$mensaje->user->nombres}} dice: </small>
+                {{$mensaje->mensaje}}
+              </td>
+            </tr> -->
+            <div class="list-group">
+              <div class="list-group-item">
+
+                <!-- <h4 class="list-group-item-heading"></h4> -->
+                <!-- <br> -->
+                <p class="list-group-item-text">
+                  Fecha: {{$mensaje->created_at}} {{$mensaje->user->nombres}} dice: {{$mensaje->mensaje}}
+                </p>
+              </div>
+            </div>
+            @endforeach
+
+        </div>
+        <!-- <p>{{$mensaje->mensaje}}</p> -->
+        <!-- <small>Enviado por: {{$mensaje->user->nombres}}</small> -->
       </div>
     </div>
   </div>
