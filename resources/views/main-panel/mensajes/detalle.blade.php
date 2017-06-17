@@ -8,25 +8,23 @@
 <div class="page-banner bg-indigo">
   <div class="container">
 
+    <h3 class="list-group-item-heading">Mensajes con
       @if(Auth::user()->id == $sala->usuario_amigo_id)
-      <h3 class="list-group-item-heading">Mensajes con </h3>
-        <small>
         {{$sala->user_creador->nombres}} {{$sala->user_creador->apellidos}}
-        </small>
       @else
-        <h3 class="list-group-item-heading">Mensajes con </h3>
-          <small>
             {{$sala->user_amigo->nombres}} {{$sala->user_amigo->apellidos}}
-          </small>
       @endif
-
+     </h3>
   </div>
 </div>
 
   <div class="container">
     <div class="row">
+      @include('flash::message')
+    </div>
+    <div class="row">
       <div class="col-xs-12 col-md-12">
-        <h3>Enviar mensaje</h3>
+        <h3><a class="material-btn" href="{{route('salas.index')}}">< Salas</a>Enviar mensaje</h3>
 
         {!!Form::open(['route'=>'mensajes.store', 'method'=>'POST'])!!}
 
@@ -52,26 +50,23 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-12">
+        @if($mensajes)
         <h3>Últimos mensajes</h3>
-            @foreach($sala->mensajes as $mensaje)
-            <!-- <tr>
-              <td>
-                <small>{{$mensaje->user->nombres}} dice: </small>
-                {{$mensaje->mensaje}}
-              </td>
-            </tr> -->
+            @foreach($mensajes as $mensaje)
+
             <div class="list-group">
               <div class="list-group-item">
 
                 <!-- <h4 class="list-group-item-heading"></h4> -->
                 <!-- <br> -->
                 <p class="list-group-item-text">
-                  Fecha: {{$mensaje->created_at}} {{$mensaje->user->nombres}} dice: {{$mensaje->mensaje}}
+                  Fecha: {{$mensaje->created_at}} {{$mensaje->user->nombres}} dice:
+                    <b>{{$mensaje->mensaje}}</b>
                 </p>
               </div>
             </div>
             @endforeach
-
+            @endif
         </div>
         <!-- <p>{{$mensaje->mensaje}}</p> -->
         <!-- <small>Enviado por: {{$mensaje->user->nombres}}</small> -->

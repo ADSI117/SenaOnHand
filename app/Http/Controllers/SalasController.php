@@ -17,9 +17,9 @@ class SalasController extends Controller
     {
       $salas = Sala::where('usuario_amigo_id', '=', Auth::user()->id)
                       ->orWhere('usuario_creador_id', '=', Auth::user()->id)
+                      ->orderBy('updated_at', 'desc')
                       ->get();
-                      // dd($salas);
-        return view ('main-panel.salas-chats.index', compact('salas'));
+      return view ('main-panel.salas-chats.index', compact ('salas'));
     }
 
     /**
@@ -56,7 +56,20 @@ class SalasController extends Controller
       $sala = Sala::find($id);
       // $mensajes = Mensaje::where('sala_id', '=', $sala->id);
 
-      return view ('main-panel.mensajes.detalle', compact('sala'));
+
+                            // Validar
+      if($sala->usuario_amigo_id == Auth::user()->id || $sala->usuario_creador_id == Auth::user()->id){
+        $mensajes = Mensaje::where('sala_id', '=', $sala->id)
+        ->orderBy('created_at', 'desc')
+        ->get();
+        // dd($mensajes);
+        return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes'));
+
+      }else{
+        return back();
+      }
+
+
     }
 
     /**

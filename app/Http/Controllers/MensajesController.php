@@ -75,6 +75,15 @@ class MensajesController extends Controller
                     'sala_id'     => $sala->id,
                     'mensaje'     => $request->mensaje
                   ]);
+        if ($mensaje){
+          flash('Mensaje enviado.')->success()->important();
+        }else{
+          flash('¡Hubo un problema!')->success()->important();
+        }
+
+        // Actualizar updated_at de sala
+        $sala->updated_at = date('Y-m-d H:i:s');
+        $sala->save();
 
         // Enviar notificacion
         if (Auth::user()->id == $sala->usuario_amigo_id){
@@ -88,7 +97,12 @@ class MensajesController extends Controller
 
         $receptor->notify(new MensajeEnviado($mensaje));
 
-        return back();
+        // return back();
+        $mensajes = Mensaje::where('sala_id', '=', $sala->id)
+                              ->orderBy('created_at', 'desc')
+                              ->get();
+
+        return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes'));
 
     }
 
@@ -101,11 +115,21 @@ class MensajesController extends Controller
     public function show($id)
     {
         $mensaje = Mensaje::findOrFail($id);
+
         $sala = Sala::find($mensaje->sala_id);
 
+        // Validar
+        if($sala->usuario_amigo_id == Auth::user()->id || $sala->usuario_creador_id == Auth::user()->id){
 
+          $mensajes = Mensaje::where('sala_id', '=', $sala->id)
+          ->orderBy('created_at', 'desc')
+          ->get();
 
-        return view ('main-panel.mensajes.detalle', compact('mensaje', 'sala'));
+          return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes'));
+        }else{
+          return back();
+        }
+
     }
 
     /**

@@ -29,7 +29,9 @@
           @else
             <h4 class="list-group-item-heading">Con {{$sala->user_amigo->nombres}} {{$sala->user_amigo->apellidos}}</h4>
           @endif
-          <p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, sint id atque ipsum necessitatibus voluptates reprehenderit tempora alias! Delectus, perferendis beatae optio nesciunt nam reiciendis mollitia ullam similique recusandae dicta.</p>
+          <p class="list-group-item-text">
+            Último mensaje: {{$sala->updated_at}}
+          </p>
         </a>
       </div>
       @endforeach
