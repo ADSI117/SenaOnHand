@@ -23,3 +23,10 @@ $info: #03A9F4;
 $err: #F44336;
 
 $btn-shadow: rgba(#7c7c7c, 0.85) !important;
+/* ==========  Select Field Variables ========== */
+$color-black: "0,0,0";
+$select-background-color: transparent;
+$select-border-color: unquote("rgba(#{$color-black}, 0.12)") !default;
+$select-font-size: 16px;
+$select-color: unquote("rgba(#{$color-black}, 0.26)") !default;
+$select-padding: 4px;
