@@ -13,13 +13,6 @@ class Tag extends Model {
     protected $table = 'tb_tags';
     protected $fillable = ['id', 'publicacion_id', 'descripcion'];
 
-<<<<<<< HEAD
-    public function publicaciones() {
-        return $this->belongsToMany('App\Publicacion')->withTimestamps();
-    }
-
-    
-=======
 	public function publicaciones() {
         return $this->belongsToMany('App\Publicacion')->withTimestamps();
     }
@@ -27,6 +20,5 @@ class Tag extends Model {
     public function scopeSearch($query,$descripcion) {
         return $query->where('descripcion','LIKE', "%$descripcion%");
     }
->>>>>>> Santiago
 
 }

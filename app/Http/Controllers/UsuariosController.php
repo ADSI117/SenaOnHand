@@ -154,13 +154,7 @@ class UsuariosController extends Controller
         $usuario->sede_id = $request->sede_id;
         $usuario->grupo_id = $request->grupo_id;
 
-<<<<<<< HEAD
         if ($request->hasFile('imagen') && $request->imagen->isValid()){
-=======
-        if ($request->file('imagen')){
-
-     
->>>>>>> Santiago
           $imagen = $request->file('imagen');
 
           $nombre = 'soh_profile_' . time() . '.'. $imagen->getClientOriginalExtension();

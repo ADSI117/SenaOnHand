@@ -18,6 +18,9 @@
 .f-left {
   float: left; }
 
+.f-none {
+  float: none; }
+
 .d-ib {
   display: inline-block; }
 
@@ -29,9 +32,6 @@
 
 .bg-green {
   background-color: #77a777; }
-
-.bg-white {
-  background-color: #FFF !important; }
 
 .bg-indigo {
   background-color: #3F51B5 !important; }

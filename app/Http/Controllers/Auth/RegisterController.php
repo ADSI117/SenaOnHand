@@ -77,15 +77,18 @@ class RegisterController extends Controller
           $rol = 2;
           break;
         default:
-          dd("Equivocación");
+            dd('{"estado": "0","mensaje": "Dominio de Correo electrónico invalido"}');
           break;
       }
-      // Se debe construir primero y despues pasar el parametro
-      $data['rol_id'] = $rol;
-      $data['estado_id'] = 1;
-      $data['url_foto'] = 'soh_profile_default.png';
-      $data['password'] = bcrypt($data['password']);
+      if ($rol != 0) {
 
-      return User::create($data);
+        // Se debe construir primero y despues pasar el parametro
+        $data['rol_id'] = $rol;
+        $data['estado_id'] = 1;
+        $data['url_foto'] = 'soh_profile_default.png';
+        $data['password'] = bcrypt($data['password']);
+
+        return User::create($data);
+      }
     }
 }

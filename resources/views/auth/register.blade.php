@@ -10,9 +10,9 @@
 
     <div class="col-xs-12 col-md-4 col-lg-3 bg-white full-h p-4">
       <h3 class="titulo">Registro</h3>
-      <form class="pl-4 pr-4" role="form" method="POST" action="{{ route('register') }}">
+      <form class="pl-4 pr-4" role="form" name="formulario" method="POST" action="{{ route('register') }}">
         {{ csrf_field() }}
-        <div class="form-group">
+        <div class="form-group ">
           {{-- <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}"> --}}
             <input id="name" type="text" placeholder="Nombre" class="material-input" name="name" value="{{ old('name') }}" autofocus required>
             {{-- @if ($errors->has('name'))
@@ -22,20 +22,20 @@
             @endif --}}
         </div>
 
-        <div class="form-group material">
+        <div class="form-group ">
             <input id="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" placeholder="Correo electrónico" class="material-input" name="email" value="{{ old('email') }}" required>
         </div>
 
-        <div class="form-group material{{ $errors->has('password') ? ' has-error' : '' }}">
+        <div class="form-group ">
             <input id="password" placeholder="Clave" type="password" class="material-input" name="password" required>
         </div>
 
-        <div class="form-group material">
+        <div class="form-group ">
           <input id="password-confirm" placeholder="Confirmar clave" type="password" class="material-input" name="password_confirmation" required>
         </div>
 
         <div class="text-center mt-4">
-            <button type="submit" class="material-btn btn-indigo">
+            <button type="button" id="btn-enviar" class="material-btn btn-indigo">
                 Register
             </button>
             <hr />
@@ -53,5 +53,5 @@
 @endsection
 
 @section('js')
-
+  <script src="{{ asset('js/login/validaciones.js') }}"></script>
 @endsection
