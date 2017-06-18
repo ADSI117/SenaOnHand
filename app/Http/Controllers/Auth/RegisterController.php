@@ -41,6 +41,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        // $this->middleware('dominio');
     }
 
     /**
@@ -51,6 +52,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+      // echo "Validador";
         return Validator::make($data, [
             //'rol_id' => 'required',
             'name' => 'required|max:255',
@@ -67,6 +69,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      // echo "Creador";
       $dominio = explode("@", $data['email'])[1];
       $rol = 0;
       switch (strtolower($dominio)) {
@@ -77,7 +80,7 @@ class RegisterController extends Controller
           $rol = 2;
           break;
         default:
-          dd("Equivocación");
+          dd('Dominio no permitido');
           break;
       }
       // Se debe construir primero y despues pasar el parametro
@@ -86,6 +89,8 @@ class RegisterController extends Controller
       $data['url_foto'] = 'soh_profile_default.png';
       $data['password'] = bcrypt($data['password']);
 
-      return User::create($data);
+      dd('Hola');
+
+      // return User::create($data);
     }
 }
