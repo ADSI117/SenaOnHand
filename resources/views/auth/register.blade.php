@@ -23,7 +23,7 @@
         </div>
 
         <div class="form-group ">
-          
+
             <input id="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" placeholder="Correo electrónico" class="material-input" name="email" value="{{ old('email') }}" required>
         </div>
 
@@ -36,13 +36,8 @@
         </div>
 
         <div class="text-center mt-4">
-<<<<<<< HEAD
-            <button type="submit" class="material-btn btn-indigo">
-                Registrarse
-=======
             <button type="button" id="btn-enviar" class="material-btn btn-indigo">
                 Register
->>>>>>> origin/Jhonathan
             </button>
             <hr />
             <a href="{{ url('/login') }}" class="material-link">Ingresar</a>
