@@ -23,6 +23,7 @@
         </div>
 
         <div class="form-group ">
+          
             <input id="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" placeholder="Correo electrónico" class="material-input" name="email" value="{{ old('email') }}" required>
         </div>
 
