@@ -17,6 +17,12 @@ html, body {
   position: fixed !important;
   bottom: 20px;
   right: 20px;
+  .top {
+    bottom: unset;
+    right: unset;
+    top: 20px;
+    left: 20px;
+  }
 }
 .hnav {
   position: fixed;
@@ -281,6 +287,33 @@ div#ManejadorDeAvisos[role=alert] {
   }
 }
 
+.material-btn-float {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  background: #eee;
+  box-shadow: 0px 3px 5px #999;
+  cursor: pointer;
+  &.flat-btn {
+    transition: all .5s;
+    background: #FFF;
+    box-shadow: unset;
+    &:hover {
+      background: #eee;
+      box-shadow: 0px 3px 5px #999;
+    }
+  }
+  &.top-left {
+    top: 20px;
+    left: 20px;
+  }
+  &:active, &:focus {
+    outline: none;
+  }
+}
+
 // select {
 //   font-family: inherit;
 //   background-color: transparent;
@@ -317,3 +350,16 @@ div#ManejadorDeAvisos[role=alert] {
 //         pointer-events: none;
 //     }
 // }
+
+.chatroom {
+  max-height: 60vh;
+  overflow-y: scroll;
+  .msg-activo {
+    background-color: #80CBC4;
+    color: #333;
+    font-weight: bold;
+    &:hover {
+      background-color: #80CBC4;
+    }
+  }
+}

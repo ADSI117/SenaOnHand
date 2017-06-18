@@ -99,7 +99,7 @@ class MensajesController extends Controller
 
         // return back();
         $mensajes = Mensaje::where('sala_id', '=', $sala->id)
-                              ->orderBy('created_at', 'desc')
+                              ->orderBy('created_at', 'asc')
                               ->get();
 
         return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes'));
@@ -122,7 +122,7 @@ class MensajesController extends Controller
         if($sala->usuario_amigo_id == Auth::user()->id || $sala->usuario_creador_id == Auth::user()->id){
 
           $mensajes = Mensaje::where('sala_id', '=', $sala->id)
-          ->orderBy('created_at', 'desc')
+          ->orderBy('created_at', 'asc')
           ->get();
 
           return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes'));
