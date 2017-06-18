@@ -1,16 +1,8 @@
-@extends('template.main')
+@extends('template.admin')
 
-@section('title','Categorias')
+@section('title','Estados denuncias')
 
-@section('hNavbar')
-	@include('template.h-navbar')
-@endsection
-
-@section('vNavbar')
-	@include('template.v-navbar')
-@endsection
-
-@section('title-content', 'Categorias')
+@section('title-content', 'Estados denuncias')
 
 @section('search-content')
 	<div class="col-4">
@@ -42,7 +34,7 @@
 		</button>
 	</div>
 
-<table class="table table-hover table-sm" id="table">
+<table class="table table-hover" id="table">
 <thead>
   <tr>
     <th class="ta-left">Id</th>
@@ -52,23 +44,21 @@
 </thead>
 <tbody>
 	@foreach($estados_denuncias as $estado_denuncia)
-		<tr>
+		<tr data-tr="{{$estado_denuncia->id}}">
 			<td class="align-middle">{{$estado_denuncia->id}}</td>
 			<td class="align-middle">{{$estado_denuncia->descripcion}}</td>
-
 			<td class="ta-right">
         <button
 							data-toggle="modal" data-target="#modal-control"
 							data-action="{{route('estados_denuncias.update', $estado_denuncia)}}"
 							data-method="PUT"
-							data-i="{{$estado_denuncia->id}}"
+							data-td="{{$estado_denuncia->id}}"
 							onclick="showModalAccion(this.dataset)"
-							class="btn btn-neutral btn-icon  btn-icon-mini btn-round">
+							class="btn btn-warning btn-icon  btn-icon-mini btn-round">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 						</button>
-
 				{{ Form::open(['class'=>'d-ib m-0','method' => 'DELETE', 'route' => ['estados_denuncias.destroy', $estado_denuncia->id]]) }}
-          <button type="submit" class="btn btn-neutral btn-icon btn-icon-mini btn-round">
+          <button type="submit" class="btn btn-danger btn-icon btn-icon-mini btn-round">
             <i class="fa fa-trash" aria-hidden="true"></i>
           </button>
         {{ Form::close() }}
@@ -79,4 +69,31 @@
 </table>
 {!!$estados_denuncias->links('vendor.pagination.custom')!!}
 
+@endsection
+
+@section('modal-control')
+	@extends('template.modal')
+	@section('modal-title','Estados denuncias')
+	@section('modal-content')
+		{!!Form::open(['id' => 'form-accion'])!!}
+		<div class="modal-body">
+		    <div class="form-group">
+					{!! Form::text('descripcion',null,
+						['placeholder' => 'Nombre' ,
+						 	'required',
+							'class' => 'form-control'])!!}
+		    </div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancelar</button>
+			<button type="submit" name="btnSubmit" class="btn btn-info btn-simple">Registrar</button>
+			{{-- {!! Form::submit('Registrar',['class'=>'mdl-button'])!!} --}}
+		</div>
+		{!!Form::close() !!}
+	@endsection
+@endsection
+
+@section('js')
+
+	<script src="{{asset('js/estados_denuncias.js')}}" charset="utf-8"></script>
 @endsection

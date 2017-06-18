@@ -11,7 +11,7 @@ class Publicacion extends Model {
      */
 
     protected $table = 'tb_publicaciones';
-    protected $fillable = ['id', 'user_id', 'subcategoria_id', 'estado_id', 'titulo', 'contenido', 'url_video', 'url_archivo'];
+    protected $fillable = ['id', 'usuario_id', 'subcategoria_id', 'estado_id', 'titulo', 'contenido', 'url_video', 'url_archivo'];
 
 
     public function estado_publicacion() {
@@ -23,7 +23,7 @@ class Publicacion extends Model {
     }
 
     public function user() {
-        return $this->belongsTo('App\User','user_id', 'id');
+        return $this->belongsTo('App\User');
     }
 
     public function users() {
@@ -38,8 +38,20 @@ class Publicacion extends Model {
         return $this->hasMany('App\Comentario','publicacion_id', 'id');
     }
 
+    public function imagenes() {
+        return $this->hasMany('App\Imagen','publicacion_id', 'id');
+    }
+
+    public function archivos() {
+        return $this->hasMany('App\Archivo','publicacion_id', 'id');
+    }
+
+    public function videos() {
+        return $this->hasMany('App\Video','publicacion_id', 'id');
+    }
+
     public function tags() {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag', 'publicacion_tag')->withTimestamps();
     }
 
 

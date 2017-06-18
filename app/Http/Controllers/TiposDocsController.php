@@ -13,9 +13,9 @@ class TiposDocsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tipos_docs = TipoDoc::orderBy('id','desc')->paginate(5);
+        $tipos_docs = TipoDoc::search($request->nombre)->orderBy('id','desc')->paginate(5);
         return view('admin.tipos_docs.index')->with('tipos_docs',$tipos_docs);
     }
 
@@ -40,7 +40,7 @@ class TiposDocsController extends Controller
         $tipos_docs = new TipoDoc($request->all());
         $tipos_docs->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('tipos_docs.index');
+        return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -78,14 +78,13 @@ class TiposDocsController extends Controller
     {
         $tipo_doc = TipoDoc::find($id);
         $tipo_doc->nombre = $request->nombre;
-        
-        if ($tipo_doc->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
-        }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
-        }
 
-        return redirect()->route('tipos_docs.index');
+        if ($tipo_doc->save()){
+          return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+       }else{
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
+       }
+
     }
 
     /**

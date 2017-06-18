@@ -1,14 +1,6 @@
-@extends('template.main')
+@extends('template.admin')
 
 @section('title','Estados publicaciones')
-
-@section('hNavbar')
-	@include('template.h-navbar')
-@endsection
-
-@section('vNavbar')
-	@include('template.v-navbar')
-@endsection
 
 @section('title-content', 'Estados de publicaciones')
 
@@ -54,23 +46,22 @@
 </thead>
 <tbody>
 	@foreach($estados_publicaciones as $estado_publicacion)
-		<tr>
-			<td class="align-middle">{{$estado_publicacion->id}}</td>
-			<td class="align-middle">{{$estado_publicacion->descripcion}}</td>
-
+		<tr data-tr="{{$estado_publicacion->id}}">
+			<td>{{$estado_publicacion->id}}</td>
+			<td>{{$estado_publicacion->descripcion}}</td>
 			<td class="ta-right">
         <button
 							data-toggle="modal" data-target="#modal-control"
 							data-action="{{route('estados_publicaciones.update', $estado_publicacion)}}"
 							data-method="PUT"
-							data-i="{{$estado_publicacion->id}}"
+							data-td="{{$estado_publicacion->id}}"
 							onclick="showModalAccion(this.dataset)"
-							class="btn btn-neutral btn-icon  btn-icon-mini btn-round">
+							class="btn btn-warning btn-icon  btn-icon-mini btn-round">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 						</button>
 				{{ Form::open(['class'=>'d-ib m-0','method' => 'DELETE', 'route' =>
         ['estados_publicaciones.destroy', $estado_publicacion->id]]) }}
-        <button type="submit" class="btn btn-neutral btn-icon btn-icon-mini btn-round">
+        <button type="submit" class="btn btn-danger btn-icon btn-icon-mini btn-round">
           <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
         {{ Form::close() }}
@@ -80,9 +71,34 @@
 
 	@endforeach
 </tbody>
-
-
 </table>
 {!!$estados_publicaciones->links('vendor.pagination.custom')!!}
 
+@endsection
+
+@section('modal-control')
+	@extends('template.modal')
+	@section('modal-title','Estados publicaciones')
+	@section('modal-content')
+		{!!Form::open(['id' => 'form-accion'])!!}
+		<div class="modal-body">
+		    <div class="form-group">
+					{!! Form::text('descripcion',null,
+						['placeholder' => 'Nombre' ,
+						 	'required',
+							'class' => 'form-control'])!!}
+		    </div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancelar</button>
+			<button type="submit" name="btnSubmit" class="btn btn-info btn-simple">Registrar</button>
+			{{-- {!! Form::submit('Registrar',['class'=>'mdl-button'])!!} --}}
+		</div>
+		{!!Form::close() !!}
+	@endsection
+@endsection
+
+@section('js')
+
+	<script src="{{asset('js/estados_publicaciones.js')}}" charset="utf-8"></script>
 @endsection

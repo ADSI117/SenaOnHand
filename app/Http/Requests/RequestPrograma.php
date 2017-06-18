@@ -13,7 +13,7 @@ class RequestPrograma extends FormRequest
      */
     public function authorize()
     {
-        return programa;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class RequestPrograma extends FormRequest
     public function rules()
     {
         return [
-            'acronimo'=>'min:1|max:45|required', 
+            'acronimo'=>'min:1|max:45|required',
             'descripcion'=>'min:4|max:45|required'
         ];
     }

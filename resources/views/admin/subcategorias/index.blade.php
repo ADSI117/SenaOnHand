@@ -1,15 +1,7 @@
 {{-- llama main blade --}}
-@extends('template.main')
+@extends('template.admin')
 {{-- seteamos el titulo --}}
 @section('title','Subcategorias')
-{{-- Ponemos el vertical nav  --}}
-@section('vNavbar')
-  @include('template.v-navbar')
-@endsection
-{{-- horizontal nav --}}
-@section('hNavbar')
-  @include('template.h-navbar')
-@endsection
 {{-- titulo del contenido --}}
 @section('title-content', 'Subcategorias')
 {{-- poner el buscar al lado del titulo --}}
@@ -95,7 +87,7 @@
 
         {!! Form::select('categoria_id', $categorias, null,
           ['class'=>'form-control',
-          'place-holder'=>'Seleccionar',
+          'placeholder'=>'Seleccionar',
           'required'])!!}
         </div>
         <div class="form-group">

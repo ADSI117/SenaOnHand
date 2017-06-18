@@ -17,8 +17,9 @@ class SedesController extends Controller
     public function index(Request $request)
     {
         $sedes = Sede::search($request->descripcion)->orderBy('id','desc')->paginate(5);
+        $centros = Centro::orderBy('descripcion', 'desc')->pluck('descripcion', 'id');
 
-        return view('admin.sedes.index', compact('sedes'));
+        return view('admin.sedes.index', compact('sedes', 'centros'));
     }
 
     /**
@@ -30,7 +31,7 @@ class SedesController extends Controller
     {
         $centros = Centro::orderBy('descripcion', 'desc')->pluck('descripcion', 'id');
 
-                             
+
         return view('admin.sedes.create',compact('centros'));
     }
 
@@ -45,7 +46,7 @@ class SedesController extends Controller
          $sede = new Sede($request->all());
         $sede->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('sedes.index');
+       return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -56,6 +57,7 @@ class SedesController extends Controller
      */
     public function show($id)
     {
+
         //
     }
 
@@ -83,16 +85,15 @@ class SedesController extends Controller
     public function update(RequestSede $request, $id)
     {
         $sede = Sede::find($id);
+        $sede->centro_id = $request->centro_id;
         $sede->acronimo = $request->acronimo;
         $sede->descripcion = $request->descripcion;
-        $sede->centro_id = $request->centro_id;
-        
+
         if ($sede->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
-        }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
-        }
-        return redirect()->route('sedes.index');
+          return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+       } else {
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
+       }
     }
 
     /**

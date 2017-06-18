@@ -17,7 +17,9 @@ class SubcategoriasController extends Controller
     public function index(Request $request)
     {
         $subcategorias = Subcategoria::search($request->descripcion)->orderBy('id','DESC')->paginate(5);
+
         $categorias = Categoria::orderBy('id', 'desc')->pluck('descripcion', 'id');
+
 
         return view('admin.subcategorias.index', compact('subcategorias', 'categorias'));
 

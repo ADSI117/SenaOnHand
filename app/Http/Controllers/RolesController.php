@@ -13,9 +13,9 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $roles = Rol::orderBy('id','desc')->paginate(5);
+        $roles = Rol::search($request->descripcion)->orderBy('id','desc')->paginate(5);
         return view('admin.roles.index')->with('roles',$roles);
     }
 
@@ -40,7 +40,7 @@ class RolesController extends Controller
         $roles = new Rol($request->all());
         $roles->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('roles.index');
+        return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -78,11 +78,13 @@ class RolesController extends Controller
     {
         $rol = Rol::find($id);
         $rol->descripcion = $request->descripcion;
-        
+
         if ($rol->save()){
            //Flash::success('el tipo_denuncia fue editado')->important();
+            return '{ "estado": 1, "mensaje": "Registro actualizado"}';
         }else{
            // Flash::success('el tipo_denuncia no se edito')->important();
+           return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
         }
 
         return redirect()->route('roles.index');

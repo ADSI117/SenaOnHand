@@ -11,7 +11,7 @@ class Mensaje extends Model {
      */
 
     protected $table = 'tb_mensajes';
-    protected $fillable = ['id', 'user_id', 'sala_id', 'mensaje'];
+    protected $fillable = ['id', 'usuario_id', 'sala_id', 'mensaje'];
 
 
     public function sala() {

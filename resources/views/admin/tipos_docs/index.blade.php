@@ -1,14 +1,6 @@
-@extends('template.main')
+@extends('template.admin')
 
 @section('title','Tipos documentos')
-
-@section('hNavbar')
-	@include('template.h-navbar')
-@endsection
-
-@section('vNavbar')
-	@include('template.v-navbar')
-@endsection
 
 @section('title-content', 'Tipos de documentos')
 
@@ -44,7 +36,7 @@
 		</button>
 	</div>
 
-<table class="table table-hover table-sm" id="table">
+<table class="table table-hover" id="table">
 <thead>
   <tr>
     <th class="ta-left">Id</th>
@@ -54,22 +46,21 @@
 </thead>
 <tbody>
 	@foreach($tipos_docs as $tipo_doc)
-		<tr>
+		<tr data-tr="{{$tipo_doc->id}}">
 			<td class="align-middle">{{$tipo_doc->id}}</td>
 			<td class="align-middle">{{$tipo_doc->nombre}}</td>
-
 			<td class="ta-right">
         <button
 							data-toggle="modal" data-target="#modal-control"
 							data-action="{{route('tipos_docs.update', $tipo_doc)}}"
 							data-method="PUT"
-							data-i="{{$tipo_doc->id}}"
+							data-td="{{$tipo_doc->id}}"
 							onclick="showModalAccion(this.dataset)"
-							class="btn btn-neutral btn-icon  btn-icon-mini btn-round">
+							class="btn btn-warning btn-icon  btn-icon-mini btn-round">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
-						</button>
+					</button>
 				{{ Form::open(['class'=>'d-ib m-0','method' => 'DELETE', 'route' => ['tipos_docs.destroy', $tipo_doc->id]]) }}
-        <button type="submit" class="btn btn-neutral btn-icon btn-icon-mini btn-round">
+        <button type="submit" class="btn btn-danger btn-icon btn-icon-mini btn-round">
 						<i class="fa fa-trash" aria-hidden="true"></i>
 				</button>
         {{ Form::close() }}
@@ -80,4 +71,34 @@
 </table>
 {!!$tipos_docs->links('vendor.pagination.custom')!!}
 
+@endsection
+
+@section('modal-control')
+	@extends('template.modal')
+	@section('modal-title','tipos de documento')
+	@section('modal-content')
+		{!!Form::open(['id' => 'form-accion'])!!}
+		<div class="modal-body">
+		    <div class="form-group">
+
+					{!! Form::text('nombre',null,
+						['placeholder' => 'Nombre' ,
+						 	'required',
+							'class' => 'form-control',
+							'id' => 'nombre'])!!}
+
+		    </div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancelar</button>
+			<button type="submit" name="btnSubmit" class="btn btn-info btn-simple">Registrar</button>
+			{{-- {!! Form::submit('Registrar',['class'=>'mdl-button'])!!} --}}
+		</div>
+		{!!Form::close() !!}
+	@endsection
+@endsection
+
+@section('js')
+
+	<script src="{{asset('js/tipos_docs.js')}}" charset="utf-8"></script>
 @endsection

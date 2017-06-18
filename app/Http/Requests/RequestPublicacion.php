@@ -30,7 +30,7 @@ class RequestPublicacion extends FormRequest
             'titulo'=>'min:4|max:45|required', 
             'contenido'=>'max:255', 
             'url_video'=>'max:255', 
-            'url_archivo'=>'max:255'
+            'url_archivo'=>'max:255|mimes:jpg,jpeg,gif,png,xls,xlsx,doc,docx,pdf'
         ];
     }
 }

@@ -40,7 +40,7 @@ class RegionalesController extends Controller
         $regionales = new Regional($request->all());
         $regionales->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('regionales.index');
+       return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -78,14 +78,12 @@ class RegionalesController extends Controller
     {
         $regional = Regional::find($id);
         $regional->descripcion = $request->descripcion;
-        
-        if ($regional->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
-        }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
-        }
 
-        return redirect()->route('regionales.index');
+        if ($regional->save()){
+          return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+       }else{
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
+       }
     }
 
     /**

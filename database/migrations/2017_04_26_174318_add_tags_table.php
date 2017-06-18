@@ -15,9 +15,20 @@ class AddTagsTable extends Migration
     {
         Schema::create('tb_tags', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('publicacion_id')->unsigned();            
+            // $table->integer('publicacion_id')->unsigned();
             $table->string('descripcion',45);
             $table->timestamps();
+        });
+
+        Schema::create('publicacion_tag', function (Blueprint $table){
+          $table->increments('id');
+          $table->integer('publicacion_id')->unsigned();
+          $table->integer('tag_id')->unsigned();
+
+          $table->foreign('publicacion_id')->references('id')->on('tb_publicaciones');
+          $table->foreign('tag_id')->references('id')->on('tb_tags');
+
+          $table->timestamps();
         });
     }
 

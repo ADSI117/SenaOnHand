@@ -13,9 +13,9 @@ class EstadosComentariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       $estados_comentarios = EstadoComentario::orderBy('id','desc')->paginate(5);
+       $estados_comentarios = EstadoComentario::search($request->descripcion)->orderBy('id','desc')->paginate(5);
         return view('admin.estados_comentarios.index')->with('estados_comentarios',$estados_comentarios);
     }
 
@@ -40,7 +40,7 @@ class EstadosComentariosController extends Controller
         $estados_comentarios = new EstadoComentario($request->all());
         $estados_comentarios->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('estados_comentarios.index');
+        return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -78,14 +78,12 @@ class EstadosComentariosController extends Controller
     {
         $estado_comentario = EstadoComentario::find($id);
         $estado_comentario->descripcion = $request->descripcion;
-        
-        if ($estado_comentario->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
-        }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
-        }
 
-        return redirect()->route('estados_comentarios.index');
+        if ($estado_comentario->save()){
+          return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+       }else{
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
+       }
     }
 
     /**

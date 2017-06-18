@@ -1,8 +1,11 @@
 
 // tamaños
-.full-width {
+.full-w {
   width: 100%;
   max-width: 100%;
+}
+.full-h {
+  min-height: 100vh;
 }
 
 // Alineamientos
@@ -29,4 +32,11 @@
 }
 .upcase {
   text-transform: uppercase;
+}
+// colors
+.bg-green {
+  background-color: rgb(119, 167, 119);
+}
+.white {
+  background-color: #FFF;
 }

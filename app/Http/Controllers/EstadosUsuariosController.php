@@ -13,9 +13,9 @@ class EstadosUsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $estados_usuarios = EstadoUsuario::orderBy('id','desc')->paginate(5);
+        $estados_usuarios = EstadoUsuario::search($request->descripcion)->orderBy('id','desc')->paginate(5);
         return view('admin.estados_usuarios.index')->with('estados_usuarios',$estados_usuarios);
     }
 
@@ -40,7 +40,7 @@ class EstadosUsuariosController extends Controller
          $estados_usuarios = new EstadoUsuario($request->all());
         $estados_usuarios->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('estados_usuarios.index');
+       return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -78,14 +78,12 @@ class EstadosUsuariosController extends Controller
     {
         $estado_usuario = EstadoUsuario::find($id);
         $estado_usuario->descripcion = $request->descripcion;
-        
-        if ($estado_usuario->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
-        }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
-        }
 
-        return redirect()->route('estados_usuarios.index');
+        if ($estado_usuario->save()){
+          return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+       }else{
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
+       }
     }
 
     /**

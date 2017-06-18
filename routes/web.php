@@ -10,8 +10,29 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'PublicPanelController@index');
+
+// Para generar enlace de activacion
+Route::get('getlink', 'UsuariosController@getLink');
+
+// Activar usuario
+Route::get('activar', 'UsuariosController@activarUsuario');
+
+Route::get('info-mensaje', function(){
+  return view ('info-mensaje');
+});
+
+Route::get('info-suspendido', function(){
+  return view ('info-suspendido');
+});
+
+Route::group(['prefix'=>'main-panel'], function (){
+
+  Route::resource('publicaciones', 'PublicacionesController');
+  Route::resource('usuarios', 'UsuariosController');
+  Route::resource('categoria-usuario', 'CategoriasUsuariosController');
+  Route::resource('instructores', 'InstructoresController');
+
 });
 
 Route::get('admin', 'AdminController@index');
@@ -147,3 +168,7 @@ Route::resource('sedes','SedesController');
  Route::get('probar', function(){
  	return 'Hay algo malo?';
  });
+
+Auth::routes();
+
+Route::get('/main-panel', 'MainPanelController@index')->name('main-panel');

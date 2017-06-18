@@ -18,5 +18,7 @@ class TipoDenuncia extends Model {
         return $this->hasMany('App\Denuncia','tipo_id', 'id');
     }
 
-
+    public function scopeSearch($query,$descripcion) {
+        return $query->where('descripcion','LIKE', "%$descripcion%");
+    }
 }

@@ -17,8 +17,9 @@ class CentrosController extends Controller
     public function index(Request $request)
     {
         $centros = Centro::search($request->descripcion)->orderBy('id','desc')->paginate(5);
+        $regionales = Regional::orderBy('descripcion', 'desc')->pluck('descripcion', 'id');
 
-        return view('admin.centros.index', compact('centros'));
+        return view('admin.centros.index', compact('centros', 'regionales'));
     }
 
     /**
@@ -30,7 +31,7 @@ class CentrosController extends Controller
     {
          $regionales = Regional::orderBy('descripcion', 'desc')->pluck('descripcion', 'id');
 
-                             
+
         return view('admin.centros.create',compact('regionales'));
     }
 
@@ -45,7 +46,7 @@ class CentrosController extends Controller
         $centros = new Centro($request->all());
         $centros->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
-        return redirect()->route('centros.index');
+       return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**
@@ -86,14 +87,12 @@ class CentrosController extends Controller
         $centro->acronimo = $request->acronimo;
         $centro->descripcion = $request->descripcion;
         $centro->regional_id = $request->regional_id;
-        
-        if ($centro->save()){
-           //Flash::success('el tipo_denuncia fue editado')->important();
-        }else{
-           // Flash::success('el tipo_denuncia no se edito')->important();
-        }
 
-        return redirect()->route('centros.index');
+        if ($centro->save()){
+          return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+       }else{
+          return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
+       }
     }
 
     /**

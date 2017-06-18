@@ -1,14 +1,6 @@
-@extends('template.main')
+@extends('template.admin')
 
 @section('title','Categorias')
-
-@section('hNavbar')
-	@include('template.h-navbar')
-@endsection
-
-@section('vNavbar')
-	@include('template.v-navbar')
-@endsection
 
 @section('title-content', 'Categorias')
 
@@ -101,8 +93,7 @@
 					{!! Form::text('descripcion',null,
 						['placeholder' => 'Nombre categoria' ,
 						 	'required',
-							'class' => 'form-control',
-							'id' => 'nombre'])!!}
+							'class' => 'form-control'])!!}
 		    </div>
 		</div>
 		<div class="modal-footer">

@@ -69,25 +69,25 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/main-panel') }}">Panel central</a>
                     @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                        <a href="{{ url('/login') }}">Ingresar</a>
+                        <a href="{{ url('/register') }}">Registrarse</a>
                     @endif
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Panel Público SenaOnHand
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="#">Términos y condiciones</a>
+                    <a href="#">Información</a>
+                    <a href="#">Contacto</a>
+                    <a href="#">Desarrolladores</a>
+                    <a href="#">Privacidad</a>
                 </div>
             </div>
         </div>
