@@ -11,7 +11,10 @@ class Publicacion extends Model {
      */
 
     protected $table = 'tb_publicaciones';
-    protected $fillable = ['id', 'usuario_id', 'subcategoria_id', 'estado_id', 'titulo', 'contenido', 'url_video', 'url_archivo'];
+    protected $fillable = ['id', 'usuario_id',
+    'subcategoria_id', 'estado_id', 'titulo',
+    'contenido', 'puntaje', 'cant_cal', 'num_vistas',
+    'url_video', 'url_archivo'];
 
 
     public function estado_publicacion() {

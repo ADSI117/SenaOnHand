@@ -20,6 +20,9 @@ class AddPublicacionesTable extends Migration
             $table->integer('estado_id')->unsigned();
             $table->string('titulo',45);
             $table->text('contenido');
+            $table->decimal('puntaje', 3, 1)->default(0.0);
+            $table->integer('cant_cal')->default(0);
+            $table->integer('num_visitas')->nullable();
             $table->string('url_video',100)->nullable();
             $table->string('url_archivo',100)->nullable();
             $table->timestamps();

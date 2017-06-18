@@ -20,9 +20,9 @@
       <div class="col-12">
         <h3>
            @if(Auth::user()->id == $sala->usuario_amigo_id)
-            <img src="{{$sala->user_creador->url_foto}}" alt="foto de perfil"> {{$sala->user_creador->nombres}} {{$sala->user_creador->apellidos}}
+            <img class="img-thumbnail" width="60" height="60" src="{{Storage::url($sala->user_creador->url_foto)}}" alt="foto de perfil"> {{$sala->user_creador->nombres}} {{$sala->user_creador->apellidos}}
           @else
-            <img src="{{$sala->user_amigo->url_foto}}" alt="foto de perfil de mi amigo"> {{$sala->user_amigo->nombres}} {{$sala->user_amigo->apellidos}}
+            <img class="img-thumbnail" src="{{Storage::url($sala->user_amigo->url_foto)}}" alt="foto de perfil de mi amigo"> {{$sala->user_amigo->nombres}} {{$sala->user_amigo->apellidos}}
           @endif
         </h3>
         <div class="chatroom">

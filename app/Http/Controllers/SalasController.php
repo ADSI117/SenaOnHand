@@ -19,6 +19,7 @@ class SalasController extends Controller
                       ->orWhere('usuario_creador_id', '=', Auth::user()->id)
                       ->orderBy('updated_at', 'desc')
                       ->get();
+
       return view ('main-panel.salas-chats.index', compact ('salas'));
     }
 
@@ -59,9 +60,12 @@ class SalasController extends Controller
 
                             // Validar
       if($sala->usuario_amigo_id == Auth::user()->id || $sala->usuario_creador_id == Auth::user()->id){
+
         $mensajes = Mensaje::where('sala_id', '=', $sala->id)
-        ->orderBy('created_at', 'desc')
-        ->get();
+                          ->orderBy('created_at', 'asc')
+                          ->get();
+
+        // dd($mensajes->all());
         // dd($mensajes);
         return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes'));
 

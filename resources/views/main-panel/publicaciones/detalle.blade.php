@@ -17,7 +17,10 @@
           Autor:
           <a href="{{route('instructores.show', [$publicacion->user_id])}}" class="link-autor">
             {{$publicacion->user->nombres}} {{$publicacion->user->apellidos}}
+
           </a>
+            Publicaciones: {{$publicacion->user->publicaciones->count()}}
+            Puntaje: {{round($promedio, 2)}}
         </span>
       </div>
     </div>
@@ -40,6 +43,10 @@
       <div class="col-6 justify-content-start">
         Fecha creado: {{ date('Y-m-d', strtotime($publicacion->created_at)) }}
         <br />
+        Puntaje promedio: {{$publicacion->puntaje}}
+        <br>
+        Número de vistas: {{$publicacion->num_visitas}}
+        <br>
         {{-- Fecha actualizado: {{ date('Y-m-d', strtotime($publicacion->created_at)) }} --}}
       </div>
       <div class="col-6 justify-content-end">
@@ -68,9 +75,9 @@
         <p class="lead pt-2">
           {{$publicacion->contenido}}
         </p>
-        @if($imagenes)
+        @if($publicacion->imagenes)
           <h3>Imagenes</h3>
-          @foreach($imagenes as $imagen)
+          @foreach($publicacion->imagenes as $imagen)
             <img src="{{ Storage::url($imagen->descripcion) }}" alt="" width="150" height="150">
           @endforeach
         @endif

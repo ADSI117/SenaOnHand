@@ -7,6 +7,8 @@ use App\Calificacion;
 use Auth;
 use App\Publicacion;
 use DB;
+use App\TipoDenuncia;
+use App\User;
 
 class CalificacionesController extends Controller
 {
@@ -61,14 +63,30 @@ class CalificacionesController extends Controller
                         ->where('c.publicacion_id', '=', $publicacion->id)
                         // ->select('c.puntaje')
                         ->sum('c.puntaje');
-                        echo $num_cal. " -  " . $sum_cal;
+                        // echo $num_cal. " -  " . $sum_cal;
 
         $publicacion->puntaje = $sum_cal / $num_cal;
         $publicacion->cant_cal = $num_cal;
 
         $publicacion->save();
 
-        return back();
+        // TODO: Ojo verificar velocidad de procesamiento en servidor en los siguientes eventos
+
+        $sum_puntaje = User::getSumPuntajePublicaciones($publicacion->user_id);
+
+        $pub_calificadas = User::getNumPublicacionesCalificadas($publicacion->user_id);
+
+        if ($pub_calificadas > 0){
+          $promedio = $sum_puntaje/$pub_calificadas;
+        }else{
+          $promedio = 0;
+        }
+
+        $visitas = User::getNumVisitas($publicacion->user_id);
+
+        $tipos_denuncias = TipoDenuncia::orderBy('descripcion', 'ASC')->pluck('descripcion', 'id');
+        return view ('main-panel.publicaciones.detalle', compact('publicacion','promedio','visitas', 'tipos_denuncias'));
+
       }else{
         flash('¡Hubo un error!')->warning()->important();
         return back();

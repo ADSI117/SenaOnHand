@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Response;
 use Mail;
+use DB;
 
 class User extends Authenticatable
 {
@@ -32,6 +33,35 @@ class User extends Authenticatable
         $msj->from('contacto1.diego@gmail.com', 'SenaOnHand');
         $msj->to($datos['email']);
       });
+    }
+
+    public static function getSumPuntajePublicaciones($user_id){
+      return DB::table('tb_publicaciones')
+                        ->where('user_id', '=', $user_id)
+                        ->sum('puntaje');
+    }
+
+    public static function getNumPublicacionesCalificadas($user_id){
+
+      return  DB::table('tb_publicaciones')
+                        ->where('user_id', '=', $user_id)
+                        ->where('cant_cal', '>', 0)
+                        ->count();
+
+    }
+
+    // public static function getNumCalificaciones($user_id){
+    //
+    //   return  DB::table('tb_publicaciones')
+    //                     ->where('user_id', '=', $user_id)
+    //                     ->where('cant_cal', '>', 0)
+    //                     ->count();
+    //
+    // }
+    public static function getNumVisitas($user_id){
+      return  DB::table('tb_publicaciones')
+                        ->where('user_id', '=', $user_id)
+                        ->sum('num_visitas');
     }
 
     public function getRol(){

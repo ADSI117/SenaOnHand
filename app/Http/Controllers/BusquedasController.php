@@ -39,6 +39,7 @@ class BusquedasController extends Controller
                                     'p.updated_at',
                                     'p.puntaje',
                                     'p.cant_cal',
+                                    'num_visitas',
                                     'u.nombres',
                                     'u.apellidos',
                                     'u.url_foto')

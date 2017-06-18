@@ -14,6 +14,8 @@ use App\Archivo;
 use App\Video;
 use App\TipoDenuncia;
 use Storage;
+use App\User;
+
 class PublicacionesController extends Controller
 {
   /**
@@ -149,21 +151,24 @@ class PublicacionesController extends Controller
 
       $publicacion = Publicacion::find($id);
 
-      $imagenes = $publicacion->imagenes->all();
+      $publicacion->num_visitas++;
 
-      $archivos = $publicacion->archivos->all();
+      $publicacion->save();
 
-      $videos = $publicacion->videos->all();
+      $puntaje_ins = User::getSumPuntajePublicaciones($publicacion->user_id);
+
+      $pub_calificadas = User::getNumPublicacionesCalificadas($publicacion->user_id);
+
+      if ($pub_calificadas > 0){
+        $promedio = $sum_puntaje/$pub_calificadas;
+      }else{
+        $promedio = 0;
+      }
+
+      $visitas = User::getNumVisitas($publicacion->user_id);
+
       $tipos_denuncias = TipoDenuncia::orderBy('descripcion', 'ASC')->pluck('descripcion', 'id');
-
-
-      // $calificacionP = DB::table('tb_calificaciones as c')
-      //                     ->leftJoin('publicacion as p', 'p.id', '=', 'c.publicacion_id')
-      //                     ->avg('c.puntaje as puntaje');
-
-      // dd($imagenes);
-
-        return view ('main-panel.publicaciones.detalle', compact('publicacion', 'imagenes', 'archivos', 'videos', 'tipos_denuncias'));
+      return view ('main-panel.publicaciones.detalle', compact('publicacion','promedio','visitas', 'tipos_denuncias'));
     }
 
     /**
