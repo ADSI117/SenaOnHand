@@ -9,12 +9,9 @@ use App\Sede;
 use App\Grupo;
 use Auth;
 use App\Categoria;
-<<<<<<< HEAD
 use Storage;
 use Response;
-=======
 use Illuminate\Validation\Rule;
->>>>>>> Santiago
 
 class UsuariosController extends Controller
 {
