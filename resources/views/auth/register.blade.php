@@ -9,6 +9,9 @@
   <div class="row justify-content-start">
 
     <div class="col-xs-12 col-md-4 col-lg-3 bg-white full-h p-4">
+      <div class="">
+        @include('flash::message')
+      </div>
       <h3 class="titulo">Registro</h3>
       <form class="pl-4 pr-4" role="form" name="formulario" method="POST" action="{{ route('register') }}">
         {{ csrf_field() }}
@@ -36,7 +39,10 @@
         </div>
 
         <div class="text-center mt-4">
-            <button type="button" id="btn-enviar" class="material-btn btn-indigo">
+            <!-- <button type="button" id="btn-enviar" class="material-btn btn-indigo">
+                Register
+            </button> -->
+            <button type="submit" class="material-btn btn-indigo">
                 Register
             </button>
             <hr />

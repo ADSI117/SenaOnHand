@@ -155,7 +155,7 @@ class PublicacionesController extends Controller
 
       $publicacion->save();
 
-      $puntaje_ins = User::getSumPuntajePublicaciones($publicacion->user_id);
+      $sum_puntaje = User::getSumPuntajePublicaciones($publicacion->user_id);
 
       $pub_calificadas = User::getNumPublicacionesCalificadas($publicacion->user_id);
 

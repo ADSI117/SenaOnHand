@@ -21,7 +21,7 @@ document.querySelector('#btn-enviar').addEventListener('click', ev => {
     if ( esValidoElCampo(Data.email) ) {
         Mensaje = "Campo correo es invalida";
         Validacion = false;
-    } else 
+    } else
     if ( esValidoElCampo(Data.pass) ) {
         Mensaje = "contraseña invalida";
         Validacion = false;
@@ -29,7 +29,7 @@ document.querySelector('#btn-enviar').addEventListener('click', ev => {
     if ( ( Data.pass != Data.repass ) ) {
         Mensaje = "contraseñas deben coincidir";
         Validacion = false;
-    } 
+    }
     if (Validacion) {
         esDominioCorrecto = validarDominio(Data.email.split("@")[1])
         if (esDominioCorrecto) {
@@ -66,13 +66,13 @@ function esValidoElCampo(valor) {
 }
 
 function enviarFormulario(parm) {
-    request = "_token=" + parm.token 
-            + "&email=" + parm.email 
+    request = "_token=" + parm.token
+            + "&email=" + parm.email
             + "&name=" + parm.name
             + "&password=" + parm.pass
             + "&password-confirm=" + parm.repass;
    do_send(document.formulario.action, "POST", request)
-   .then(JSON.parse)
+   //.then(JSON.parse)
    .then(respuesta => {
         avisoSuccess("Todo salio existoso");
         console.log(respuesta);

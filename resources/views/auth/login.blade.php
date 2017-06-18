@@ -11,6 +11,10 @@
       <div class="hidden-sm-down col-md-8 col-lg-9 bg-teal"></div>
 
       <div class="col-xs-12 col-md-4 col-lg-3 bg-white full-h p-4">
+        <div class="">
+          @include('flash::message')
+        </div>
+
         <h3 class="titulo">Iniciar sesion</h3>
         <form class="pl-4 pr-4" role="form" method="POST" action="{{ route('login') }}">
           {{ csrf_field() }}

@@ -11,6 +11,7 @@
 |
 */
 Route::get('/', 'PublicPanelController@index');
+// Route::get('inicio', 'PublicPanelController@index');
 
 // Para generar enlace de activacion
 Route::get('getlink', 'UsuariosController@getLink');
@@ -45,30 +46,6 @@ Route::group(['prefix'=>'main-panel'], function (){
   Route::resource('busquedas', 'BusquedasController');
   Route::resource('calificaciones', 'CalificacionesController');
   Route::resource('salas', 'SalasController');
-
-  // El siguiente bloque no se esta usando
-  Route::get('verarchivos/{nombre}', function ($nombre) {
-    // return "Ruta servir imagenes";
-    $ruta = storage_path("app/avatars/$nombre");
-
-    if (!\File::exists($ruta)) abort(404);
-
-    $archivo = \File::get($ruta);
-
-    $tipo = \File::mimeType($ruta);
-
-    $respuesta = Response::make($archivo, 200);
-
-    $respuesta->header('Content-Type', $tipo);
-
-    return $respuesta;
-
-  });
-
-  //Andres Peña
-  // Route::get('seguir/{id}/','SeguidosController@seguirInstructor')->name('seguirInstructor');
-  // Route::get('dejarDeguir/{id}','SeguidosController@dejarDeseguir')->name('DejarDeSeguirInstructor');
-
 
 
 });
@@ -200,11 +177,6 @@ Route::resource('sedes','SedesController');
 
 	]); */
 
- });
-
-
- Route::get('probar', function(){
- 	return 'Hay algo malo?';
  });
 
 Auth::routes();
