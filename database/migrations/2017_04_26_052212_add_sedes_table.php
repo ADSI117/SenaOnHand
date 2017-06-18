@@ -16,7 +16,6 @@ class AddSedesTable extends Migration
         Schema::create('tb_sedes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('centro_id')->unsigned();
-            $table->string('acronimo',45)->unique();
             $table->string('descripcion',45)->unique();
             $table->timestamps();
             

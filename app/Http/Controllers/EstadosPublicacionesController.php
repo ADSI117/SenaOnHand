@@ -13,9 +13,9 @@ class EstadosPublicacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $estados_publicaciones = EstadoPublicacion::orderBy('id','desc')->paginate(5);
+        $estados_publicaciones = EstadoPublicacion::search($request->descripcion)->orderBy('id','desc')->paginate(5);
         return view('admin.estados_publicaciones.index')->with('estados_publicaciones',$estados_publicaciones);
     }
 

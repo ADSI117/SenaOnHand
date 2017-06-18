@@ -13,9 +13,9 @@ class EstadosUsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $estados_usuarios = EstadoUsuario::orderBy('id','desc')->paginate(5);
+        $estados_usuarios = EstadoUsuario::search($request->descripcion)->orderBy('id','desc')->paginate(5);
         return view('admin.estados_usuarios.index')->with('estados_usuarios',$estados_usuarios);
     }
 

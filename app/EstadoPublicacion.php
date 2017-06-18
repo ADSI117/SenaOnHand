@@ -21,5 +21,7 @@ class EstadoPublicacion extends Model {
         return $this->hasMany('App\Publicacion','estado_id', 'id');
     }
 
-
+    public function scopeSearch($query,$descripcion) {
+        return $query->where('descripcion','LIKE', "%$descripcion%");
+    }
 }

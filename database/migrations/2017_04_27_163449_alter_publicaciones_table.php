@@ -35,3 +35,4 @@ class AlterPublicacionesTable extends Migration
         });
     }
 }
+

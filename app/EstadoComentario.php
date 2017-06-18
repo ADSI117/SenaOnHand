@@ -14,5 +14,7 @@ class EstadoComentario extends Model {
     protected $fillable = ['id', 'descripcion'];
 
 
-
+    public function scopeSearch($query,$descripcion) {
+        return $query->where('descripcion','LIKE', "%$descripcion%");
+    }
 }

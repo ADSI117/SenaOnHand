@@ -9,8 +9,12 @@ use App\Sede;
 use App\Grupo;
 use Auth;
 use App\Categoria;
+<<<<<<< HEAD
 use Storage;
 use Response;
+=======
+use Illuminate\Validation\Rule;
+>>>>>>> Santiago
 
 class UsuariosController extends Controller
 {
@@ -140,6 +144,7 @@ class UsuariosController extends Controller
 
         $usuario = User::find($id);
 
+
         $usuario->nombres = $request->nombres;
         $usuario->apellidos = $request->apellidos;
         $usuario->profesion = $request->profesion;
@@ -149,7 +154,13 @@ class UsuariosController extends Controller
         $usuario->sede_id = $request->sede_id;
         $usuario->grupo_id = $request->grupo_id;
 
+<<<<<<< HEAD
         if ($request->hasFile('imagen') && $request->imagen->isValid()){
+=======
+        if ($request->file('imagen')){
+
+     
+>>>>>>> Santiago
           $imagen = $request->file('imagen');
 
           $nombre = 'soh_profile_' . time() . '.'. $imagen->getClientOriginalExtension();
