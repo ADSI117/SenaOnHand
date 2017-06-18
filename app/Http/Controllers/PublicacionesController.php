@@ -156,6 +156,11 @@ class PublicacionesController extends Controller
       $videos = $publicacion->videos->all();
       $tipos_denuncias = TipoDenuncia::orderBy('descripcion', 'ASC')->pluck('descripcion', 'id');
 
+
+      // $calificacionP = DB::table('tb_calificaciones as c')
+      //                     ->leftJoin('publicacion as p', 'p.id', '=', 'c.publicacion_id')
+      //                     ->avg('c.puntaje as puntaje');
+
       // dd($imagenes);
 
         return view ('main-panel.publicaciones.detalle', compact('publicacion', 'imagenes', 'archivos', 'videos', 'tipos_denuncias'));

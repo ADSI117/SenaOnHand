@@ -37,13 +37,24 @@ class BusquedasController extends Controller
                                     'p.contenido',
                                     'p.created_at',
                                     'p.updated_at',
+                                    'p.puntaje',
+                                    'p.cant_cal',
                                     'u.nombres',
                                     'u.apellidos',
                                     'u.url_foto')
                           ->orderBy('p.updated_at', 'desc')
                           ->get();
+
+            $usuarios = DB::table('users as u')
+                                // ->select('u.id', 'u.nombres', 'u.apellidos', 'u.email')
+                                ->select('u.*')
+                                ->where('u.email', 'like', "%$query%")
+                                ->orWhere('u.nombres', 'like', "%$query%")
+                                ->get();
+
+                                // dd($instructores);
                           // dd($publicaciones);
-            return view ('main-panel.busquedas.index', compact('publicaciones'));
+            return view ('main-panel.busquedas.index', compact('publicaciones', 'usuarios', 'query'));
 
         }
     }

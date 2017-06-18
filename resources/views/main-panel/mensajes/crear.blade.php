@@ -12,17 +12,22 @@
 
         <div class="form-group">
           {!!Form::label('A quien?')!!}
-          {!!Form::select('usuario_amigo_id', $usuarios, null,['class' => 'form-control', 'required'])!!}
+          <!-- {!!Form::select('usuario_amigo_id', $usuarios, null,['class' => 'form-control', 'required'])!!} -->
+          <select class="form-control" name="usuario_amigo_id">
+            @foreach($usuarios as $usuario)
+              <option value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}} [ {{$usuario->email}}]</option>
+            @endforeach
+          </select>
         </div>
 
 
         <div class="form-group {{$errors->has('mensaje' ? 'has-error' : '')}}">
-          {!!Form::textarea('mensaje', null, ['class'=>'form-control', 'placeholder'=> 'Nuevo mensaje...'])!!}
+          {!!Form::textarea('mensaje', null, ['class'=>'', 'placeholder'=> 'Nuevo mensaje...'])!!}
           {!!$errors->first('mensaje', "<span class='help-block'>:message</span>")!!}
         </div>
 
         <div class="form-group">
-          {!!Form::submit('Enviar', ['class'=>'form-control btn btn-primary'])!!}
+          {!!Form::submit('Enviar', ['class'=>'material-btn'])!!}
         </div>
 
         {!!Form::close()!!}

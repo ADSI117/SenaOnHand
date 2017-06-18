@@ -35,8 +35,13 @@
         </div>
 
         <div class="text-center mt-4">
+<<<<<<< HEAD
             <button type="button" id="btn-enviar" class="material-btn btn-indigo">
                 Register
+=======
+            <button type="submit" class="material-btn btn-indigo">
+                Registrarse
+>>>>>>> DiegoSuarez
             </button>
             <hr />
             <a href="{{ url('/login') }}" class="material-link">Ingresar</a>

@@ -34,7 +34,7 @@
               </div>
 
               <button type="submit" class="material-btn btn-indigo">
-                  Register
+                  Ingresar
               </button>
               <hr />
               <a class="material-link" href="{{ route('password.request') }}">

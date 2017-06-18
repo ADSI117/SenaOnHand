@@ -22,7 +22,8 @@ class EstadoMiddleware
         return view ('auth.login');
       }else if (Auth::user()->getEstado() == 3){
         Auth::logout();
-        return redirect ('info-suspendido');
+        flash('¡Su cuenta se encuentra suspendida!')->warning()->important();
+        return view ('auth.login');
       }
       return $next($request);
 

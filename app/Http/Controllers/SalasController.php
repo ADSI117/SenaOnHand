@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sala;
-
+use App\Mensaje;
+use Auth;
 class SalasController extends Controller
 {
     /**
@@ -14,7 +15,11 @@ class SalasController extends Controller
      */
     public function index()
     {
-        //
+      $salas = Sala::where('usuario_amigo_id', '=', Auth::user()->id)
+                      ->orWhere('usuario_creador_id', '=', Auth::user()->id)
+                      ->orderBy('updated_at', 'desc')
+                      ->get();
+      return view ('main-panel.salas-chats.index', compact ('salas'));
     }
 
     /**
@@ -48,7 +53,23 @@ class SalasController extends Controller
      */
     public function show($id)
     {
-        //
+      $sala = Sala::find($id);
+      // $mensajes = Mensaje::where('sala_id', '=', $sala->id);
+
+
+                            // Validar
+      if($sala->usuario_amigo_id == Auth::user()->id || $sala->usuario_creador_id == Auth::user()->id){
+        $mensajes = Mensaje::where('sala_id', '=', $sala->id)
+        ->orderBy('created_at', 'desc')
+        ->get();
+        // dd($mensajes);
+        return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes'));
+
+      }else{
+        return back();
+      }
+
+
     }
 
     /**
