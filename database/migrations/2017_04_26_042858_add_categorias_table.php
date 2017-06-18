@@ -21,7 +21,7 @@ class AddCategoriasTable extends Migration
 
         Schema::create('usuario_categoria', function (Blueprint $table){
           $table->increments('id');
-          $table->integer('user_id')->unsigned();
+          $table->integer('usuario_id')->unsigned();
           $table->integer('categoria_id')->unsigned();
 
           $table->foreign('usuario_id')->references('id')->on('users');

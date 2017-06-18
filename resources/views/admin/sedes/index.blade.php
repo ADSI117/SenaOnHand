@@ -38,7 +38,6 @@
   <tr>
     <th class="ta-left">Id</th>
     <th class="ta-left">Centro</th>
-    <th class="ta-left">Acrónimo</th>
     <th class="ta-left">Sede</th>
     <th class="ta-right">Acciones</th>
   </tr>
@@ -49,7 +48,6 @@
 		<tr data-tr="{{$sede->id}}">
 			<td>{{$sede->id}}</td>
 			<td data-index="{{$sede->centro->id}}">{{$sede->centro->descripcion}}</td>
-			<td>{{$sede->acronimo}}</td>
 			<td>{{$sede->descripcion}}</td>
 			<td class="ta-right">
         <button data-toggle="modal" data-target="#modal-control"
@@ -86,12 +84,7 @@
 					'placeholder'=>'Seleccionar',
 					'required'])!!}
 				</div>
-				<div class="form-group">
-					{!! Form::text('acronimo',null,
-						['placeholder'=>'acrónimo',
-						'required',
-						'class' => 'form-control'])!!}
-				</div>
+				
 				<div class="form-group">
 					{!! Form::text('descripcion',null,
 						['placeholder' => 'Nombre' ,

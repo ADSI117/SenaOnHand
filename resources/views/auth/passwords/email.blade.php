@@ -1,46 +1,26 @@
-@extends('layouts.app')
+@extends('template.layout')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+@section('main')
+    <div class="container">
+        <div class="row full-h justify-content-center align-items-center">
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <nav class="breadcrumb bg-white text-center">
+                    <a class="breadcrumb-item f-none material-link" href="#">Verificar correo</a>
+                    <span class="breadcrumb-item f-none active">Cambiar clave</span>
+                </nav>
+                <form class="" role="form" method="POST" action="{{ route('password.email') }}">
+                    {{ csrf_field() }}
+                    <h3>Cambio de contraseña</h3>
+                    <div class="form-group pl-2 pr-2">
+                        <input id="email" type="email" class="material-input" autofocus placeholder="Correo electronico" name="email" required>
+                    </div>
+                    <div class="form-group text-right pl-2 pr-2">
+                        <button type="submit" class="material-btn btn-indigo">
+                            Enviar
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
 @endsection

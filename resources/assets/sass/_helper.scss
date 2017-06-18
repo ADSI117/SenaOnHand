@@ -21,6 +21,9 @@
 .f-left {
   float: left;
 }
+.f-none {
+  float: none;
+}
 // Display
 .d-ib {
   display: inline-block;
@@ -35,9 +38,6 @@
 // background colors
 .bg-green {
   background-color: rgb(119, 167, 119);
-}
-.bg-white {
-  background-color: #FFF !important;
 }
 .bg-indigo {
   background-color: $indigo !important;

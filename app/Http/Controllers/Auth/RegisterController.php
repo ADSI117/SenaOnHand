@@ -79,18 +79,19 @@ class RegisterController extends Controller
         case 'sena.edu.co':
           $rol = 2;
           break;
-        default:
-          dd('Dominio no permitido');
-          break;
+       default:
+            dd('{"estado": "0","mensaje": "Dominio de Correo electrónico invalido"}');
+            break;
       }
-      // Se debe construir primero y despues pasar el parametro
-      $data['rol_id'] = $rol;
-      $data['estado_id'] = 1;
-      $data['url_foto'] = 'soh_profile_default.png';
-      $data['password'] = bcrypt($data['password']);
+      if ($rol != 0) {
 
-      dd('Hola');
+        // Se debe construir primero y despues pasar el parametro
+        $data['rol_id'] = $rol;
+        $data['estado_id'] = 1;
+        $data['url_foto'] = 'soh_profile_default.png';
+        $data['password'] = bcrypt($data['password']);
 
-      // return User::create($data);
+        return User::create($data);
+      }
     }
 }

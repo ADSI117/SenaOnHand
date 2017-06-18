@@ -9,8 +9,12 @@ use App\Sede;
 use App\Grupo;
 use Auth;
 use App\Categoria;
+<<<<<<< HEAD
 use Storage;
 use Response;
+=======
+use Illuminate\Validation\Rule;
+>>>>>>> Santiago
 
 class UsuariosController extends Controller
 {
@@ -139,6 +143,7 @@ class UsuariosController extends Controller
 
 
         $usuario = User::find($id);
+
 
         $usuario->nombres = $request->nombres;
         $usuario->apellidos = $request->apellidos;

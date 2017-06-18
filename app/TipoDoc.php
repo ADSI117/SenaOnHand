@@ -13,6 +13,8 @@ class TipoDoc extends Model {
     protected $table = 'tb_tipo_doc';
     protected $fillable = ['id', 'nombre'];
 
-
+    public function scopeSearch($query,$nombre) {
+        return $query->where('nombre','LIKE', "%$nombre%");
+    }
 
 }

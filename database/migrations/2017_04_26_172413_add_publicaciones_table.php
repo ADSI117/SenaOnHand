@@ -15,13 +15,13 @@ class AddPublicacionesTable extends Migration
     {
         Schema::create('tb_publicaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('usuario_id')->unsigned();
             $table->integer('subcategoria_id')->unsigned();
             $table->integer('estado_id')->unsigned();
             $table->string('titulo',45);
             $table->text('contenido');
-            // $table->string('url_video',45)->nullable();
-            // $table->string('url_archivo',45)->nullable();
+            $table->string('url_video',100)->nullable();
+            $table->string('url_archivo',100)->nullable();
             $table->timestamps();
         });
     }
