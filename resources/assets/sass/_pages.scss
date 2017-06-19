@@ -178,36 +178,27 @@ html, body {
   border-bottom: 1px solid #eee;
 }
 
-// .form-group.material {
-//   padding-top: 16px;
-//   position: relative;
-//   label {
-//     font-size: .8em;
-//     font-weight:normal;
-//     position:absolute;
-//     pointer-events:none;
-//     top: 24px;
-//     transition:0.2s ease all;
-//     -moz-transition:0.2s ease all;
-//     -webkit-transition:0.2s ease all;
-//   }
-//   .form-control {
-//     font-size: .8em;
-//     padding: 8px 0px 8px 0px;
-//     transition: all .5s;
-//     border-radius: unset;
-//     border: unset;
-//     border-bottom: 2px solid $out;
-//     &:focus {
-//       border-bottom: 2px solid $indigo;
-//       & ~ label, &:valid ~ label {
-//         top: 0px;
-//         color: $indigo;
-//         font-size:.7em;
-//      }
-//     }
-//   }
-// }
+.nav-tabs-indigo {
+  background-color: $red !important;
+  .nav-link {
+    color: #fff !important;
+    &.active {
+      color:  $red !important;
+      background-color: #fff;
+      border-color: #fff;
+      &:hover {
+        color:  #fff !important;
+        border-color: #fff !important;
+      }
+    }
+  }
+  & ~ .card-block {
+    height: 70vh;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+}
+
 .material-input::-webkit-input-placeholder, .material-input::placeholder {
   transition: all 0.3s ease-in-out;
 }
@@ -315,7 +306,7 @@ div#ManejadorDeAvisos[role=alert] {
   }
 }
 
-.material-card {
+.material-card, a.material-card {
   display: flex;
   width: 100%;
   text-decoration: none;
@@ -324,9 +315,19 @@ div#ManejadorDeAvisos[role=alert] {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   margin: 5px 10px;
   transition: all .5s;
-  &:hover {
+  position: relative;
+  &:hover, &:active, &:focus {
+    color: black;
     text-decoration: none;
     box-shadow: 0 10px 18px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+  & .content-header-icon {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0px 8px;
   }
   & .material-card-header {
     display: flex;
@@ -354,10 +355,16 @@ div#ManejadorDeAvisos[role=alert] {
         display: flex;
         font-size: 14px;
     }
-    .header--date {
-        display: flex;
-        font-size: 14px;
-    }
+  }
+  .content-date {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: #333;
+    display: flex;
+    font-size: 14px;
+    color: $blue-grey;
+    align-items: baseline;
   }
 }
 

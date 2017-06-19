@@ -61,6 +61,13 @@
 .black {
   color: #333 !important;
 }
+.red {
+  color: $red !important;
+}
+// bordes
+.bl-red {
+  border-left: 5px solid $red;
+}
 // Colores de botones
 .btn-indigo {
   transition: all .5s;
