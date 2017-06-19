@@ -46,6 +46,7 @@ Route::group(['prefix'=>'main-panel'], function (){
   Route::resource('busquedas', 'BusquedasController');
   Route::resource('calificaciones', 'CalificacionesController');
   Route::resource('salas', 'SalasController');
+  Route::resource('seguidores', 'SeguidoresController');
 
 
 });
