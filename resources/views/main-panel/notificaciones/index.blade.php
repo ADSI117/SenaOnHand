@@ -55,26 +55,26 @@
 											</div>
 											<div class="tab-pane" id="leidas" role="tabpanel">
 												@if($leidas)
-												@foreach($leidas as $leida)
-													<a href="#" data-rol="leido" data-id="{{$leida->id}}" class="material-card">
-														<small class="content-date">
-															<i class="fa fa-clock-o mr-2"></i> {{$noleida->created_at}}
-														</small>
-														<div class="content-header-icon bl-red">
-															<div class="header--icon">
-																<i class="red fa fa-times fa-3x"></i>
+													@foreach($leidas as $leida)
+														<a href="#" data-rol="leido" data-id="{{$leida->id}}" class="material-card">
+															<small class="content-date">
+																<i class="fa fa-clock-o mr-2"></i> {{$leida->created_at}}
+															</small>
+															<div class="content-header-icon bl-red">
+																<div class="header--icon">
+																	<i class="red fa fa-times fa-3x"></i>
+																</div>
 															</div>
-														</div>
-														<div class="material-card-header">
-															<div class="content-header-title">
-																<h5  class="header--title">{{$leida->data['text']}}</h5>
+															<div class="material-card-header">
+																<div class="content-header-title">
+																	<h5  class="header--title">{{$leida->data['text']}}</h5>
+																</div>
 															</div>
-														</div>
-													</a>
-													{!!Form::open(['route'=>['notificaciones.destroy', $leida->id], 'method' => 'DELETE'])!!}
-													<input type="hidden" name="enlace" value="{{$leida->data['link']}}" />
-													{!!Form::close()!!}
-												@endforeach
+														</a>
+														{!!Form::open(['route'=>['notificaciones.destroy', $leida->id], 'method' => 'DELETE'])!!}
+														<input type="hidden" name="enlace" value="{{$leida->data['link']}}" />
+														{!!Form::close()!!}
+													@endforeach
 												@endif
 											</div>
 									</div>
