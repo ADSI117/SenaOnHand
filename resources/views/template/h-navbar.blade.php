@@ -40,6 +40,9 @@
                 </a>
               </li>
             @endif
+              <li class="nav-item">
+                <a class="nav-link"  href="{{route('categoria-usuario.index')}}" >Explorar</a>
+              </li>
           </ul>
 
     	    <ul class="navbar-nav">
@@ -52,9 +55,6 @@
             <li class="nav-item">
               <a class="nav-link notify" href="{{ route('notificaciones.index') }}" data-badge="{{Auth::user()->unreadNotifications->count()}}">
                 <i class="fa fa-bell"></i>
-                {{-- @if($count = Auth::user()->unreadNotifications->count())
-                  <span class="badge">{{$count}}</span>
-                @endif --}}
               </a>
             </li>
 
@@ -79,7 +79,6 @@
                   <a class="dropdown-header">Configuración</a>
                   <a class="dropdown-item"  href="{{route('salas.index')}}" >Chats</a>
                   <a class="dropdown-item"  href="{{route('seguidores.index')}}" >Seguidores</a>
-                  <a class="dropdown-item"  href="{{route('categoria-usuario.index')}}" >Descubrir</a>
                   <a class="dropdown-item"  href="{{route('usuarios.edit', Auth::user()->id)}}" >Editar perfil</a>
                   <a class="dropdown-item"  href="{{route('suscripciones.index')}}" >Mis suscripciones</a>
                   <div class="divider"></div>

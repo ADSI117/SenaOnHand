@@ -4,11 +4,11 @@
 
 @section('main')
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-12">
+    <div class="row justify-content-center">
+      <div class="col-xs-10 col-md-6 col-lg-4">
+        {!!Form::open(['route'=>'mensajes.store', 'method'=>'POST'])!!}
         <h3>Enviar mensaje</h3>
 
-        {!!Form::open(['route'=>'mensajes.store', 'method'=>'POST'])!!}
 
         <div class="form-group">
           {!!Form::label('A quien?')!!}
@@ -20,14 +20,12 @@
           </select>
         </div>
 
-
-        <div class="form-group {{$errors->has('mensaje' ? 'has-error' : '')}}">
-          {!!Form::textarea('mensaje', null, ['class'=>'', 'placeholder'=> 'Nuevo mensaje...'])!!}
-          {!!$errors->first('mensaje', "<span class='help-block'>:message</span>")!!}
+        <div class="form-group">
+          {!!Form::text('mensaje', null, ['class'=> 'material-input', 'placeholder'=> 'Escribir mensaje...', 'required'])!!}
         </div>
 
-        <div class="form-group">
-          {!!Form::submit('Enviar', ['class'=>'material-btn'])!!}
+        <div class="form-group text-right">
+          {!!Form::submit('Enviar', ['class'=>'material-btn btn-indigo'])!!}
         </div>
 
         {!!Form::close()!!}
