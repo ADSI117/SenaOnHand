@@ -78,6 +78,7 @@
                   @endif
                   <a class="dropdown-header">Configuración</a>
                   <a class="dropdown-item"  href="{{route('salas.index')}}" >Chats</a>
+                  <a class="dropdown-item"  href="{{route('seguidores.index')}}" >Seguidores</a>
                   <a class="dropdown-item"  href="{{route('usuarios.edit', Auth::user()->id)}}" >Editar perfil</a>
                   <a class="dropdown-item"  href="{{route('suscripciones.index')}}" >Mis suscripciones</a>
                   <div class="divider"></div>
