@@ -72,6 +72,9 @@ html, body {
 .collapse.navbar-collapse {
   justify-content: flex-end;
   .nav-ul {
+    & form {
+      margin: 0px;
+    }
     margin-right: auto;
   }
 }
@@ -141,22 +144,20 @@ html, body {
 .notify {
   position: relative;
   &[data-badge]::before {
-    content: attr(data-badge);
-    position: absolute;
-    border-radius: 100%;
-    background-color: #F44336;
-    display: block;
-    padding: .3em;
-    color: #FFF;
-    font-size: 10px;
-    max-height: 20px;
-    // max-width: auto;
-    top: 2px;
-    right: 7px;
-    font-family:verdana;
-    text-align: center;
-    line-height: 1;
-    z-index: 2;
+    content:attr(data-badge);
+     position:absolute;
+     top: 2px;
+     right: 5px;
+     font-size:.7em;
+     background: $red;
+     color:white;
+     width:18px;
+     height:18px;
+     text-align:center;
+     line-height:18px;
+     border-radius:50%;
+     box-shadow:0 0 1px #333;
+     z-index: 2;
   }
 }
 
@@ -207,7 +208,7 @@ html, body {
 //     }
 //   }
 // }
-.material-input::-webkit-input-placeholder {
+.material-input::-webkit-input-placeholder, .material-input::placeholder {
   transition: all 0.3s ease-in-out;
 }
 .material-input {
@@ -227,7 +228,7 @@ html, body {
     box-shadow: none;
     outline: none;
     background-position: 0 0;
-    &::-webkit-input-placeholder {
+    &::-webkit-input-placeholder, &::placeholder {
       color: $indigo;
       font-size: 11px;
       transform: translateY(-20px);
@@ -272,20 +273,20 @@ div#ManejadorDeAvisos[role=alert] {
 
 /* ==========  Select Field ========== */
 /* Style Select Field */
-.material-select {
-  font-family: inherit;
-  width: 100%;
-  border: none !important;
-  border-bottom: 1px solid $select-border-color;
-  padding: 8px 16px;
-  background-color: transparent;
-  &:focus {
-    outline: none;
-  }
-  option {
-    padding: 8px 16px;
-  }
-}
+// .material-select {
+//   font-family: inherit;
+//   width: 100%;
+//   border: none !important;
+//   border-bottom: 1px solid $select-border-color;
+//   padding: 8px 16px;
+//   background-color: transparent;
+//   &:focus {
+//     outline: none;
+//   }
+//   option {
+//     padding: 8px 16px;
+//   }
+// }
 
 .material-btn-float {
   position: fixed;
@@ -314,52 +315,112 @@ div#ManejadorDeAvisos[role=alert] {
   }
 }
 
-// select {
-//   font-family: inherit;
-//   background-color: transparent;
-//   width: 100%;
-//   padding: $select-padding 0;
-//   font-size: $select-font-size;
-//   color: $select-color;
-//   border: none;
-//   border-bottom: 1px solid $select-border-color;
-// }
-// /* Remove focus */
-// select:focus {
-//   outline: none
-// }
-// /* Hide label */
-// .material-select label {display: none;}
-// /* Use custom arrow */
-// .material-select select {appearance: none}
-// .material-select {
-//   font-family: 'Roboto','Helvetica','Arial',sans-serif;
-//   position: relative;
-//     &:after {
-//         position: absolute;
-//         top: 0.75em;
-//         right: 0.5em;
-//         /* Styling the down arrow */
-//         width: 0;
-//         height: 0;
-//         padding: 0;
-//         content: '';
-//         border-left: .25em solid transparent;
-//         border-right: .25em solid transparent;
-//         border-top: .375em solid $select-border-color;
-//         pointer-events: none;
-//     }
-// }
+.material-card {
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  text-transform: capitalize;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin: 5px 10px;
+  transition: all .5s;
+  &:hover {
+    text-decoration: none;
+    box-shadow: 0 10px 18px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+  & .material-card-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 24px 16px;
+    width: 100%;
+    & img {
+      display: flex;
+      border-radius: 100%;
+      width: 75px;
+      height: 75px;
+      margin-right: 16px;
+    }
+    .content-header-title {
+      display: flex;
+      flex-direction: column;
+    }
+    .header--title {
+        margin: 0px;
+        display: flex;
+        font-size: 24px;
+    }
+    .header--subtitle {
+        display: flex;
+        font-size: 14px;
+    }
+    .header--date {
+        display: flex;
+        font-size: 14px;
+    }
+  }
+}
 
 .chatroom {
-  max-height: 60vh;
-  overflow-y: scroll;
-  .msg-activo {
-    background-color: #80CBC4;
-    color: #333;
-    font-weight: bold;
-    &:hover {
-      background-color: #80CBC4;
+  max-height: 55vh;
+  height: 55vh;
+  overflow-y: auto;
+  & .pop-chat {
+    padding-left: 30px;
+    padding-right: 10px;
+    margin: 5px 0px;
+    &.active {
+      padding-right: 30px;
+      padding-left: 10px;
+      & .bocadillo {
+        border-radius: 12px 0px 12px 12px;
+        background-color: $msg-active;
+        &::after {
+          border-left: 20px solid $msg-active;
+          border-top: 20px solid  $msg-active;
+          border-bottom: 15px solid transparent;
+          border-right: 15px solid transparent;
+          left: unset;
+          right: -20px;
+          top: 0px;
+          // border-right: 15px solid transparent;
+          // border-top: 15px solid transparent;
+          // border-left: 15px solid #000;
+          // border-bottom: 15px solid #000;
+        }
+      }
+    }
+    & .bocadillo {
+      position: relative;
+      padding: 10px;
+      width: inherit;
+      border-radius: 0px 12px 12px 12px;
+      background-color: $msg-normal;
+      font-family: "trebuchet ms", tahoma, verdana, sans­serif;
+      font-size: 1.4em;
+      &::after {
+        content:"";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-top: 20px solid  $msg-normal;
+        border-bottom: 15px solid transparent;
+        left: -20px;
+        top: 0px;
+      }
+      p {
+        padding: 0px 20px 0px 30px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: .8em;
+      }
+      small {
+        padding: 0px 20px 0px 30px;
+        font-size: .6em;
+        display: block;
+        text-align: right;
+      }
     }
   }
 }

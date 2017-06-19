@@ -22,34 +22,6 @@
   <div class="row justify-content-center">
     <div class="col-xs-12 col-md-6">
 
-      <!-- <div class="form-group">
-        <label for="nombres">Nombre: </label>
-        {!! Form::text('nombres', $usuario->nombres,
-        ['id' => 'nombres', 'placeholder' => 'Escriba su nombre', 'required', 'class' => 'material-input'])!!}
-      </div>
-      <div class="form-group">
-        <label for="nombres">Apellido: </label>
-        {!! Form::text('apellidos', $usuario->apellidos, ['id' => 'apellidos', 'placeholder' => 'Escriba su apellido', 'required', 'class' => 'material-input'])!!}
-      </div>
-      <div class="form-group">
-        <label for="nombres">Profesion: </label>
-        {!! Form::text('profesion', $usuario->profesion, ['id' => 'profesion', 'placeholder' => 'Escriba su profesion', 'required', 'class' => 'material-input'])!!}
-      </div>
-      <div class="form-group">
-        <label for="nombres">Tipo de documento: </label>
-        {!! Form::select('tipo_doc_id', $tipos_doc, $usuario->tipo_doc_id, ['class' => 'form-control'])!!}
-      </div>
-      <div class="form-group">
-        <label for="nombres">Número de documento: </label>
-        {!! Form::number('num_doc', $usuario->num_doc, ['id' => 'num_doc', 'placeholder' => 'Escriba su num de doc', 'required', 'class' => 'material-input'])!!}
-      </div>
-      <div class="form-group">
-        <label for="nombres">Fecha de nacimiento: </label>
-        {!! Form::date('fecha_nac', $usuario->fecha_nac, ['id' => 'fecha_nac', 'required', 'class' => 'form-control'])!!}
-      </div>
-      <div class="form-group">
-        <label for="nombres">Sede: </label>
-        {!! Form::select('sede_id', $sedes, $usuario->sede_id, ['class' => 'form-control'])!!} -->
         <div class="card">
           <div class="card-block">
 
@@ -73,7 +45,7 @@
             </div>
             <div class="form-group">
               <label for="nombres">Fecha de nacimiento: </label>
-              {!! Form::date('fecha_nac', $usuario->fecha_nac, ['id' => 'fecha_nac', 'required', 'class' => 'form-control'])!!}
+              {!! Form::date('fecha_nac', $usuario->fecha_nac, ['id' => 'fecha_nac', 'required', 'class' => 'material-input', 'min' => $usuario->fecha_nac])!!}
             </div>
             <div class="form-group">
               <label for="nombres">Sede: </label>

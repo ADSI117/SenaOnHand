@@ -20,62 +20,60 @@
       <div class="col-12">
         <h3>
            @if(Auth::user()->id == $sala->usuario_amigo_id)
-            <img class="img-thumbnail" width="60" height="60" src="{{Storage::url($sala->user_creador->url_foto)}}" alt="foto de perfil"> {{$sala->user_creador->nombres}} {{$sala->user_creador->apellidos}}
+            <img class="rounded-circle" width="70" height="70" src="{{Storage::url($sala->user_creador->url_foto)}}" alt="foto de perfil"> {{$sala->user_creador->nombres}} {{$sala->user_creador->apellidos}}
           @else
-            <img class="img-thumbnail" src="{{Storage::url($sala->user_amigo->url_foto)}}" alt="foto de perfil de mi amigo"> {{$sala->user_amigo->nombres}} {{$sala->user_amigo->apellidos}}
+            <img class="rounded-circle" width="70" height="70" src="{{Storage::url($sala->user_amigo->url_foto)}}" alt="foto de perfil de mi amigo"> {{$sala->user_amigo->nombres}} {{$sala->user_amigo->apellidos}}
           @endif
         </h3>
         <div class="chatroom">
           @if($mensajes)
-            <div class="list-group">
             @foreach($mensajes as $mensaje)
 
             @if ($mensaje->usuario_id == Auth::user()->id)
               {{-- Derecha - Usuario yo --}}
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-end msg-activo">
-                <p class="mb-1">
-                  {{$mensaje->mensaje}}
-                </p>
-                <small>{{$mensaje->created_at}}</small>
-              </a>
-
+              <div class="pop-chat active">
+                <div class="bocadillo">
+                  <p>
+                    {{$mensaje->mensaje}}
+                  </p>
+                  <small>{{$mensaje->created_at}}</small>
+                </div>
+              </div>
             @else
-              {{-- Izquierda - Usuario amigo --}}
-               <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <p class="mb-1">
+            {{-- Derecha - Usuario distinto a yo --}}
+            <div class="pop-chat">
+              <div class="bocadillo">
+                <p>
                   {{$mensaje->mensaje}}
                 </p>
                 <small>{{$mensaje->created_at}}</small>
-              </a>
+              </div>
+            </div>
             @endif
             @endforeach
             </div>
           @endif
-        </div>
         <!-- <p>{{$mensaje->mensaje}}</p> -->
         <!-- <small>Enviado por: {{$mensaje->user->nombres}}</small> -->
       </div>
-
-      <div class="w-100"></div>
-
-      <div class="col">
-        {!!Form::open(['route'=>'mensajes.store', 'method'=>'POST'])!!}
-        <div class="form-group">
-          {!! Form::hidden('sala_id', $sala->id) !!}
-        </div>
-        <div class="row mt-4">
-          <div class="col-xs-6 col-md-9 col-lg-10">
-            <input type="text" class="material-input" name="mensaje" placeholder="hola"/>
-            {{-- {!!Form::text('mensaje', null, ['class' => 'material-input', 'placeholder' => 'Escribir mensaje...'])!!} --}}
-            {{-- {!!$errors->first('mensaje', "<span class='help-block'>:message</span>")!!} --}}
-          </div>
-          <div class="col-xs-6 col-md-3 col-lg-2">
-            {!!Form::submit('Enviar', ['class'=>'material-btn btn-indigo'])!!}
-          </div>
-        </div>
-
-        {!!Form::close()!!}
+    </div>
+    {!!Form::open(['route'=>'mensajes.store', 'method'=>'POST'])!!}
+    {!! Form::hidden('sala_id', $sala->id) !!}
+    <div class="row justify-content-center mt-4">
+      <div class="col-8">
+        {!!Form::text('mensaje', null, ['id' => 'nombre', 'placeholder' => 'Escribir mensaje...', 'required', 'class' => 'material-input'])!!}
+      </div>
+      <div class="col-2">
+        {!!Form::submit('Enviar', ['class'=>'material-btn btn-indigo'])!!}
       </div>
     </div>
+    {!!Form::close()!!}
   </div>
+@endsection
+
+@section('js')
+  <script type="text/javascript">
+    let scroll = document.querySelector('.chatroom');
+    scroll.scrollTop = scroll.scrollHeight;
+  </script>
 @endsection
