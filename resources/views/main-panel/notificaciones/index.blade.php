@@ -28,6 +28,7 @@
 									<!-- Tab panes -->
 									<div class="tab-content">
 											<div class="tab-pane active" id="noleidas" role="tabpanel">
+												@if($noleidas)
 												@foreach($noleidas as $noleida)
 													<a href="#" data-rol="noleido" class="material-card">
 														<small class="content-date">
@@ -50,8 +51,10 @@
 														{{csrf_field()}}
 													{!!Form::close()!!}
 												@endforeach
+												@endif
 											</div>
 											<div class="tab-pane" id="leidas" role="tabpanel">
+												@if($leidas)
 												@foreach($leidas as $leida)
 													<a href="#" data-rol="leido" data-id="{{$leida->id}}" class="material-card">
 														<small class="content-date">
@@ -72,6 +75,7 @@
 													<input type="hidden" name="enlace" value="{{$leida->data['link']}}" />
 													{!!Form::close()!!}
 												@endforeach
+												@endif
 											</div>
 									</div>
 							</div>
