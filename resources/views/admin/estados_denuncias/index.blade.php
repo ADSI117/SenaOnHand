@@ -5,7 +5,7 @@
 @section('title-content', 'Estados denuncias')
 
 @section('search-content')
-	<div class="col-4">
+	<div class="col-12">
 		<div class="search-content">
 		<!-- BUSCADOR -->
 		{!! Form::open(['route'=>'estados_denuncias.index', 'method'=>'GET','class' => 'f-right form-search']) !!}
@@ -34,7 +34,7 @@
 		</button>
 	</div>
 
-<table class="table table-hover table-responsive" id="table">
+<table class="table table-hover" id="table">
 <thead>
   <tr>
     <th class="ta-left">Id</th>

@@ -6,7 +6,7 @@
 @section('title-content', 'Roles del sistema')
 
 @section('search-content')
-	<div class="col-4">
+	<div class="col-12">
 		<div class="search-content">
 		<!-- BUSCADOR -->
 		{!! Form::open(['route'=>'roles.index', 'method'=>'GET','class' => 'f-right form-search']) !!}
@@ -38,7 +38,7 @@
 
 
 
-<table class="table table-hover table-responsive" id="table">
+<table class="table table-hover" id="table">
 <thead>
   <tr>
     <th class="ta-left">Id</th>

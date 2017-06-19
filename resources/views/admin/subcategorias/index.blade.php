@@ -7,7 +7,9 @@
 {{-- poner el buscar al lado del titulo --}}
 @section('search-content')
   <!-- BUSCADOR -->
-  {!!Form::open(['route'=>'subcategorias.index','method'=>'GET'])!!}
+  <div class="col-12">
+  <div class="search-content">
+  {!!Form::open(['route'=>'subcategorias.index','method'=>'GET','class'=>'f-right'])!!}
   <div class="input-group">
     {!! Form::text('descripcion',null,
       ['placeholder'=>'Buscar...', 'class' => 'form-control'])!!}
@@ -16,6 +18,8 @@
       </span>
     </div>
     {!!Form::close() !!}
+    </div>
+    </div>
     <!--  FIN BUSCADOR -->
   @endsection
 
@@ -34,7 +38,7 @@
 
 
 
-  <table class="table table-hover table-responsive">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>Id</th>
