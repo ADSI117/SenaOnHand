@@ -55,6 +55,12 @@
 .black {
   color: #333 !important; }
 
+.red {
+  color: #EF5350 !important; }
+
+.bl-red {
+  border-left: 5px solid #EF5350; }
+
 .btn-indigo {
   transition: all .5s;
   background-color: #3F51B5;
@@ -234,6 +240,22 @@ html, body {
   text-align: center;
   border-bottom: 1px solid #eee; }
 
+.nav-tabs-indigo {
+  background-color: #EF5350 !important; }
+  .nav-tabs-indigo .nav-link {
+    color: #fff !important; }
+    .nav-tabs-indigo .nav-link.active {
+      color: #EF5350 !important;
+      background-color: #fff;
+      border-color: #fff; }
+      .nav-tabs-indigo .nav-link.active:hover {
+        color: #fff !important;
+        border-color: #fff !important; }
+  .nav-tabs-indigo ~ .card-block {
+    height: 70vh;
+    max-height: 70vh;
+    overflow-y: auto; }
+
 .material-input::-webkit-input-placeholder, .material-input::placeholder {
   transition: all 0.3s ease-in-out; }
 
@@ -309,7 +331,7 @@ div#ManejadorDeAvisos[role=alert] {
   .material-btn-float:active, .material-btn-float:focus {
     outline: none; }
 
-.material-card {
+.material-card, a.material-card {
   display: flex;
   width: 100%;
   text-decoration: none;
@@ -317,35 +339,50 @@ div#ManejadorDeAvisos[role=alert] {
   text-transform: capitalize;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin: 5px 10px;
-  transition: all .5s; }
-  .material-card:hover {
+  transition: all .5s;
+  position: relative; }
+  .material-card:hover, .material-card:active, .material-card:focus, a.material-card:hover, a.material-card:active, a.material-card:focus {
+    color: black;
     text-decoration: none;
     box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
-  .material-card .material-card-header {
+  .material-card .content-header-icon, a.material-card .content-header-icon {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0px 8px; }
+  .material-card .material-card-header, a.material-card .material-card-header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 24px 16px;
     width: 100%; }
-    .material-card .material-card-header img {
+    .material-card .material-card-header img, a.material-card .material-card-header img {
       display: flex;
       border-radius: 100%;
       width: 75px;
       height: 75px;
       margin-right: 16px; }
-    .material-card .material-card-header .content-header-title {
+    .material-card .material-card-header .content-header-title, a.material-card .material-card-header .content-header-title {
       display: flex;
       flex-direction: column; }
-    .material-card .material-card-header .header--title {
+    .material-card .material-card-header .header--title, a.material-card .material-card-header .header--title {
       margin: 0px;
       display: flex;
       font-size: 24px; }
-    .material-card .material-card-header .header--subtitle {
+    .material-card .material-card-header .header--subtitle, a.material-card .material-card-header .header--subtitle {
       display: flex;
       font-size: 14px; }
-    .material-card .material-card-header .header--date {
-      display: flex;
-      font-size: 14px; }
+  .material-card .content-date, a.material-card .content-date {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: #333;
+    display: flex;
+    font-size: 14px;
+    color: #607D8B;
+    align-items: baseline; }
 
 .chatroom {
   max-height: 55vh;

@@ -88,9 +88,8 @@ class NotificacionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-      // dd('Actualizando...');
       DatabaseNotification::find($id)->markAsRead();
-      return back();
+      return redirect($request['enlace']);
     }
 
     /**
