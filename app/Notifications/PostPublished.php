@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Notifications;
-
 use App\Publicacion;
 
 use Illuminate\Bus\Queueable;
@@ -9,11 +8,10 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class PublicacionPublicada extends Notification
+class PostPublished extends Notification
 {
 
     protected $publicacion;
-
     use Queueable;
 
     /**
@@ -34,8 +32,8 @@ class PublicacionPublicada extends Notification
      */
     public function via($notifiable)
     {
-        // return ['mail'];
         return ['database'];
+        // return ['mail', 'database'];
     }
 
     /**
@@ -44,14 +42,13 @@ class PublicacionPublicada extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->subject('Nueva publicacion')
-                    ->line($notificable->nombres . 'Se ha publicado un nuevo post' )
-                    ->action($this->publicacion->title, route('publicaciones.detalle', $this->publicacion->id))
-                    ->line('Gracias por leer!');
-    }
+    // public function toMail($notifiable)
+    // {
+    //     return (new MailMessage)
+    //                 ->line('The introduction to the notification.')
+    //                 ->action('Notification Action', url('/'))
+    //                 ->line('Thank you for using our application!');
+    // }
 
     /**
      * Get the array representation of the notification.
@@ -61,10 +58,9 @@ class PublicacionPublicada extends Notification
      */
     public function toArray($notifiable)
     {
-      // return $this->mensaje->toArray();
       return [
-        'link' => route('publicaciones.detalle', $this->publicacion->id),
-        'text' => "Nueva publicacion de: " . User::find($this->publicacion->user)->nombres
+        'link' => route('publicaciones.show', $this->publicacion->id),
+        'text' => "Nueva publicacion de " . $this->publicacion->user->nombres . ' ' . $this->publicacion->user->nombres
       ];
     }
 }

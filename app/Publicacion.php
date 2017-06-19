@@ -3,12 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Events\PostCreated;
 
 class Publicacion extends Model {
 
     /**
      * Generated
      */
+
+    protected $guarded = [];
+    protected $events = [
+      'created' => PostCreated::class
+    ];
 
     protected $table = 'tb_publicaciones';
     protected $fillable = ['id', 'usuario_id',
