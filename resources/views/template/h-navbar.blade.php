@@ -52,12 +52,8 @@
                 Nuevo mensaje
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link notify" href="{{ route('notificaciones.index') }}" data-badge="{{Auth::user()->unreadNotifications->count()}}">
-                <i class="fa fa-bell"></i>
-              </a>
-            </li>
-
+            {{-- notificaciones :enlace="{{ route('notificaciones.index') }}" --}}
+            <notification enlace="{{ route('notificaciones.index') }}" :userid="{{Auth::user()->id}}"></notification>
               <li class="nav-item">
                 @if(Auth::user()->url_foto)
                   <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded white" width="45">

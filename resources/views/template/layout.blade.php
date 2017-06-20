@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="description" content="SenaOnHand, ADSI 117" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>@yield('title','SenaOnHand')</title>
 	<link rel="stylesheet" href="{{asset('plugins/font-awesome/font-awesome.min.css')}}" />
 	<link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700&amp;subset=latin-ext" rel="stylesheet" />
@@ -16,16 +17,24 @@
 	<link rel="stylesheet" href="{{ asset('css/generales.css') }}" />
 
 </head>
+<body>
+	<div id="app">
+		@yield('main')
 
-  @yield('main')
+		@yield('modal-control')
+	</div>
 
-	@yield('modal-control')
-
-  <script src="{{asset('js/AjaxRequest.js')}}"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="{{asset('plugins/NowKit/js/now-ui-kit.js')}}"></script>
-  <script src="{{asset('plugins/NowKit/js/core/tether.min.js')}}"></script>
-  <script src="{{asset('plugins/NowKit/js/core/bootstrap.min.js')}}"></script>
+	<script src="{{asset('js/AjaxRequest.js')}}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="{{asset('plugins/NowKit/js/now-ui-kit.js')}}"></script>
+	<script src="{{asset('plugins/NowKit/js/core/tether.min.js')}}"></script>
+	<script src="{{asset('plugins/NowKit/js/core/bootstrap.min.js')}}"></script>
+	<script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
+	<script src="{{asset('js/app.js')}}"></script>
 	<script src="{{asset('js/componentes/AlertasEmergentes.js')}}"></script>
 	<script src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}"></script>
 	<script type="text/javascript">

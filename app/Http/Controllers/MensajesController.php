@@ -8,6 +8,7 @@ use App\Mensaje;
 use Auth;
 use App\User;
 use App\Notifications\MensajeEnviado;
+use App\Events\NotificacionCreada;
 
 class MensajesController extends Controller
 {
@@ -59,7 +60,7 @@ class MensajesController extends Controller
     public function store(Request $request)
     {
         // Validar
-
+        
         $this->validate($request, [
           'mensaje' => 'required',
           // 'usuario_amigo_id'  => 'required|exists:users,id'
@@ -85,6 +86,7 @@ class MensajesController extends Controller
         $sala->updated_at = date('Y-m-d H:i:s');
         $sala->save();
 
+       
         // Enviar notificacion
         if (Auth::user()->id == $sala->usuario_amigo_id){
           echo "--se alerta a usuario creador";
@@ -101,6 +103,12 @@ class MensajesController extends Controller
         $mensajes = Mensaje::where('sala_id', '=', $sala->id)
                               ->orderBy('created_at', 'asc')
                               ->get();
+
+        if (request()->ajax()) {
+          broadcast(new NotificacionCreada($sala->usuario_amigo_id));
+          return;
+        }
+
 
         return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes'));
 
