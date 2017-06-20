@@ -55,7 +55,11 @@
 													<img src="{{Storage::url('soh_profile_default.png')}}" alt="Imagen de perfil">
 
 												@endif
-												<h2><a href="#">{{$seguido->seguido->nombres}} {{$seguido->seguido->apellidos}}</a></h2>
+												<h4>
+													<a href="{{route('instructores.show', [$seguido->seguido->id])}}">
+						                {{$seguido->seguido->nombres}} {{$seguido->seguido->apellidos}}
+						              </a>
+												</h4>
 											<p>
 												{{$seguido->perfil}}
 											</p>
