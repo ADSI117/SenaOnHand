@@ -7,12 +7,21 @@
 <div class="page-banner bg-indigo">
   <div class="container">
     <h1>
-      Sigue más categorias
+      Sigue más categorías
     </h1>
   </div>
 </div>
 
 <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      @include('flash::message')
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
 
   <div class="row">
     @foreach($categorias as $categoria)

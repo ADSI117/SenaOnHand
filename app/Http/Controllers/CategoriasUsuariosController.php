@@ -7,6 +7,7 @@ use App\Categoria;
 use App\User;
 use Auth;
 use App\UsuarioCategoria;
+use DB;
 
 class CategoriasUsuariosController extends Controller
 {
@@ -18,8 +19,15 @@ class CategoriasUsuariosController extends Controller
     public function index()
     {
       // dd('Index de categorias');
-      $categorias = Categoria::paginate(12);
-        return view ('main-panel.usuarios-categorias.index', compact('categorias'));
+      $categorias = DB::table('tb_categorias as c')
+                        ->leftjoin('usuario_categoria as uc', 'uc.user_id', Auth::user()->id)->get();
+                                      // ->paginate(12);
+
+                              dd($categorias);
+      $instructores = User::where('rol_id', '=', '2')
+                            // ->orderBy('puntaje', 'desc')
+                            ->paginate(12);
+        return view ('main-panel.usuarios-categorias.index', compact('categorias', 'instructores'));
     }
 
     /**
@@ -42,9 +50,21 @@ class CategoriasUsuariosController extends Controller
     {
         $usuario = User::find(Auth::user()->id);
 
-        $respuesta = $usuario->categorias()->attach($request->categoria_id);
+        $registro = UsuarioCategoria::where('user_id', '=', $usuario->id)
+                              ->where('categoria_id', '=', $request->categoria_id)
+                              ->first();
 
-        return back();
+        if(!$registro){
+          $respuesta = $usuario->categorias()->attach($request->categoria_id);
+          flash('Se ha agregado esta categoría')->success()->important();
+          return back();
+
+        }else{
+          flash('Ya sigues esta categoría')->warning()->important();
+          return back();
+        }
+
+
     }
 
     /**
