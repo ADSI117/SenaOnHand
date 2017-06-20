@@ -19,7 +19,7 @@ class CalificacionesController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -40,12 +40,19 @@ class CalificacionesController extends Controller
      */
     public function store(Request $request)
     {
-      $buscar = Calificacion::where('publicacion_id', '=', $request->publicacion_id)
+      if ($request->estrellas < 1){
+        flash('¡Debes seleccionarpor lo menos una estrella!')->error()->important();
+        return redirect()->route('publicaciones.show', ['id' => $request->publicacion_id]);
+      }
+      $buscar =  Calificacion::where('publicacion_id', '=', $request->publicacion_id)
                               ->where('usuario_id', '=', Auth::user()->id)
                               ->first();
+
+                              // dd($buscar);
       if ($buscar){
-        flash('¡Ya calificaste esta publicacion!')->warning()->important();
-        return back();
+
+        flash('¡Ya ha calificado esta publicación!')->warning()->important();
+        return redirect()->route('publicaciones.show', ['id' => $request->publicacion_id]);
       }
 
       $calificacion = new Calificacion();
