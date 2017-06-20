@@ -36,10 +36,12 @@ return [
             'secret' => env('PUSHER_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-              'cluster' => 'mt1',
-              'encrypted' => true
+              'cluster' => 'us2',
+              //False si se esta en local, true si produccion y es ssl
+              'encrypted' => false
             ],
         ],
+
 
         'redis' => [
             'driver' => 'redis',

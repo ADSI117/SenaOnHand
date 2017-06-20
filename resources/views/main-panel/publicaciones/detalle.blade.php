@@ -17,10 +17,11 @@
           Autor:
           <a href="{{route('instructores.show', [$publicacion->user_id])}}" class="link-autor">
             {{$publicacion->user->nombres}} {{$publicacion->user->apellidos}}
-
           </a>
-            Publicaciones: {{$publicacion->user->publicaciones->count()}}
-            Puntaje: {{round($promedio, 2)}}
+          <span style="padding: 5px;">Tiene: {{$publicacion->user->publicaciones->count()}} publicaciones.</span>
+
+
+            Calificación promedio: {{round($promedio, 2)}}
         </span>
       </div>
     </div>

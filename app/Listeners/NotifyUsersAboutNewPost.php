@@ -29,6 +29,7 @@ class NotifyUsersAboutNewPost
      */
     public function handle(PostCreated $event)
     {
+      // TODO: solo filtrar a los suscriptores de ese usuario
         $users = User::all();
         // var_dump($event->publicacion->toArray());
         Notification::send($users, new PostPublished($event->publicacion));
