@@ -44,11 +44,7 @@
     @endforeach
 
   </div>
-  <div class="row mt-3">
-    <div class="col">
-      <div class="text-center">{{ $categorias->links('vendor.pagination.custom') }}</div>
-    </div>
-  </div>
+  
   <!-- <div class="row">
     <a href="{{route('main-panel')}}" class=" btn btn-danger btn-block">Saltar este paso</a>
   </div> -->

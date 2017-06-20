@@ -50,6 +50,7 @@ Route::group(['prefix'=>'main-panel'], function (){
   Route::resource('calificaciones', 'CalificacionesController');
   Route::resource('salas', 'SalasController');
   Route::resource('seguidores', 'SeguidoresController');
+  Route::resource('inst-destacados', 'InstructoresDestacadosController');
 
 
 });

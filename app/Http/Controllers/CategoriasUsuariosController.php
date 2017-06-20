@@ -19,11 +19,21 @@ class CategoriasUsuariosController extends Controller
     public function index()
     {
       // dd('Index de categorias');
-      $categorias = DB::table('tb_categorias as c')
-                        ->leftjoin('usuario_categoria as uc', 'uc.user_id', Auth::user()->id)->get();
-                                      // ->paginate(12);
+      $categorias = DB::select('select c.* from tb_categorias as c
+                              where c.id not in (
+                              select uc.categoria_id from usuario_categoria as uc
+                              where uc.user_id = '.Auth::user()->id.' and uc.categoria_id = c.id
+                              )
+                              group by c.id, c.nombre, c.descripcion, c.url_imagen, c.created_at, c.updated_at');
 
-                              dd($categorias);
+      $categorias = collect($categorias);
+
+
+      // $categorias = Categoria::whereHas('usuario', function ($query){
+      //   $query->where('user_id', '=', Auth::user()->id);
+      // })->get();
+
+      // dd($categorias);
       $instructores = User::where('rol_id', '=', '2')
                             // ->orderBy('puntaje', 'desc')
                             ->paginate(12);
