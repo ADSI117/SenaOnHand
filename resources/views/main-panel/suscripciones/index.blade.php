@@ -50,9 +50,9 @@
 									<div class="col-xs-12 col-md-6 col-lg-4">
 										{{ Form::open(['method' => 'DELETE', 'route' => ['seguidos.destroy', $seguido->id]]) }}
 											@if($seguido->seguido->url_foto)
-													<img src="Storage::url($seguido->seguido->url_foto)" alt="Imagen de perfil">
+													<img src="{{Storage::url($seguido->seguido->url_foto)}}" alt="Imagen de perfil">
 												@else
-													<img src="Storage::url('soh_profile_default.png')" alt="Imagen de perfil">
+													<img src="{{Storage::url('soh_profile_default.png')}}" alt="Imagen de perfil">
 
 												@endif
 												<h2><a href="#">{{$seguido->seguido->nombres}} {{$seguido->seguido->apellidos}}</a></h2>
