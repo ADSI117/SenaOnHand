@@ -30,27 +30,18 @@ return [
 
     'connections' => [
 
-        // 'pusher' => [
-        //     'driver' => 'pusher',
-        //     'key' => env('PUSHER_KEY'),
-        //     'secret' => env('PUSHER_SECRET'),
-        //     'app_id' => env('PUSHER_APP_ID'),
-        //     'options' => [
-        //       'cluster' => 'mt1',
-        //       'encrypted' => true
-        //     ],
-        // ],
-
         'pusher' => [
             'driver' => 'pusher',
-            'key' => 'c694f25847c8106ae603',
-            'secret' => 'd2e6b05ca6145723763d',
-            'app_id' => '355364',
+            'key' => env('PUSHER_KEY'),
+            'secret' => env('PUSHER_SECRET'),
+            'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-              // 'cluster' => 'us2',
+              'cluster' => 'us2',
+              //False si se esta en local, true si produccion y es ssl
               'encrypted' => false
             ],
         ],
+
 
         'redis' => [
             'driver' => 'redis',
