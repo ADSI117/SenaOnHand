@@ -27,11 +27,11 @@
 									@foreach($usuario->categorias as $categoria)
 									<div class="col-xs-12 col-md-6 col-lg-4">
 										{{ Form::open(['method' => 'DELETE', 'class' => 'material-card__big', 'route' => ['categoria-usuario.destroy', $categoria->id]]) }}
-											<div class="card-header__image" style="background-image: url(http://www.popcomunicaciones.com/blog/media/k2/items/cache/e0a70f72bdae9885bfc32d7cd19a26a1_Generic.jpg)">
-												<h2 class="card-header__titulo"><a href="#">{{$categoria->descripcion}}</a></h2>
+											<div class="card-header__image" style="background-image: url({{Storage::url($categoria->url_imagen)}})">
+												<h2 class="card-header__titulo"><a href="#">{{$categoria->nombre}}</a></h2>
 											</div>
 											<p class="card__text">
-												Located two hours south of Sydney in the Southern Highland of New South Wales...
+												{{$categoria->descripcion}}
 											</p>
 											<div class="card__action-bar">
 												{!!Form::submit('Dejar de seguir', ['class' => 'card__button'])!!}
@@ -42,21 +42,30 @@
 								</div>
 
 							</div>
+
 							<div class="tab-pane" id="leidas" role="tabpanel">
 
-							@foreach($usuario->seguidos as $seguido)
-								{{ Form::open(['method' => 'DELETE', 'route' => ['seguidos.destroy', $seguido->id]]) }}
-								@if($seguido->seguido->url_foto)
-								<img src="{{ Storage::url($seguido->seguido->url_foto) }}" alt="" width="50" height="50">
-								@else
-								<img src="{{url('/')}}/imagenes/perfiles/soh_profile_default.png" alt="" width="50" height="50">
-								@endif
-								<a href="#">{{$seguido->seguido->nombres}} {{$seguido->seguido->apellidos}}</a>
+								<div class="row">
+									@foreach($usuario->seguidos as $seguido)
+									<div class="col-xs-12 col-md-6 col-lg-4">
+										{{ Form::open(['method' => 'DELETE', 'route' => ['seguidos.destroy', $seguido->id]]) }}
+											@if($seguido->seguido->url_foto)
+													<img src="Storage::url($seguido->seguido->url_foto)" alt="Imagen de perfil">
+												@else
+													<img src="Storage::url('soh_profile_default.png')" alt="Imagen de perfil">
 
-								{!!Form::submit('Dejar de seguir', ['class'=>'btn btn-warning'])!!}
-								{{ Form::close() }}
-							@endforeach
-
+												@endif
+												<h2><a href="#">{{$seguido->seguido->nombres}} {{$seguido->seguido->apellidos}}</a></h2>
+											<p>
+												{{$seguido->perfil}}
+											</p>
+											<div>
+												{!!Form::submit('Dejar de seguir', ['class'=>'card__button'])!!}
+											</div>
+										{{ Form::close() }}
+									</div>
+									@endforeach
+								</div>
 							</div>
 						</div>
 					</div>
@@ -64,4 +73,5 @@
 			</div>
 		</div>
 	</div>
+</div>
 @endsection
