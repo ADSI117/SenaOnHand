@@ -2,9 +2,9 @@
 
 @extends('template.layout')
 
-@include('template.h-navbar')
 
 @section('main')
+  @include('template.h-navbar')
     {{-- @if(Auth::user()->id == $sala->usuario_amigo_id)
       {{$sala->user_creador->nombres}} {{$sala->user_creador->apellidos}}
     @else

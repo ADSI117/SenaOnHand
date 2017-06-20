@@ -210,11 +210,11 @@ html, body {
 
 .notify {
   position: relative; }
-  .notify[data-badge]::before {
+  .notify.active[data-badge]::before {
     content: attr(data-badge);
     position: absolute;
     top: 2px;
-    right: 5px;
+    right: 7px;
     font-size: .7em;
     background: #EF5350;
     color: white;
@@ -225,6 +225,9 @@ html, body {
     border-radius: 50%;
     box-shadow: 0 0 1px #333;
     z-index: 2; }
+  .notify ~ .dropdown-menu {
+    max-height: 40vh;
+    overflow-y: scroll; }
 
 .photo-container {
   padding: 50px; }
