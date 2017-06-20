@@ -10,6 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use App\Events\PruebaEvento;
+
+
 Route::get('/', 'PublicPanelController@index');
 // Route::get('inicio', 'PublicPanelController@index');
 
@@ -63,6 +66,7 @@ Route::get('admin', 'AdminController@index');
 // rutas de TiposDenuncias
 
 Route::resource('tipos_denuncias','TiposDenunciasController');
+Route::resource('usuario','UsuarioMController');
 
 
 //Route::get('tipos_denuncias/{id}/destroy',[
@@ -183,3 +187,8 @@ Route::resource('sedes','SedesController');
 Auth::routes();
 
 Route::get('/main-panel', 'MainPanelController@index')->name('main-panel');
+
+Route::get('realtime', function(){
+  event(new PruebaEvento('Probando realtime'));
+  return 'Corre normal';
+});
