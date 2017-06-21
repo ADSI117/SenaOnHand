@@ -49,14 +49,16 @@ class CategoriasController extends Controller
         // $path = $request->file('imagen')->storeAs('avatars', $nombre);
         $path = Storage::putFileAs('public', $request->file('url_imagen'), $nombre);
 
-        $categorias = new Categoria($request->all());
+        $categoria = new Categoria();
+        $categoria->nombre = $request->nombre;
+        $categoria->descripcion = $request->descripcion;
 
         if ($path){
           $categoria->url_imagen = $nombre;
         }
       }
 
-        $categorias->save();
+        $categoria->save();
        // Flash::success(' '.$tipos_denuncias->name.' se registro correctamente')->important();
         return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
