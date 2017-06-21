@@ -13,7 +13,7 @@
 </div>
 
 <div class="container">
-  
+
   <div class="row">
     @foreach($categorias as $categoria)
     <div class="col-xs-12 col-md-4">
@@ -22,8 +22,8 @@
           <h1>HOla</h1>
         </div> -->
         <div class="card-block">
-          <h4 class="card-title"><span class="badge badge-default">{{$categoria->descripcion}}</span></h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h4 class="card-title"><span class="badge badge-default">{{$categoria->nombre}}</span></h4>
+          <p class="card-text">{{$categoria->descripcion}}</p>
           {!!Form::open(['route'=>'categoria-usuario.store', 'method' => 'POST'])!!}
           {!!Form::hidden('categoria_id', $categoria->id)!!}
           {!!Form::submit('Seguir', ['class'=>'btn btn-primary'])!!}

@@ -18,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\MessageWasReceived' => [
             'App\Listeners\MessageWasReceivedListener',
+        ],   
+        'App\Events\PruebaEvento' => [
+            'App\Listeners\PruebaEventoEscuchador',
         ],
     ];
 

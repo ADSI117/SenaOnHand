@@ -5,23 +5,24 @@
   @else
     <nav class="navbar navbar-toggleable-md bg-teal p-0">
   @endif
-      <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-   	      <span class="navbar-toggler-bar bar1"></span>
-    	    <span class="navbar-toggler-bar bar2"></span>
-    	    <span class="navbar-toggler-bar bar3"></span>
-     	  </button>
-        @if (!Auth::guest())
-          <a class="navbar-brand" href="{{route('main-panel')}}" >
-        @else
-          <a class="navbar-brand" href="{{ url('/') }}">
-        @endif
-          {{ config('app.name', 'SenaOnHand') }}
-        </a>
 
-        <div class="collapse navbar-collapse" id="navigation">
-
-          <ul class="navbar-nav nav-ul">
+        <div class="container">
+            <div class="navbar-translate">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="true" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+                @if (!Auth::guest())
+                  <a class="navbar-brand" href="{{route('main-panel')}}" >
+                @else
+                  <a class="navbar-brand" href="{{ url('/') }}">
+                @endif
+                  {{ config('app.name', 'SenaOnHand') }}
+                </a>
+            </div>
+            <div class="navbar-collapse justify-content-end has-image collapse show" id="navigation" style="background: url(&quot;./assets/img/blurred-image-1.jpg&quot;) 0% 0% / cover;" aria-expanded="true">
+                <ul class="navbar-nav nav-ul">
             <li class="nav-item pl-5 pr-2 d-flex align-items-center">
 
               {!!Form::open(['route' => 'busquedas.index', 'method'=> 'GET'])!!}
@@ -45,7 +46,7 @@
               </li>
           </ul>
 
-    	    <ul class="navbar-nav">
+    	    <ul class="navbar-nav no-mt">
             @if (!Auth::guest())
             <li class="nav-item">
               <a class="nav-link" href="{{route('mensajes.create')}}">
@@ -56,9 +57,9 @@
             <notification enlace="{{ route('notificaciones.index') }}" :userid="{{Auth::user()->id}}"></notification>
               <li class="nav-item">
                 @if(Auth::user()->url_foto)
-                  <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded white" width="45">
+                  <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded img-fluid hidden-md-down white" width="45">
                 @else
-                  <img src="{{Storage::url('soh_profile_default.png')}}" alt="" class="rounded white" width="45">
+                  <img src="{{Storage::url('soh_profile_default.png')}}" alt="" class="rounded img-fluid hidden-md-down white" width="45">
                 @endif
               </li>
               <li class="nav-item dropdown">
@@ -68,9 +69,9 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                   <span class="dropdown-header black text-center">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</span>
                   @if(Auth::user()->url_foto)
-                    <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded-0 white">
+                    <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded-0 hidden-md-down white">
                   @else
-                    <img src="{{Storage::url('soh_profile_default.png') }}" alt="" class="rounded-0 white">
+                    <img src="{{Storage::url('soh_profile_default.png') }}" alt="" class="rounded-0 hidden-md-down white">
                   @endif
                   <a class="dropdown-header">Configuración</a>
                   <a class="dropdown-item"  href="{{route('salas.index')}}" >Chats</a>
@@ -88,7 +89,13 @@
               </li>
             @endif
             </ul>
+            </div>
         </div>
 
+<<<<<<< HEAD
     </div>
 </nav>
+=======
+
+    </nav>
+>>>>>>> 5328c2660c52d9acce5f0b1afdbc86b87ed234c6

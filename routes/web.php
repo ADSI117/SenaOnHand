@@ -10,6 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use App\Events\PruebaEvento;
+
+
 Route::get('/', 'PublicPanelController@index');
 // Route::get('inicio', 'PublicPanelController@index');
 
@@ -60,126 +63,44 @@ Route::get('admin', 'AdminController@index');
 
  Route::group(['prefix'=>'admin'],function(){
 
-// rutas de TiposDenuncias
+    Route::resource('tipos_denuncias','TiposDenunciasController');
 
-Route::resource('tipos_denuncias','TiposDenunciasController');
+    Route::resource('usuario','UsuarioMController');
 
+    Route::resource('estados_comentarios','EstadosComentariosController');
 
-//Route::get('tipos_denuncias/{id}/destroy',[
+    Route::resource('programas','ProgramasController');
 
-	/*'uses'=> 'TiposDenunciasController@destroy',
-	'as'=> 'admin.tipos_denuncias.destroy'
+    Route::resource('estados_usuarios','EstadosUsuariosController');
 
-	]);*/
+    Route::resource('estados_denuncias','EstadosDenunciasController');
 
- // rutas de EStadosComentarios
-Route::resource('estados_comentarios','EstadosComentariosController');
-/*Route::get('estados_comentarios/{id}/destroy',[
+    Route::resource('tipos_anuncios','TiposAnunciosController');
 
-		'uses' => 'EstadosComentariosController@destroy',
- 		'as' => 'admin.estados_comentarios.destroy'
+    Route::resource('tipos_docs','TiposDocsController');
 
-	]);*/
+    Route::resource('categorias','CategoriasController');
 
-// rutas de Programas
-Route::resource('programas','ProgramasController');
-/*Route::get('programas/{id}/destroy',[
+    Route::resource('estados_publicaciones','EstadosPublicacionesController');
 
-		'uses' => 'ProgramasController@destroy',
- 		'as' => 'admin.programas.destroy'
+    Route::resource('roles','RolesController');
 
-	]);*/
-// rutas de EStadosUsuarios
-Route::resource('estados_usuarios','EstadosUsuariosController');
-/*Route::get('estados_usuarios/{id}/destroy',[
+    Route::resource('regionales','RegionalesController');
 
-		'uses' => 'EstadosUsuariosController@destroy',
- 		'as' => 'admin.estados_usuarios.destroy'
+    Route::resource('subcategorias','SubcategoriasController');
 
-	]);*/
-// rutas de EStadosDenuncias
-Route::resource('estados_denuncias','EstadosDenunciasController');
-/*Route::get('estados_denuncias/{id}/destroy',[
+    Route::resource('centros','CentrosController');
 
-	'uses'=> 'EstadosDenunciasController@destroy',
-	'as'=> 'admin.estados_denuncias.destroy'
+    Route::resource('sedes','SedesController');
 
-	]);*/
-// rutas de TiposAnuncios
-Route::resource('tipos_anuncios','TiposAnunciosController');
-/*Route::get('tipos_anuncios/{id}/destroy',[
-
-	'uses'=> 'TiposAnunciosController@destroy',
-	'as'=> 'admin.tipos_anuncios.destroy'
-
-	]);*/
-// rutas de TiposDocs
-Route::resource('tipos_docs','TiposDocsController');
-/*Route::get('tipos_docs/{id}/destroy',[
-
-	'uses'=> 'TiposDocsController@destroy',
-	'as'=> 'admin.tipos_docs.destroy'
-
-	]);*/
-// rutas de Categorias
-Route::resource('categorias','CategoriasController');
-/*Route::get('categorias/{id}/destroy',[
-
-	'uses'=> 'CategoriasController@destroy',
-	'as'=> 'admin.categorias.destroy'
-
-	]);*/
-// rutas de EstadosPublicaciones
-Route::resource('estados_publicaciones','EstadosPublicacionesController');
-/*Route::get('estados_publicaciones/{id}/destroy',[
-
-	'uses'=> 'EstadosPublicacionesController@destroy',
-	'as'=> 'admin.estados_publicaciones.destroy'
-
-	]);*/
-// rutas de Roles
-Route::resource('roles','RolesController');
-/*Route::get('roles/{id}/destroy',[
-
-	'uses'=> 'RolesController@destroy',
-	'as'=> 'admin.roles.destroy'
-
-	]);*/
-// rutas de Regionales
-Route::resource('regionales','RegionalesController');
-/*Route::get('regionales/{id}/destroy',[
-
-	'uses'=> 'RegionalesController@destroy',
-	'as'=> 'admin.regionales.destroy'
-
-	]);*/
-// rutas de Subcategorias
-Route::resource('subcategorias','SubcategoriasController');
-/*Route::get('subcategorias/{id}/destroy',[
-
-	'uses'=> 'SubcategoriasController@destroy',
-	'as'=> 'admin.subcategorias.destroy'
-
-	]);*/
-// rutas de Centros
-Route::resource('centros','CentrosController');
-/*Route::get('centros/{id}/destroy',[
-
-	'uses'=> 'CentrosController@destroy',
-	'as'=> 'admin.centros.destroy'
-
-	]);*/
-// rutas de Sedes
-Route::resource('sedes','SedesController');
-/*Route::get('sedes/{id}/destroy',[
-
-	'uses'=> 'SedesController@destroy',
-	'as'=> 'admin.sedes.destroy'
-
-	]); */
 
  });
 
 Auth::routes();
 
 Route::get('/main-panel', 'MainPanelController@index')->name('main-panel');
+
+Route::get('realtime', function(){
+  event(new PruebaEvento('Probando realtime'));
+  return 'Corre normal';
+});
