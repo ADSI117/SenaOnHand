@@ -1,7 +1,5 @@
 @extends('template.layout')
 
-@include('template.h-navbar')
-
 @section('main')
 	<div class="container">
 		<div class="row">

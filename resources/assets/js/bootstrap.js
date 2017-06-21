@@ -7,10 +7,10 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = require('jquery');
-require('bootstrap-sass');
+//window.$ = window.jQuery = require('jquery');
+//require('bootstrap-sass');
 
-/**
+/** 
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
  * and simple, leaving you to focus on building your next great project.
@@ -31,17 +31,23 @@ Vue.http.interceptors.push((request, next) => {
     next();
 });
 
+window.axios = require('axios');
+
+window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.getElementsByTagName('META')[4].content;
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from "laravel-echo"
+// import Echo from "laravel-echo"
+// import io from "socket.io-client"
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: '637fb005c217f2f1ea68',
-    cluster: "mt1",
-    encrypted: true
-});
+// window.io = io
+
+// window.Echo = new Echo({
+//     broadcaster: 'socket.io',
+//     host: 'http://127.0.0.1:8000',
+// });

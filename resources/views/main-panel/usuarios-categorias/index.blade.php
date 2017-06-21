@@ -1,8 +1,8 @@
 @extends('template.layout')
 
-@include('template.h-navbar')
 
 @section('main')
+  @include('template.h-navbar') 
 <!-- Mostrar listado de categorias iniciales para que el usuario haga primeros pasos -->
 <div class="page-banner bg-indigo">
   <div class="container">
@@ -26,21 +26,19 @@
   <div class="row">
     @foreach($categorias as $categoria)
     <div class="col-xs-12 col-md-4">
-      <div class="card" style="width: 20rem;">
-        <!-- <div class="card-img-top" style="padding: 20px;">
-          <h1>HOla</h1>
-        </div> -->
-        <div class="card-block">
-          <h4 class="card-title"><span class="badge badge-default">{{$categoria->nombre}}</span></h4>
-          <p class="card-text">{{$categoria->descripcion}}</p>
-          {!!Form::open(['route'=>'categoria-usuario.store', 'method' => 'POST'])!!}
-          {!!Form::hidden('categoria_id', $categoria->id)!!}
-          {!!Form::submit('Seguir', ['class'=>'btn btn-primary'])!!}
-          {!!Form::close()!!}
+      {!!Form::open(['route'=>'categoria-usuario.store', 'method' => 'POST', 'class' => 'material-card__big'])!!}
+        {!!Form::hidden('categoria_id', $categoria->id)!!}
+        <div class="card-header__image" style="background-image: url({{Storage::url($categoria->url_imagen)}})">
+          <h2 class="card-header__titulo"><a href="#">{{$categoria->nombre}}</a></h2>
         </div>
-      </div>
+        <p class="card__text">
+          {{$categoria->descripcion}}
+        </p>
+        <div class="card__action-bar">
+          {!!Form::submit('Seguir', ['class' => 'card__button'])!!}
+        </div>
+      {!!Form::close()!!}
     </div>
-
     @endforeach
 
   </div>

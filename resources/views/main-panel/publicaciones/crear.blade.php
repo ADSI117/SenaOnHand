@@ -1,8 +1,8 @@
 @extends('template.layout')
 
-@include('template.h-navbar')
 
 @section('main')
+  @include('template.h-navbar')
   {!! Form::open(['route' => 'publicaciones.store', 'method' => 'POST', 'files' => true, 'class' => '']) !!}
   <div class="page-banner bg-red">
     <div class="container">

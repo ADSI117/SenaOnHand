@@ -1,8 +1,8 @@
 @extends('template.layout')
 
-@include('template.h-navbar')
 
 @section('main')
+@include('template.h-navbar')
 
   <div class="container">
 

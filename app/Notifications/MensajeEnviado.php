@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\User;
@@ -11,7 +12,7 @@ use App\User;
 class MensajeEnviado extends Notification
 {
 
-    protected $mensaje;
+    public $mensaje;
     use Queueable;
 
     /**
@@ -33,6 +34,7 @@ class MensajeEnviado extends Notification
     public function via($notifiable)
     {
         return ['database'];
+        // return ['database', 'broadcast'];
         // return ['database', 'mail'];
     }
 
@@ -58,12 +60,39 @@ class MensajeEnviado extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
-        // return $this->mensaje->toArray();
-        return [
-          'link' => route('mensajes.show', $this->mensaje->id),
-          'text' => "Has recibido un mensaje de " . User::find($this->mensaje->usuario_id)->nombres
+        return[
+            'thread'=>$this->mensaje,
+            'user'=>auth()->user(),
+            'link' => route('mensajes.show', $this->mensaje->id),
+            'text' => "Has recibido un mensaje de " . User::find($this->mensaje->usuario_id)->nombres
         ];
     }
+
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'thread'=>$this->mensaje,
+            'user'=>auth()->user(),
+            'link' => route('mensajes.show', $this->mensaje->id),
+            'text' => "Has recibido un mensaje de " . User::find($this->mensaje->usuario_id)->nombres
+        ]);
+    }
+
+    public function toArray($notifiable)
+    {
+        return [
+            //
+        ];
+    }
+
+    // public function toArray($notifiable)
+    // {
+    //     // return $this->mensaje->toArray();
+    //     return [
+    //       'link' => route('mensajes.show', $this->mensaje->id),
+    //       'text' => "Has recibido un mensaje de " . User::find($this->mensaje->usuario_id)->nombres
+    //     ];
+    // }
 }

@@ -1,7 +1,7 @@
 
 
   @if (Auth::user()->rol_id == 3)
-    <nav class="navbar navbar-toggleable-md bg-info m-0 p-0">
+    <nav class="navbar navbar-toggleable-md bg-info p-0">
   @else
     <nav class="navbar navbar-toggleable-md bg-teal p-0">
   @endif
@@ -56,17 +56,22 @@
                 Nuevo mensaje
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link notify" href="{{ route('notificaciones.index') }}" data-badge="{{Auth::user()->unreadNotifications->count()}}">
-                <i class="fa fa-bell"></i>
-              </a>
-            </li>
-
+            {{-- notificaciones :enlace="{{ route('notificaciones.index') }}" --}}
+            {{-- <notification :unread="{{ Auth::user()->unreadNotifications->count() }}" enlace="{{ route('notificaciones.index') }}" :userid="{{Auth::user()->id}}"></notification> --}}
+              <li class="nav-item">
+                @if (Auth::user()->unreadNotifications->count() > 0)
+                <a class="nav-link notify active" id="notificaciones" href="{{ route('notificaciones.index') }}" data-badge="{{ Auth::user()->unreadNotifications->count() }}">
+                @else
+                <a class="nav-link notify" id="notificaciones" href="{{ route('notificaciones.index') }}" data-badge="{{ Auth::user()->unreadNotifications->count() }}">
+                @endif   
+                    <i class="fa fa-bell"></i>
+                </a>
+              </li>
               <li class="nav-item">
                 @if(Auth::user()->url_foto)
-                  <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded img-fluid hidden-md-down white" width="45">
+                  <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded img-fluid hidden-md-down white" width="45" height="45">
                 @else
-                  <img src="{{Storage::url('soh_profile_default.png')}}" alt="" class="rounded img-fluid hidden-md-down white" width="45">
+                  <img src="{{Storage::url('soh_profile_default.png')}}" alt="" class="rounded img-fluid hidden-md-down white" width="45" height="45">
                 @endif
               </li>
               <li class="nav-item dropdown">

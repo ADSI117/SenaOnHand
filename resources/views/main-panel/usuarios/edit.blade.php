@@ -1,8 +1,8 @@
 @extends('template.layout')
 
-@include('template.h-navbar')
 
 @section('main')
+@include('template.h-navbar')
 
 {!! Form::open(['route' => ['usuarios.update', $usuario] , 'method' => 'PUT', 'files' => true])!!}
 <div class="page-banner bg-brown">

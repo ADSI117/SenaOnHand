@@ -2,9 +2,9 @@
 
 @extends('template.layout')
 
-@include('template.h-navbar')
 
 @section('main')
+@include('template.h-navbar')
 <div class="page-banner bg-indigo">
   <div class="container">
     <h1>
