@@ -68,8 +68,8 @@ class MensajesController extends Controller
         // dd($request->sala_id);
 
         $sala = Sala::encontrarOCrear($request->sala_id, Auth::user()->id, $request->usuario_amigo_id, null);
-        // dd($sala);
-        echo "--Sala id: " . $sala->id;
+
+        // echo "--Sala id: " . $sala->id;
         $mensaje = Mensaje::create([
                     'usuario_id'  =>  Auth::user()->id,
                     'sala_id'     => $sala->id,
@@ -87,10 +87,10 @@ class MensajesController extends Controller
 
         // Enviar notificacion
         if (Auth::user()->id == $sala->usuario_amigo_id){
-          echo "--se alerta a usuario creador";
+          // echo "--se alerta a usuario creador";
           $receptor = User::find($sala->usuario_creador_id);
         }else if (Auth::user()->id == $sala->usuario_creador_id) {
-          echo "--se alerta a usuario amigo";
+          // echo "--se alerta a usuario amigo";
           $receptor = User::find($sala->usuario_amigo_id);
         }
 
@@ -101,8 +101,9 @@ class MensajesController extends Controller
         $mensajes = Mensaje::where('sala_id', '=', $sala->id)
                               ->orderBy('created_at', 'asc')
                               ->get();
+        $cad = '';
 
-        return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes'));
+        return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes', 'cad'));
 
     }
 

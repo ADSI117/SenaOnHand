@@ -61,7 +61,7 @@
     {!! Form::hidden('sala_id', $sala->id) !!}
     <div class="row justify-content-center mt-4">
       <div class="col-8">
-        {!!Form::text('mensaje', null, ['id' => 'nombre', 'placeholder' => 'Escribir mensaje...', 'required', 'class' => 'material-input'])!!}
+        {!!Form::text('mensaje', $cad, ['id' => 'nombre', 'placeholder' => 'Escribir mensaje...', 'required', 'class' => 'material-input'])!!}
       </div>
       <div class="col-2">
         {!!Form::submit('Enviar', ['class'=>'material-btn btn-indigo'])!!}

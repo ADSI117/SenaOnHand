@@ -10,7 +10,7 @@
 		<!-- BUSCADOR -->
 		{!! Form::open(['route'=>'categorias.index', 'method'=>'GET','class' => 'f-right form-search']) !!}
 		<div class="input-group">
-			{!! Form::text('descripcion', null,
+			{!! Form::text('filtro', null,
 				['placeholder' => 'Buscar...', 'class' => 'form-control', 'id' => 'buscar_categoria']) !!}
 				<span class="input-group-addon">
 					<i class="fa fa-search" aria-hidden="true"></i>
@@ -87,14 +87,29 @@
 	@extends('template.modal')
 	@section('modal-title','Categoria')
 	@section('modal-content')
-		{!!Form::open(['id' => 'form-accion'])!!}
+		{!!Form::open(['id' => 'form-accion', 'files' => true])!!}
 		<div class="modal-body">
 		    <div class="form-group">
-					{!! Form::text('descripcion',null,
+					{!! Form::text('nombre',null,
 						['placeholder' => 'Nombre categoria' ,
 						 	'required',
 							'class' => 'form-control'])!!}
+
 		    </div>
+				<div class="form-group">
+					{!! Form::text('descripcion',null,
+					['placeholder' => 'Descripción categoria' ,
+					'required',
+					'class' => 'form-control'])!!}
+
+				</div>
+
+				<div class="form-group">
+					{!!Form::label('Seleccione una imagen')!!}
+					{!!Form::file('url_imagen', ['class' => 'form-control'])!!}
+
+				</div>
+
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancelar</button>

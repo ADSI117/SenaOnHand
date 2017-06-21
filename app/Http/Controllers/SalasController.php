@@ -20,6 +20,7 @@ class SalasController extends Controller
                       ->orderBy('updated_at', 'desc')
                       ->get();
 
+
       return view ('main-panel.salas-chats.index', compact ('salas'));
     }
 
@@ -65,9 +66,8 @@ class SalasController extends Controller
                           ->orderBy('created_at', 'asc')
                           ->get();
 
-        // dd($mensajes->all());
-        // dd($mensajes);
-        return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes'));
+        $cad = "";
+        return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes', 'cad'));
 
       }else{
         return back();
