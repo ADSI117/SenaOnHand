@@ -69,9 +69,9 @@
               </li>
               <li class="nav-item">
                 @if(Auth::user()->url_foto)
-                  <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded img-fluid hidden-md-down white" width="45">
+                  <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded img-fluid hidden-md-down white" width="45" height="45">
                 @else
-                  <img src="{{Storage::url('soh_profile_default.png')}}" alt="" class="rounded img-fluid hidden-md-down white" width="45">
+                  <img src="{{Storage::url('soh_profile_default.png')}}" alt="" class="rounded img-fluid hidden-md-down white" width="45" height="45">
                 @endif
               </li>
               <li class="nav-item dropdown">

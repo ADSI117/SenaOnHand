@@ -97,6 +97,11 @@ html, body {
   h1 {
     margin: 0px;
   }
+  .page-banner--title {
+    border-bottom: 1px solid #FFF;
+    padding-bottom: .3em;
+    margin-bottom: .5em;
+  }
   .btn-float-page{
     position: absolute;
     bottom: -20px;
@@ -111,12 +116,12 @@ html, body {
     margin: 0px;
   }
   label {
-    font-size: 35px;
+    font-size: 25px;
     color: grey;
   }
   label:hover,
   label:hover ~ label {
-    color: orange;
+    color: $color-segundario-soh;
   }
   input[type="radio"] {
     display: none;
@@ -126,7 +131,7 @@ html, body {
     unicode-bidi: bidi-override;
   }
   input[type="radio"]:checked ~ label {
-    color: orange;
+    color: $color-segundario-soh;
   }
 }
 .link-autor {
