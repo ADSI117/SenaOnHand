@@ -3,10 +3,12 @@
 @section('title', 'Login')
 
 @section('main')
+
     @include('componentes.aviso')
   {{-- <div class="page-header-image" style="background-image:url({{asset('imagenes/background/bg-registrer_1.jpg')}})"></div> --}}
   <div class="container-fluid">
     <div class="row justify-content-start">
+
 
       <div class="hidden-sm-down col-md-8 col-lg-9 bg-teal"></div>
 

@@ -5,7 +5,7 @@
 @section('title-content', 'Regionales')
 
 @section('search-content')
-<div class="col-4">
+<div class="col-12">
   <div class="search-content">
   <!-- BUSCADOR -->
   {!! Form::open(['route'=>'regionales.index', 'method'=>'GET','class' => 'f-right form-search']) !!}

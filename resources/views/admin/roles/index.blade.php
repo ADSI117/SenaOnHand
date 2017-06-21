@@ -6,7 +6,7 @@
 @section('title-content', 'Roles del sistema')
 
 @section('search-content')
-	<div class="col-4">
+	<div class="col-12">
 		<div class="search-content">
 		<!-- BUSCADOR -->
 		{!! Form::open(['route'=>'roles.index', 'method'=>'GET','class' => 'f-right form-search']) !!}

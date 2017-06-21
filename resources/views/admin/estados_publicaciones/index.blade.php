@@ -5,7 +5,7 @@
 @section('title-content', 'Estados de publicaciones')
 
 @section('search-content')
-	<div class="col-4">
+	<div class="col-12">
 		<div class="search-content">
 		<!-- BUSCADOR -->
 		{!! Form::open(['route'=>'estados_publicaciones.index', 'method'=>'GET','class' => 'f-right form-search']) !!}
@@ -25,7 +25,7 @@
 @section('content')
 
 <!-- Colored FAB button -->
-	<div class="btn-float">
+	<div class="btn-float hidden-xs-down" >
 			<button data-toggle="modal" data-target="#modal-control"
 			data-action="{{route('estados_publicaciones.store')}}"
 			data-method="POST"
@@ -36,7 +36,7 @@
 	</div>
 
 
-<table class="table table-hover table-sm" id="table">
+<table class="table table-hover" id="table">
 <thead>
   <tr>
     <th class="ta-left">Id</th>
