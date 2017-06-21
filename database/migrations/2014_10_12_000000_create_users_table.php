@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->dateTime('fecha_nac')->nullable();
             $table->string('email',45)->unique();
             $table->string('profesion',45)->nullable();
+            $table->text('perfil')->nullable();
             $table->string('url_foto',100)->nullable();
             $table->string('password',60);
             $table->rememberToken();

@@ -32,3 +32,4 @@ class AddSalasTable extends Migration
         Schema::dropIfExists('tb_salas');
     }
 }
+

@@ -23,14 +23,15 @@
 
           <ul class="navbar-nav nav-ul">
             <li class="nav-item pl-5 pr-2 d-flex align-items-center">
-              <form class="nav-form form-inline m-0">
+
+              {!!Form::open(['route' => 'busquedas.index', 'method'=> 'GET'])!!}
                 <div class="input-group form-group-no-border m-0">
                   <span class="input-group-addon">
                     <i class="fa fa-search"></i>
                   </span>
-                  <input class="form-control" type="search" placeholder="Buscar...">
+                  <input name= 'filtro' class="form-control" type="search" placeholder="Buscar...">
                 </div>
-              </form>
+              {!!Form::close()!!}
             </li>
             @if (Auth::user()->rol_id == 2)
               <li class="nav-item">
@@ -38,14 +39,13 @@
                   Publicar
                 </a>
               </li>
-
-
-
             @endif
+              <li class="nav-item">
+                <a class="nav-link"  href="{{route('categoria-usuario.index')}}" >Explorar</a>
+              </li>
           </ul>
 
     	    <ul class="navbar-nav">
-
             @if (!Auth::guest())
             <li class="nav-item">
               <a class="nav-link" href="{{route('mensajes.create')}}">
@@ -53,19 +53,16 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('notificaciones.index') }}">
-                Notificaciones
-                @if($count = Auth::user()->unreadNotifications->count())
-                  <span class="badge">{{$count}}</span>
-                @endif
+              <a class="nav-link notify" href="{{ route('notificaciones.index') }}" data-badge="{{Auth::user()->unreadNotifications->count()}}">
+                <i class="fa fa-bell"></i>
               </a>
             </li>
 
               <li class="nav-item">
                 @if(Auth::user()->url_foto)
-                  <img src="{{url('/')}}/imagenes/perfiles/{{Auth::user()->url_foto}}" alt="" class="rounded white" width="45">
+                  <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded white" width="45">
                 @else
-                  <img src="{{url('/')}}/imagenes/perfiles/soh_profile_default.png" alt="" class="rounded white" width="45">
+                  <img src="{{Storage::url('soh_profile_default.png')}}" alt="" class="rounded white" width="45">
                 @endif
               </li>
               <li class="nav-item dropdown">
@@ -73,14 +70,16 @@
                   <i class="now-ui-icons ui-1_settings-gear-63" aria-hidden="true"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <span class="dropdown-header black text-center">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</span>
                   @if(Auth::user()->url_foto)
-                    <img src="{{url('/')}}/imagenes/perfiles/{{Auth::user()->url_foto}}" alt="" class="rounded-0 white">
+                    <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded-0 white">
                   @else
-                    <img src="{{url('/')}}/imagenes/perfiles/soh_profile_default.png" alt="" class="rounded-0 white">
+                    <img src="{{Storage::url('soh_profile_default.png') }}" alt="" class="rounded-0 white">
                   @endif
-                  <a class="dropdown-header">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</a>
                   <a class="dropdown-header">Configuración</a>
+                  <a class="dropdown-item"  href="{{route('salas.index')}}" >Chats</a>
                   <a class="dropdown-item"  href="{{route('usuarios.edit', Auth::user()->id)}}" >Editar perfil</a>
+                  <a class="dropdown-item"  href="{{route('suscripciones.index')}}" >Mis suscripciones</a>
                   <div class="divider"></div>
                   <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     Salir

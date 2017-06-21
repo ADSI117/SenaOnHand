@@ -13,9 +13,9 @@ class EstadosComentariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       $estados_comentarios = EstadoComentario::orderBy('id','desc')->paginate(5);
+       $estados_comentarios = EstadoComentario::search($request->descripcion)->orderBy('id','desc')->paginate(5);
         return view('admin.estados_comentarios.index')->with('estados_comentarios',$estados_comentarios);
     }
 

@@ -34,3 +34,5 @@ class AddArchivosTable extends Migration
         Schema::dropIfExists('archivos');
     }
 }
+
+

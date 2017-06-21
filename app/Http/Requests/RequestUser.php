@@ -34,7 +34,7 @@ class RequestUser extends FormRequest
             'apellidos'=>'max:45',
             'fecha_nac'=>'max:45',
             'profesion'=>'max:45',
-            'url_foto'=>'max:100'
+            'url_foto'=>'max:100|mimes:jpg,jpeg,gif,png'
         ];
     }
 }

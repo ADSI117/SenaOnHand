@@ -11,7 +11,7 @@ class Sede extends Model {
      */
 
     protected $table = 'tb_sedes';
-    protected $fillable = ['id', 'centro_id', 'acronimo', 'descripcion'];
+    protected $fillable = ['id', 'centro_id', 'descripcion'];
 
 
     public function centro() {

@@ -21,6 +21,7 @@ class AlterSalasTable extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      *

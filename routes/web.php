@@ -11,6 +11,7 @@
 |
 */
 Route::get('/', 'PublicPanelController@index');
+// Route::get('inicio', 'PublicPanelController@index');
 
 // Para generar enlace de activacion
 Route::get('getlink', 'UsuariosController@getLink');
@@ -39,11 +40,12 @@ Route::group(['prefix'=>'main-panel'], function (){
   Route::resource('seguidos', 'SeguidosController');
   Route::resource('mensajes', 'MensajesController');
   Route::resource('notificaciones', 'NotificacionesController');
-
-  //Andres Peña
-  // Route::get('seguir/{id}/','SeguidosController@seguirInstructor')->name('seguirInstructor');
-  // Route::get('dejarDeguir/{id}','SeguidosController@dejarDeseguir')->name('DejarDeSeguirInstructor');
-
+  Route::resource('suscripciones', 'SeguidosController');
+  Route::resource('comentarios', 'ComentariosController');
+  Route::resource('denuncias', 'DenunciasController');
+  Route::resource('busquedas', 'BusquedasController');
+  Route::resource('calificaciones', 'CalificacionesController');
+  Route::resource('salas', 'SalasController');
 
 
 });
@@ -175,11 +177,6 @@ Route::resource('sedes','SedesController');
 
 	]); */
 
- });
-
-
- Route::get('probar', function(){
- 	return 'Hay algo malo?';
  });
 
 Auth::routes();

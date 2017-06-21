@@ -13,6 +13,8 @@ class Rol extends Model {
     protected $table = 'tb_roles';
     protected $fillable = ['id', 'descripcion'];
 
-
+    public function scopeSearch($query,$descripcion) {
+        return $query->where('descripcion','LIKE', "%$descripcion%");
+    }
 
 }

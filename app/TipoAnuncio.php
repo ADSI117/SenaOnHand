@@ -22,7 +22,7 @@ class TipoAnuncio extends Model {
         return $this->hasMany('App\TbAnuncio','tipo_id', 'id');
     }
 
-public function scopeSearch($query,$nombre) {
+    public function scopeSearch($query,$nombre) {
         return $query->where('nombre','LIKE', "%$nombre%");
     }
 }

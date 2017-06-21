@@ -17,8 +17,8 @@ class AddComentariosTable extends Migration
             $table->increments('id');
             $table->integer('publicacion_id')->unsigned();
             $table->integer('usuario_id')->unsigned();
-            $table->integer('estado_id')->unsigned();            
-            $table->string('comentario',255);
+            $table->integer('estado_id')->unsigned();
+            $table->text('comentario');
             $table->timestamps();
         });
     }
@@ -33,4 +33,3 @@ class AddComentariosTable extends Migration
         Schema::dropIfExists('tb_comentarios');
     }
 }
-

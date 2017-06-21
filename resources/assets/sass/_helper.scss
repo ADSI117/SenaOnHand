@@ -7,7 +7,6 @@
 .full-h {
   min-height: 100vh;
 }
-
 // Alineamientos
 .ta-left {
   text-align: left !important;
@@ -22,6 +21,9 @@
 .f-left {
   float: left;
 }
+.f-none {
+  float: none;
+}
 // Display
 .d-ib {
   display: inline-block;
@@ -33,13 +35,60 @@
 .upcase {
   text-transform: uppercase;
 }
-// colors
+// background colors
 .bg-green {
   background-color: rgb(119, 167, 119);
 }
-.bg-teal {
-  background-color: #009688;
+.bg-indigo {
+  background-color: $indigo !important;
 }
-.white {
-  background-color: #FFF;
+.bg-brown {
+  background-color: $brown !important;
+}
+.bg-cyan {
+  background-color: $cyan !important;
+}
+.bg-teal {
+  background-color: $teal !important;
+}
+.bg-pink {
+  background-color: $pink !important;
+}
+.bg-red {
+  background-color: $red !important;
+}
+// Color letras
+.black {
+  color: #333 !important;
+}
+// Colores de botones
+.btn-indigo {
+  transition: all .5s;
+  background-color: $indigo;
+  color: #fff;
+  box-shadow: 0px 3px 10px $btn-shadow;
+  &:hover {
+    // transform: translateY(-2px);
+    box-shadow: 0px 8px 20px $btn-shadow;
+  }
+}
+// Avisos color
+.alert-success {
+  background-color: $success !important;
+}
+.alert-warning {
+  background-color: $warning !important;
+  color: #333;
+}
+.alert-info {
+  background-color: $info !important;
+}
+.alert-danger {
+  background-color: $err !important;
+}
+.small {
+  font-size: .2em;
+}
+.relative {
+  position: relative;
 }

@@ -32,7 +32,8 @@ class MensajeEnviado extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'mail'];
+        return ['database'];
+        // return ['database', 'mail'];
     }
 
     /**
@@ -41,15 +42,15 @@ class MensajeEnviado extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->greeting($notifiable->nombres . ',')
-                    ->subject('Mensaje recibido desde SenaOnHand')
-                    ->line('Tienes un nuevo mensaje.')
-                    ->action('Ver mensaje', route('mensajes.show', $this->mensaje->id))
-                    ->line('Gracias por usar nuestra SenaOnHand!');
-    }
+    // public function toMail($notifiable)
+    // {
+    //     return (new MailMessage)
+    //                 ->greeting($notifiable->nombres . ',')
+    //                 ->subject('Mensaje recibido desde SenaOnHand')
+    //                 ->line('Tienes un nuevo mensaje.')
+    //                 ->action('Ver mensaje', route('mensajes.show', $this->mensaje->id))
+    //                 ->line('Gracias por usar nuestra SenaOnHand!');
+    // }
 
     /**
      * Get the array representation of the notification.

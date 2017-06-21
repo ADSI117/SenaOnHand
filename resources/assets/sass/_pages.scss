@@ -3,6 +3,7 @@
 }
 html, body {
   overflow-x: hidden;
+
 }
 .table {
   th, td {
@@ -16,6 +17,12 @@ html, body {
   position: fixed !important;
   bottom: 20px;
   right: 20px;
+  .top {
+    bottom: unset;
+    right: unset;
+    top: 20px;
+    left: 20px;
+  }
 }
 .hnav {
   position: fixed;
@@ -25,7 +32,7 @@ html, body {
 .tarjeta {
   display: inline-block;
   vertical-align: top;
-  width: 25%;
+  width: 100%;
   margin: 10px 10px;
   box-shadow: 0px 5px 25px #eee;
   .cabezera {
@@ -61,9 +68,13 @@ html, body {
     overflow:hidden;
   }
 }
+
 .collapse.navbar-collapse {
   justify-content: flex-end;
   .nav-ul {
+    & form {
+      margin: 0px;
+    }
     margin-right: auto;
   }
 }
@@ -81,7 +92,7 @@ html, body {
   margin-top: -20px;
   margin-bottom: 3em;
   color: white;
-  background-color: rgb(180, 76, 76);
+  background-color: rgb(0, 0, 0);
   position: relative;
   h1 {
     margin: 0px;
@@ -128,4 +139,288 @@ html, body {
   font-size: .8em;
   border-radius: 25px;
   background-color: #f1f1f1;
+}
+
+.notify {
+  position: relative;
+  &[data-badge]::before {
+    content:attr(data-badge);
+     position:absolute;
+     top: 2px;
+     right: 5px;
+     font-size:.7em;
+     background: $red;
+     color:white;
+     width:18px;
+     height:18px;
+     text-align:center;
+     line-height:18px;
+     border-radius:50%;
+     box-shadow:0 0 1px #333;
+     z-index: 2;
+  }
+}
+
+.photo-container {
+  padding: 50px;
+  img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.titulo {
+  margin-top: 50px;
+  padding-bottom: .8em;
+  font-size: 2.6em;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+// .form-group.material {
+//   padding-top: 16px;
+//   position: relative;
+//   label {
+//     font-size: .8em;
+//     font-weight:normal;
+//     position:absolute;
+//     pointer-events:none;
+//     top: 24px;
+//     transition:0.2s ease all;
+//     -moz-transition:0.2s ease all;
+//     -webkit-transition:0.2s ease all;
+//   }
+//   .form-control {
+//     font-size: .8em;
+//     padding: 8px 0px 8px 0px;
+//     transition: all .5s;
+//     border-radius: unset;
+//     border: unset;
+//     border-bottom: 2px solid $out;
+//     &:focus {
+//       border-bottom: 2px solid $indigo;
+//       & ~ label, &:valid ~ label {
+//         top: 0px;
+//         color: $indigo;
+//         font-size:.7em;
+//      }
+//     }
+//   }
+// }
+.material-input::-webkit-input-placeholder, .material-input::placeholder {
+  transition: all 0.3s ease-in-out;
+}
+.material-input {
+  width: 100%;
+  display: block;
+  border: none;
+  padding: 10px 0;
+  border-bottom: solid 1px $indigo;
+  transition: all 0.4s cubic-bezier(.64,.09,.08,1);
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 97%, $indigo 3%);
+  background-position: -100em 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: darken($indigo, 20%);
+  font-family: $confa;
+  &:focus, &:valid {
+    box-shadow: none;
+    outline: none;
+    background-position: 0 0;
+    &::-webkit-input-placeholder, &::placeholder {
+      color: $indigo;
+      font-size: 11px;
+      transform: translateY(-20px);
+      visibility: visible !important;
+    }
+  }
+}
+
+.material-btn {
+  border-radius: 2px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  min-height: 36px;
+  border: unset;
+  font-family: inherit;
+  font-weight: bold;
+}
+
+.material-link {
+  color: $blue;
+  &:hover, &:active, &:focus {
+    color: $blue;
+  }
+}
+
+div#ManejadorDeAvisos[role=alert] {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  & i.fa {
+    vertical-align: middle;
+    margin-right: 15px;
+  }
+  & strong {
+    font-weight: bold;
+  }
+}
+// hecho por pudgereyem, sacado de: https://codepen.io/pudgereyem/pen/PqBxQx?editors=1100
+
+
+
+/* ==========  Select Field ========== */
+/* Style Select Field */
+// .material-select {
+//   font-family: inherit;
+//   width: 100%;
+//   border: none !important;
+//   border-bottom: 1px solid $select-border-color;
+//   padding: 8px 16px;
+//   background-color: transparent;
+//   &:focus {
+//     outline: none;
+//   }
+//   option {
+//     padding: 8px 16px;
+//   }
+// }
+
+.material-btn-float {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  background: #eee;
+  box-shadow: 0px 3px 5px #999;
+  cursor: pointer;
+  &.flat-btn {
+    transition: all .5s;
+    background: #FFF;
+    box-shadow: unset;
+    &:hover {
+      background: #eee;
+      box-shadow: 0px 3px 5px #999;
+    }
+  }
+  &.top-left {
+    top: 20px;
+    left: 20px;
+  }
+  &:active, &:focus {
+    outline: none;
+  }
+}
+
+.material-card {
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  text-transform: capitalize;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin: 5px 10px;
+  transition: all .5s;
+  &:hover {
+    text-decoration: none;
+    box-shadow: 0 10px 18px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+  & .material-card-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 24px 16px;
+    width: 100%;
+    & img {
+      display: flex;
+      border-radius: 100%;
+      width: 75px;
+      height: 75px;
+      margin-right: 16px;
+    }
+    .content-header-title {
+      display: flex;
+      flex-direction: column;
+    }
+    .header--title {
+        margin: 0px;
+        display: flex;
+        font-size: 24px;
+    }
+    .header--subtitle {
+        display: flex;
+        font-size: 14px;
+    }
+    .header--date {
+        display: flex;
+        font-size: 14px;
+    }
+  }
+}
+
+.chatroom {
+  max-height: 55vh;
+  height: 55vh;
+  overflow-y: auto;
+  & .pop-chat {
+    padding-left: 30px;
+    padding-right: 10px;
+    margin: 5px 0px;
+    &.active {
+      padding-right: 30px;
+      padding-left: 10px;
+      & .bocadillo {
+        border-radius: 12px 0px 12px 12px;
+        background-color: $msg-active;
+        &::after {
+          border-left: 20px solid $msg-active;
+          border-top: 20px solid  $msg-active;
+          border-bottom: 15px solid transparent;
+          border-right: 15px solid transparent;
+          left: unset;
+          right: -20px;
+          top: 0px;
+          // border-right: 15px solid transparent;
+          // border-top: 15px solid transparent;
+          // border-left: 15px solid #000;
+          // border-bottom: 15px solid #000;
+        }
+      }
+    }
+    & .bocadillo {
+      position: relative;
+      padding: 10px;
+      width: inherit;
+      border-radius: 0px 12px 12px 12px;
+      background-color: $msg-normal;
+      font-family: "trebuchet ms", tahoma, verdana, sans­serif;
+      font-size: 1.4em;
+      &::after {
+        content:"";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-top: 20px solid  $msg-normal;
+        border-bottom: 15px solid transparent;
+        left: -20px;
+        top: 0px;
+      }
+      p {
+        padding: 0px 20px 0px 30px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: .8em;
+      }
+      small {
+        padding: 0px 20px 0px 30px;
+        font-size: .6em;
+        display: block;
+        text-align: right;
+      }
+    }
+  }
 }

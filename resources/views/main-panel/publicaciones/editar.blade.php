@@ -4,6 +4,14 @@
 
 @section('main')
 
+  <div class="page-banner" style="background-color:#2196F3;">
+    <div class="container">
+      <h1>
+        {{ $publicacion->titulo }}
+      </h1>
+    </div>
+  </div>
+
   <div class="container">
     <div class="row justify-content-center">
 
@@ -75,7 +83,7 @@
             @foreach($publicacion->imagenes as $imagen)
 
               {!! Form::open(['method' => 'DELETE', 'route' => ['imagenes.destroy', $imagen->id]]) !!}
-                <img src="{{url('/')}}/imagenes/publicaciones/{{$imagen->descripcion}}" alt="" width="150" height="150">
+                <img src="{{Storage::url($imagen->descripcion)}}" alt="" width="150" height="150">
                 {!!Form::button('Borrar', ['class' => 'btn btn-warning', 'type' => 'submit'])!!}
               {!! Form::close() !!}
 
@@ -93,7 +101,8 @@
 
               {!! Form::open(['method' => 'DELETE', 'route' => ['archivos.destroy', $archivo->id]]) !!}
               <!-- TODO: como mostrar los archivos -->
-              {{$archivo->descripcion}}
+
+                <a href="{{ Storage::url($archivo->descripcion) }}">{{$archivo->descripcion}}</a>
                 <!-- <img src="/imagenes/publicaciones/{{$imagen->descripcion}}" alt="" width="150" height="150"> -->
                 {!!Form::button('Borrar', ['class' => 'btn btn-warning', 'type' => 'submit'])!!}
               {!! Form::close() !!}

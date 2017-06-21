@@ -10,14 +10,17 @@
       </h1>
       <div class="d-flex">
         <img  class="mr-3"
-              src="{{url('/')}}/imagenes/perfiles/{{$publicacion->user->url_foto}}"
+              src="{{Storage::url($publicacion->user->url_foto)}}"
               alt="foto de perfil"
               width="50" height="50"/>
         <span class="d-flex align-items-center">
           Autor:
           <a href="{{route('instructores.show', [$publicacion->user_id])}}" class="link-autor">
             {{$publicacion->user->nombres}} {{$publicacion->user->apellidos}}
+
           </a>
+            Publicaciones: {{$publicacion->user->publicaciones->count()}}
+            Puntaje: {{round($promedio, 2)}}
         </span>
       </div>
     </div>
@@ -30,29 +33,39 @@
     @endif
   </div>
   <div class="container mb-5">
+    <div class="row">
+      <!-- Mensaje flash -->
+      @include('flash::message')
+    </div>
 
     <div class="row">
 
       <div class="col-6 justify-content-start">
         Fecha creado: {{ date('Y-m-d', strtotime($publicacion->created_at)) }}
         <br />
+        Puntaje promedio: {{$publicacion->puntaje}}
+        <br>
+        Número de vistas: {{$publicacion->num_visitas}}
+        <br>
         {{-- Fecha actualizado: {{ date('Y-m-d', strtotime($publicacion->created_at)) }} --}}
       </div>
       <div class="col-6 justify-content-end">
-        <form id="form">
+        {!!Form::open(['route' => 'calificaciones.store', 'id' => 'form'])!!}
+          {!!Form::hidden('publicacion_id', $publicacion->id)!!}
           <p class="clasificacion">
-            <input id="radio1" type="radio" name="estrellas" value="5"><!--
-            --><label for="radio1">★</label><!--
-            --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-            --><label for="radio2">★</label><!--
-            --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-            --><label for="radio3">★</label><!--
-            --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-            --><label for="radio4">★</label><!--
-            --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-            --><label for="radio5">★</label>
+            {!!Form::submit('Calificar', ['class' => 'material-btn'])!!}
+            <input id="radio1" type="radio" name="estrellas" value="5">
+            <label for="radio1">★</label>
+            <input id="radio2" type="radio" name="estrellas" value="4">
+            <label for="radio2">★</label>
+            <input id="radio3" type="radio" name="estrellas" value="3">
+            <label for="radio3">★</label>
+            <input id="radio4" type="radio" name="estrellas" value="2">
+            <label for="radio4">★</label>
+            <input id="radio5" type="radio" name="estrellas" value="1">
+            <label for="radio5">★</label>
           </p>
-        </form>
+        {!!Form::close()!!}
       </div>
 
       <div class="w-100"></div>
@@ -62,10 +75,10 @@
         <p class="lead pt-2">
           {{$publicacion->contenido}}
         </p>
-        @if($imagenes)
+        @if($publicacion->imagenes)
           <h3>Imagenes</h3>
-          @foreach($imagenes as $imagen)
-            <img src="{{url('/')}}/imagenes/publicaciones/{{$imagen->descripcion}}" alt="" width="150" height="150">
+          @foreach($publicacion->imagenes as $imagen)
+            <img src="{{ Storage::url($imagen->descripcion) }}" alt="" width="150" height="150">
           @endforeach
         @endif
         <div>
@@ -74,7 +87,8 @@
             @foreach($publicacion->archivos as $archivo)
 
               <!-- TODO: como mostrar los archivos -->
-              {{$archivo->descripcion}}
+              <!-- {{$archivo->descripcion}} -->
+              <a href="{{ Storage::url($archivo->descripcion) }}" target="_blank">{{$archivo->descripcion}}</a>
 
             @endforeach
           @endif
@@ -112,5 +126,59 @@
       </div>
 
     </div>
+
+</div>
+
+<hr>
+
+<div class="container">
+  <div>
+    @include('flash::message')
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Comentarios</h3>
+      <!-- Formulario para comentarios. -->
+      {!!Form::open(['route'=>'comentarios.store', 'method' => 'POST'])!!}
+        <div class="form-group">
+          {!!Form::hidden('publicacion_id', $publicacion->id)!!}
+          {!!Form::textarea('comentario', null, ['plcaholder'=>'Ingresa tu comentario', 'class'=>'form-control'])!!}
+        </div>
+        <div class="form-group">
+          {!!Form::submit('Enviar', ['class'=>'btn btn-primary'])!!}
+        </div>
+      {!!Form::close()!!}
+    </div>
+  </div>
+</div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Listado</h3>
+      @foreach($publicacion->comentarios as $comentario)
+        <span>{{$comentario->comentario}}</span>
+        <small>Publicado por: {{$comentario->user->nombres}}</small>
+        {!!Form::open(['route'=>'denuncias.store', 'method' => 'POST'])!!}
+        {!!Form::hidden('comentario_id', $comentario->id)!!}
+        {!!Form::hidden('publicacion_id', $publicacion->id)!!}
+        <!-- TODO: Hacer el siguiente campo visible cuando se termine el frontend -->
+        {!!Form::text('comentario', 'Comentario', ['class' => 'form-control'])!!}
+        {!!Form::select('tipo_denuncia', $tipos_denuncias, $comentario->tipo_id, ['class'=>'form-control'])!!}
+
+        <br>
+        {!!Form::submit('Denunciar', ['class'=>'btn btn-primary'])!!}
+        {!!Form::close()!!}
+
+        <!-- Formulario de eliminacion -->
+        @if(Auth::user()->id == $comentario->usuario_id || Auth::user()->id == $publicacion->usuario_id || Auth::user()->rol_id == 3)
+          {!!Form::open(['route' => ['comentarios.destroy', $comentario->id], 'method' => 'DELETE'])!!}
+          {!!Form::submit('Eliminar', ['class'=>'btn btn-primary'])!!}
+          {!!Form::close()!!}
+        @endif
+      @endforeach
+    </div>
+  </div>
+  <br><br><br>
 </div>
 @endsection

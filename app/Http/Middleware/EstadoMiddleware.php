@@ -18,10 +18,13 @@ class EstadoMiddleware
     {
       if (Auth::user()->getEstado() == 1){
         Auth::logout();
-        return redirect('/info-mensaje');
+        flash('Por favor revisa tu correo para activar la cuenta')->warning()->important();
+        return back();
+
       }else if (Auth::user()->getEstado() == 3){
         Auth::logout();
-        return redirect ('info-suspendido');
+        flash('¡Su cuenta se encuentra suspendida!')->warning()->important();
+        return back();
       }
       return $next($request);
 

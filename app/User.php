@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Response;
+use Mail;
+use DB;
 
 class User extends Authenticatable
 {
@@ -22,6 +25,45 @@ class User extends Authenticatable
          'profesion','url_foto'
     ];
 
+    public function enviarEmailActivacion($datos){
+
+      Mail::send('emails.nuevo-usuario', ['datos' => $datos], function ($msj) use ($datos)
+      {
+        $msj->subject('Activa tu cuenta de SenaOnHand');
+        $msj->from('contacto1.diego@gmail.com', 'SenaOnHand');
+        $msj->to($datos['email']);
+      });
+    }
+
+    public static function getSumPuntajePublicaciones($user_id){
+      return DB::table('tb_publicaciones')
+                        ->where('user_id', '=', $user_id)
+                        ->sum('puntaje');
+    }
+
+    public static function getNumPublicacionesCalificadas($user_id){
+
+      return  DB::table('tb_publicaciones')
+                        ->where('user_id', '=', $user_id)
+                        ->where('cant_cal', '>', 0)
+                        ->count();
+
+    }
+
+    // public static function getNumCalificaciones($user_id){
+    //
+    //   return  DB::table('tb_publicaciones')
+    //                     ->where('user_id', '=', $user_id)
+    //                     ->where('cant_cal', '>', 0)
+    //                     ->count();
+    //
+    // }
+    public static function getNumVisitas($user_id){
+      return  DB::table('tb_publicaciones')
+                        ->where('user_id', '=', $user_id)
+                        ->sum('num_visitas');
+    }
+
     public function getRol(){
       return $this->rol_id;
     }
@@ -32,6 +74,10 @@ class User extends Authenticatable
 
     public function publicaciones() {
         return $this->hasMany('App\Publicacion');
+    }
+
+    public function comentarios() {
+        return $this->hasMany('App\Comentario');
     }
 
     public function rol() {

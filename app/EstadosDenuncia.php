@@ -16,6 +16,8 @@ class EstadoDenuncia extends Model {
     public function Denuncias() {
         return $this->hasMany('App\Denuncia','estado_id', 'id');
     }
-
+    public function scopeSearch($query,$descripcion) {
+        return $query->where('descripcion','LIKE', "%$descripcion%");
+    }
 
 }

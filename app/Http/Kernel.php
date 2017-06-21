@@ -55,5 +55,6 @@ class Kernel extends HttpKernel
         'roles' => \App\Http\Middleware\RolesMiddleware::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'estado' => \App\Http\Middleware\EstadoMiddleware::class,
+        'dominio' => \App\Http\Middleware\DominioMiddleware::class,
     ];
 }
