@@ -10,6 +10,7 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4",
+        "predis/predis": "^1.1",
         "pusher/pusher-php-server": "^2.6"
     },
     "require-dev": {

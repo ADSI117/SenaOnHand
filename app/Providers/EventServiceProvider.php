@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\PostCreated' => [
             'App\Listeners\NotifyUsersAboutNewPost',
         ],
+        'App\Events\MessageWasReceived' => [
+            'App\Listeners\MessageWasReceivedListener',
+        ],
     ];
 
     /**

@@ -10,7 +10,7 @@ window._ = require('lodash');
 //window.$ = window.jQuery = require('jquery');
 //require('bootstrap-sass');
 
-/**
+/** 
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
  * and simple, leaving you to focus on building your next great project.
@@ -25,11 +25,15 @@ require('vue-resource');
  * included with Laravel will automatically verify the header's value.
  */
 
-Vue.http.interceptors.push((request, next) => {
-    request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
+// Vue.http.interceptors.push((request, next) => {
+//     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
 
-    next();
-});
+//     next();
+// });
+
+
+window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -38,10 +42,11 @@ Vue.http.interceptors.push((request, next) => {
  */
 
 import Echo from "laravel-echo"
+import io from "socket.io-client"
+
+window.io = io
 
 window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: '637fb005c217f2f1ea68',
-    cluster: "mt1",
-    encrypted: true
+    broadcaster: 'socket.io',
+    host: 'http://127.0.0.1:8000',
 });
