@@ -1,9 +1,9 @@
 @extends('template.layout')
 
-@include('template.h-navbar')
 
 @section('main')
-  <div class="container">
+@include('template.h-navbar')
+  <div class="container" style="height: 80vh">
     <div class="row justify-content-center">
       <div class="col-xs-10 col-md-6 col-lg-4">
         {!!Form::open(['route'=>'mensajes.store', 'method'=>'POST'])!!}

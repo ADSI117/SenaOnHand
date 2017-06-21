@@ -25,14 +25,15 @@ require('vue-resource');
  * included with Laravel will automatically verify the header's value.
  */
 
-// Vue.http.interceptors.push((request, next) => {
-//     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
+Vue.http.interceptors.push((request, next) => {
+    request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
 
-//     next();
-// });
+    next();
+});
 
+window.axios = require('axios');
 
-window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
+window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.getElementsByTagName('META')[4].content;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
@@ -41,12 +42,12 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from "laravel-echo"
-import io from "socket.io-client"
+// import Echo from "laravel-echo"
+// import io from "socket.io-client"
 
-window.io = io
+// window.io = io
 
-window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    host: 'http://127.0.0.1:8000',
-});
+// window.Echo = new Echo({
+//     broadcaster: 'socket.io',
+//     host: 'http://127.0.0.1:8000',
+// });

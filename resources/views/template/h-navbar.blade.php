@@ -54,7 +54,16 @@
               </a>
             </li>
             {{-- notificaciones :enlace="{{ route('notificaciones.index') }}" --}}
-            <notification enlace="{{ route('notificaciones.index') }}" :userid="{{Auth::user()->id}}"></notification>
+            {{-- <notification :unread="{{ Auth::user()->unreadNotifications->count() }}" enlace="{{ route('notificaciones.index') }}" :userid="{{Auth::user()->id}}"></notification> --}}
+              <li class="nav-item">
+                @if (Auth::user()->unreadNotifications->count() > 0)
+                <a class="nav-link notify active" id="notificaciones" href="{{ route('notificaciones.index') }}" data-badge="{{ Auth::user()->unreadNotifications->count() }}">
+                @else
+                <a class="nav-link notify" id="notificaciones" href="{{ route('notificaciones.index') }}" data-badge="{{ Auth::user()->unreadNotifications->count() }}">
+                @endif   
+                    <i class="fa fa-bell"></i>
+                </a>
+              </li>
               <li class="nav-item">
                 @if(Auth::user()->url_foto)
                   <img src="{{Storage::url(Auth::user()->url_foto)}}" alt="" class="rounded img-fluid hidden-md-down white" width="45">
@@ -92,10 +101,5 @@
             </div>
         </div>
 
-<<<<<<< HEAD
-    </div>
-</nav>
-=======
 
     </nav>
->>>>>>> 5328c2660c52d9acce5f0b1afdbc86b87ed234c6

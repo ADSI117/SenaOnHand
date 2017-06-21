@@ -1,6 +1,6 @@
 <template>
     <li class="nav-item">
-        <a :class="toggleBadges" id="notificaciones" :href="enlace" :data-badge="notificaciones.length">
+        <a :class="toggleBadges" id="notificaciones" :href="enlace" :data-badge="notificaciones">
             <i class="fa fa-bell"></i>
         </a>
         <!--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -15,21 +15,22 @@
 
 <script>
     export default {
-        props: ['enlace', 'userid'],
-        data() { 
-            return {
-                'notificaciones': []
-            } 
-        },
-        mounted() {
-            axios.get('/main-panel/notificaciones').then(res => {
-                this.notificaciones = res.data;
-            })
-            Echo.private("App.User." + this.userid)
-            .notification((notification) => {
-                console.log(notification);
-            });
-        },
+        props: ['enlace', 'userid', 'unread'],
+        // data() { 
+        //     return {
+
+                // 'notificaciones': []
+        //     } 
+        // },
+        // mounted() {
+        //     axios.get('/main-panel/notificaciones').then(res => {
+        //         this.notificaciones = res.data;
+        //     })
+        //     Echo.private("App.User." + this.userid)
+        //     .notification((notification) => {
+        //         console.log(notification);
+        //     });
+        // },
         methods: {
             // markAsRead(notificacion) {
             //     axios.patch('/main-panel/notificaciones/' + notificacion.id)
@@ -43,10 +44,11 @@
             //         this.markAsRead(notificacion);
             //     });
             // }
+
         }, 
         computed: {
             toggleBadges() {
-                return ['nav-link notify', this.notificaciones.length > 0 ? 'active' : '']
+                return ['nav-link notify', this.unread != '0' ? 'active' : '']
             }
         }
 

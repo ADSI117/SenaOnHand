@@ -18,7 +18,7 @@
 
 </head>
 <body>
-	<div id="app">
+	<div id="wrapper">
 		@yield('main')
 
 		@yield('modal-control')
@@ -29,11 +29,6 @@
 	<script src="{{asset('plugins/NowKit/js/now-ui-kit.js')}}"></script>
 	<script src="{{asset('plugins/NowKit/js/core/tether.min.js')}}"></script>
 	<script src="{{asset('plugins/NowKit/js/core/bootstrap.min.js')}}"></script>
-	<script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
-    </script>
 	<script src="{{asset('js/app.js')}}"></script>
 	<script src="{{asset('js/componentes/AlertasEmergentes.js')}}"></script>
 	<script src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}"></script>

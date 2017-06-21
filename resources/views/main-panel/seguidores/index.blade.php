@@ -1,8 +1,8 @@
 @extends('template.layout')
 
-@include('template.h-navbar')
 
 @section('main')
+@include('template.h-navbar')
 
   <h1>Mis seguidores</h1>
   <h3>Tienes {{$seguidores->count()}} seguidores</h3>
