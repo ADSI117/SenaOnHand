@@ -15,9 +15,9 @@
 	{{-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> --}}
 	<link rel="stylesheet"  href="{{asset('plugins/animate/animate.css')}}">
 	<link rel="stylesheet" href="{{ asset('css/generales.css') }}" />
-
+	<link rel="stylesheet" href="{{ asset('css/componentes.css') }}" />
 </head>
-<body>
+<body >
 	<div id="wrapper">
 		@yield('main')
 
@@ -37,6 +37,14 @@
 			disable_search_threshold: 10,
 			no_results_text: "No hay resultados!",
 			placeholder_text_single: "Seleccione una opcion"
+		});
+		$('#modal-control').on('shown.bs.modal', function (e) {
+			// do something...
+			$('body').css('padding-right', '0px');
+		});
+		$('#NewMessage').on('shown.bs.modal', function (e) {
+			// do something...
+			$('body').css('padding-right', '0px');
 		});
 	</script>
   @yield('js')

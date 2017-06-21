@@ -14,40 +14,53 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    {{-- <div class="col"> --}}
-
-      @foreach($publicaciones as $publicacion)
-      <div class="col-xs-12 col-sm-10 col-md-6 col-lg-4">
-        <div class="tarjeta">
-          <h4 class="cabezera">
-            <a href="{{route('publicaciones.show', [$publicacion->id])}}">{{$publicacion->titulo}}</a>
-            <small class="text-muted">
-              <a href="{{route('instructores.show', [$publicacion->user_id])}}">
-                {{$publicacion->nombres}} {{$publicacion->apellidos}}
-              </a>
-            </small>
-
-            <div class="imagen">
-              <img src="{{Storage::url($publicacion->url_foto)}}" class="rounded-circle" width="60" height="60">
-            </div>
-          </h4>
-
-
-          <div class="contenido">
-            <p>{{substr($publicacion->contenido, 0, 140)}} ... </p>
+    @foreach($publicaciones as $publicacion)
+    <div class="col-xs-12 col-sm-10 col-md-6 col-lg-4">
+      <div class="mdcard radius shadowDepth1">
+          <div class="mdcard__image border-tlr-radius">
+              <img src="http://lorempixel.com/400/200/sports/" alt="image" class="border-tlr-radius">
           </div>
 
-        </div>
-      </div>
-      @endforeach
+          <div class="mdcard__content mdcard__padding">
+              <div class="mdcard__share">
+                  <div class="mdcard__social">  
+                      <a class="share-icon facebook" href="#"><span class="fa fa-facebook"></span></a>
+                      <a class="share-icon twitter" href="#"><span class="fa fa-twitter"></span></a>
+                      <a class="share-icon googleplus" href="#"><span class="fa fa-google-plus"></span></a>
+                  </div>
 
-    </div>
-    <div class="row mt-3">
-      <div class="col">
-        <div class="text-center">{{ $publicaciones->links('vendor.pagination.custom') }}</div>
+                  <a id="share" class="share-toggle share-icon" href="#"></a>
+              </div>
+
+              <div class="mdcard__meta">
+                  <a href="#">Web Design(cat)</a>
+                  <time>{{$publicacion->created_at}}</time>
+              </div>
+
+              <article class="mdcard__article">
+                  <h4><a href="{{route('publicaciones.show', [$publicacion->id])}}">{{$publicacion->titulo}}</a></h4>
+
+                  <p>{{substr($publicacion->contenido, 0, 140)}} ...</p>
+              </article>
+          </div>
+
+          <div class="mdcard__action">
+              
+              <div class="mdcard__author">
+                  <img src="{{Storage::url($publicacion->url_foto)}}" alt="author">
+                  <div class="mdcard__author-content">
+                      Por <a href="{{route('instructores.show', [$publicacion->user_id])}}">{{$publicacion->nombres}} {{$publicacion->apellidos}}</a>
+                  </div>
+              </div>
+          </div>
       </div>
     </div>
-
+    @endforeach
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <div class="text-center">{{ $publicaciones->links('vendor.pagination.custom') }}</div>
+    </div>
   </div>
 </div>
 

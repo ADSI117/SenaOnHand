@@ -1,6 +1,8 @@
 @extends('template.layout')
 
 @section('main')
+
+	 @include('template.h-navbar')
 	<div class="container">
 		<div class="row">
 			<div class="col">

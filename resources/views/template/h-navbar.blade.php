@@ -52,7 +52,13 @@
     	    <ul class="navbar-nav no-mt">
             @if (!Auth::guest())
             <li class="nav-item">
-              <a class="nav-link" href="{{route('mensajes.create')}}">
+              <a class="nav-link"  href="{{route('salas.index')}}" >
+                <i class="fa fa-comments-o"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              {{-- {{route('mensajes.create')}} --}}
+              <a class="nav-link" data-toggle="modal" data-target="#NewMessage" href="#">
                 Nuevo mensaje
               </a>
             </li>
@@ -86,7 +92,7 @@
                     <img src="{{Storage::url('soh_profile_default.png') }}" alt="" class="rounded-0 hidden-md-down white">
                   @endif
                   <a class="dropdown-header">Configuración</a>
-                  <a class="dropdown-item"  href="{{route('salas.index')}}" >Chats</a>
+                  
                   <a class="dropdown-item"  href="{{route('seguidores.index')}}" >Seguidores</a>
                   <a class="dropdown-item"  href="{{route('usuarios.edit', Auth::user()->id)}}" >Editar perfil</a>
                   <a class="dropdown-item"  href="{{route('suscripciones.index')}}" >Mis suscripciones</a>
@@ -106,3 +112,44 @@
 
 
     </nav>
+
+
+    {{-- <div class="modal fade" id="NewMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-info btn-simple">Save</button>
+          </div>
+        </div>
+      </div>
+    </div> --}}
+
+
+<!-- Modal -->
+<div class="modal fade" id="NewMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
