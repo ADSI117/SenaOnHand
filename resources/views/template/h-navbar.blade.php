@@ -1,7 +1,7 @@
 
 
   @if (Auth::user()->rol_id == 3)
-    <nav class="navbar navbar-toggleable-md bg-info m-0 p-0">
+    <nav class="navbar navbar-toggleable-md bg-info p-0">
   @else
     <nav class="navbar navbar-toggleable-md bg-teal p-0">
   @endif
