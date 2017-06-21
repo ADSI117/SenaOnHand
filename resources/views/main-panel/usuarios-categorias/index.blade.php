@@ -7,12 +7,21 @@
 <div class="page-banner bg-indigo">
   <div class="container">
     <h1>
-      Sigue más categorias
+      Sigue más categorías
     </h1>
   </div>
 </div>
 
 <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      @include('flash::message')
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
 
   <div class="row">
     @foreach($categorias as $categoria)
@@ -33,11 +42,7 @@
     @endforeach
 
   </div>
-  <div class="row mt-3">
-    <div class="col">
-      <div class="text-center">{{ $categorias->links('vendor.pagination.custom') }}</div>
-    </div>
-  </div>
+  
   <!-- <div class="row">
     <a href="{{route('main-panel')}}" class=" btn btn-danger btn-block">Saltar este paso</a>
   </div> -->

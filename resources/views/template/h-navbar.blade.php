@@ -44,6 +44,9 @@
               <li class="nav-item">
                 <a class="nav-link"  href="{{route('categoria-usuario.index')}}" >Explorar</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link"  href="{{route('inst-destacados.index')}}" >Destacados</a>
+              </li>
           </ul>
 
     	    <ul class="navbar-nav no-mt">

@@ -51,6 +51,7 @@ class BusquedasController extends Controller
                                 ->select('u.*')
                                 ->where('u.email', 'like', "%$query%")
                                 ->orWhere('u.nombres', 'like', "%$query%")
+                                ->orWhere('u.perfil', 'like', "%$query%")
                                 ->get();
 
                                 // dd($instructores);
