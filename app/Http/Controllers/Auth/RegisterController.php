@@ -70,6 +70,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
       // echo "Creador";
+      $usuario = explode("@", $data['email'])[0];
       $dominio = explode("@", $data['email'])[1];
       $rol = 0;
       switch (strtolower($dominio)) {
@@ -86,6 +87,7 @@ class RegisterController extends Controller
       if ($rol != 0) {
 
         // Se debe construir primero y despues pasar el parametro
+        $data['nombres'] = $usuario;
         $data['rol_id'] = $rol;
         $data['estado_id'] = 1;
         $data['url_foto'] = 'soh_profile_default.png';
