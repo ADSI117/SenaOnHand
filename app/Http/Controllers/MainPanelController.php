@@ -23,7 +23,7 @@ class MainPanelController extends Controller
         $this->middleware('auth');
         $this->middleware('estado');
 
-        $this->middleware('admin');
+        
     }
 
     /**
