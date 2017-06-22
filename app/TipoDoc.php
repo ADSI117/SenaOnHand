@@ -17,4 +17,8 @@ class TipoDoc extends Model {
         return $query->where('nombre','LIKE', "%$nombre%");
     }
 
+    public function usuarios() {
+        return $this->hasMany('App\User');
+    }
+
 }

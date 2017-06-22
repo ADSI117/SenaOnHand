@@ -58,7 +58,7 @@
             </li>
             <li class="nav-item">
               {{-- {{route('mensajes.create')}} --}}
-              <a class="nav-link" data-toggle="modal" data-target="#NewMessage" href="#">
+              <a class="nav-link" data-toggle="modal" data-target="#NewMessage" href="{{route('mensajes.create')}}">
                 Nuevo mensaje
               </a>
             </li>
@@ -69,7 +69,7 @@
                 <a class="nav-link notify active" id="notificaciones" href="{{ route('notificaciones.index') }}" data-badge="{{ Auth::user()->unreadNotifications->count() }}">
                 @else
                 <a class="nav-link notify" id="notificaciones" href="{{ route('notificaciones.index') }}" data-badge="{{ Auth::user()->unreadNotifications->count() }}">
-                @endif   
+                @endif
                     <i class="fa fa-bell"></i>
                 </a>
               </li>
@@ -93,6 +93,7 @@
                   @endif
                   <a class="dropdown-header">Configuración</a>
                   
+
                   <a class="dropdown-item"  href="{{route('seguidores.index')}}" >Seguidores</a>
                   <a class="dropdown-item"  href="{{route('usuarios.edit', Auth::user()->id)}}" >Editar perfil</a>
                   <a class="dropdown-item"  href="{{route('suscripciones.index')}}" >Mis suscripciones</a>
@@ -131,25 +132,3 @@
         </div>
       </div>
     </div> --}}
-
-
-<!-- Modal -->
-<div class="modal fade" id="NewMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>

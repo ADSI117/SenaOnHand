@@ -51,6 +51,7 @@ Route::group(['prefix'=>'main-panel'], function (){
   Route::resource('salas', 'SalasController');
   Route::resource('seguidores', 'SeguidoresController');
   Route::resource('inst-destacados', 'InstructoresDestacadosController');
+  Route::resource('admin-usuarios', 'AdminUsuariosController');
 
 
 });

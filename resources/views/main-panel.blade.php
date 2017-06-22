@@ -33,7 +33,11 @@
               </div>
 
               <div class="mdcard__meta">
+<<<<<<< HEAD
                   <a href="#">{{$publicacion->cat_nombre}}</a>
+=======
+                  <a href="#">Web Design(cat)</a>
+>>>>>>> DiegoSuarez
                   <time>{{$publicacion->created_at}}</time>
               </div>
 
@@ -45,9 +49,15 @@
           </div>
 
           <div class="mdcard__action">
+<<<<<<< HEAD
               
               <div class="mdcard__author">
                   <img src="{{Storage::url($publicacion->url_foto)}}" alt="author" width="50" height="50">
+=======
+
+              <div class="mdcard__author">
+                  <img src="{{Storage::url($publicacion->url_foto)}}" alt="author">
+>>>>>>> DiegoSuarez
                   <div class="mdcard__author-content">
                       Por <a href="{{route('instructores.show', [$publicacion->user_id])}}">{{$publicacion->nombres}} {{$publicacion->apellidos}}</a>
                   </div>

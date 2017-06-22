@@ -10,6 +10,7 @@ use Auth;
 use App\User;
 use DB;
 use App\Categoria;
+use Illuminate\Support\Facades\Cache;
 
 class MainPanelController extends Controller
 {
@@ -23,7 +24,7 @@ class MainPanelController extends Controller
         $this->middleware('auth');
         $this->middleware('estado');
 
-        
+
     }
 
     /**
@@ -64,12 +65,17 @@ class MainPanelController extends Controller
                             ->orderBy('p.updated_at', 'desc')
                             ->paginate(12);
 
+
           $categorias = Categoria::all();
 
+
+          $todos_usuarios = Cache::remember('users',20, function () {
+            return $usuarios = User::all();
+          });
                             // dd($publicaciones);
       // dd($publicaciones);
 
 
-        return view('main-panel', compact('publicaciones', 'usuario', 'categorias'));
+        return view('main-panel', compact('publicaciones', 'usuario', 'categorias', 'todos_usuarios'));
     }
 }

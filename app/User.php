@@ -25,6 +25,13 @@ class User extends Authenticatable
          'profesion','url_foto'
     ];
 
+    public function scopeSearch($query,$filtro) {
+        return $query->where('nombres','LIKE', "%$filtro%")
+                    ->orWhere('apellidos','LIKE', "%$filtro%")
+                    ->orWhere('email','LIKE', "%$filtro%")
+                    ->orWhere('num_doc','LIKE', "%$filtro%");
+    }
+
     public function enviarEmailActivacion($datos){
 
       Mail::send('emails.nuevo-usuario', ['datos' => $datos], function ($msj) use ($datos)
@@ -86,15 +93,18 @@ class User extends Authenticatable
     public function estado_usuario() {
         return $this->belongsTo('App\EstadoUsuario','estado_id', 'id');
     }
+
+    public function tipo_doc() {
+        return $this->belongsTo('App\TipoDoc','tipo_doc_id', 'id');
+    }
+
     public function grupo() {
         return $this->belongsTo('App\Grupo','grupo_id', 'id');
     }
     public function sede() {
         return $this->belongsTo('App\Sede','sede_id', 'id');
     }
-    public function tipo_doc() {
-        return $this->belongsTo('App\TipoDoc','tipo_doc_id', 'id');
-    }
+
 
 
     public function categorias() {

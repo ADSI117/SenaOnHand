@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('grupo_id')->unsigned()->nullable();
             $table->integer('sede_id')->unsigned()->nullable();
             $table->integer('tipo_doc_id')->unsigned()->nullable();
-            $table->string('num_doc',15)->nullable();
+            $table->string('num_doc',15)->nullable()->unique();
             $table->string('nombres',45)->nullable();
             $table->string('apellidos',45)->nullable();
             $table->date('fecha_nac')->nullable();

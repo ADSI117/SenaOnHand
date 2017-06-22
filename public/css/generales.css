@@ -518,7 +518,7 @@ div#ManejadorDeAvisos[role=alert] {
       width: inherit;
       border-radius: 0px 12px 12px 12px;
       background-color: #dde2d8;
-      font-family: "trebuchet ms", tahoma, verdana, sans┬¡serif;
+      font-family: "trebuchet ms", tahoma, verdana, sans­serif;
       font-size: 1.4em; }
       .chatroom .pop-chat .bocadillo::after {
         content: "";
