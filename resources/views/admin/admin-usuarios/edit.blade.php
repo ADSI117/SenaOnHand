@@ -8,12 +8,16 @@
 @section('content')
 
 	{!!Form::open(['route'=>['admin-usuarios.update',$usuario],'method'=>'PUT'])!!}
+			<div class="header header-primary text-center">
+				{{\Session::get('alerta')}}
+			</div>
 		  <div class="header header-primary text-center">
         <h4 class="title title-up" >Editar Usuario</h4>
       </div>
 
 
       <div class="form-group form-group-no-border">
+				  <!-- {!!Form::hidden('id', $usuario->id)!!} -->
           {!!Form::text('nombres', $usuario->nombres, ['id' => 'nombres', 'placeholder' => 'Nombres', 'required', 'class' => 'form-control'])!!}
       </div>
 

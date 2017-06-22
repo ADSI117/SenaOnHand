@@ -21,10 +21,20 @@
 
           <div class="form-group">
               <input id="email" type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Correo electrónico" class="material-input" name="email" value="{{ old('email') }}" required>
+              @if ($errors->has('email'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('email') }}</strong>
+                  </span>
+              @endif
           </div>
 
           <div class="form-group">
               <input id="password" placeholder="Clave" type="password" class="material-input" name="password" required>
+              @if ($errors->has('password'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('password') }}</strong>
+                  </span>
+              @endif
           </div>
 
           <div class="text-center mt-4">

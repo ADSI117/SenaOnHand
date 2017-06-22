@@ -12,6 +12,7 @@ use Auth;
 use App\Categoria;
 use Storage;
 use App\EstadoUsuario;
+use Session;
 
 class AdminUsuariosController extends Controller
 {
@@ -81,7 +82,7 @@ class AdminUsuariosController extends Controller
   */
   public function edit($id)
   {
-
+    \Session::put('alerta', '');
     $usuario = User::find($id);
     $usuario->tipo_doc_id;
     $tipos_docs = TipoDoc::orderBy('nombre','ASC')->pluck('nombre', 'id');
@@ -100,17 +101,24 @@ class AdminUsuariosController extends Controller
   */
   public function update(Request $request, $id)
   {
-    $usuario = Sede::find($id);
-    $usuario->tipo_doc_id = $request->tipo_doc_id;
-    $usuario->estado_id = $request->estado_id;
+    // dd($id);
+    $usuario = User::find($id);
     $usuario->nombres = $request->nombres;
     $usuario->apellidos = $request->apellidos;
+    $usuario->estado_id = $request->estado_id;
+    $usuario->tipo_doc_id = $request->tipo_doc_id;
+    $usuario->num_doc = $request->num_doc;
     $usuario->email = $request->email;
-
-    if ($sede->save()){
-      return '{ "estado": 1, "mensaje": "Registro actualizado"}';
+    // dd($usuario);
+    if ($usuario->save()){
+      \Session::put('alerta', 'Registro actualizado');
+      // dd(\Session::get('alerta'));
+      return back();
+      // return '{ "estado": 1, "mensaje": "Registro actualizado"}';
     } else {
-      return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
+      \Session::put('alerta', 'HUbo un error');
+      return back();
+      // return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
     }
   }
 
