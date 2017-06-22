@@ -15,7 +15,9 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        // \App\Middleware\Cords::class,
+        \App\Http\Middleware\Cors::class,
+        // papu ya lo tengo echo :D se coloca aca para que se puede utulizar como algo nativo de laravel
+
     ];
 
     /**
