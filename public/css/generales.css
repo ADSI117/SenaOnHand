@@ -434,6 +434,8 @@ div#ManejadorDeAvisos[role=alert] {
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
+    min-height: 100px;
+    background-color: #795548;
     overflow: hidden;
     display: block;
     border-radius: 1px 1px 0 0;
@@ -462,6 +464,10 @@ div#ManejadorDeAvisos[role=alert] {
       overflow: hidden;
       position: absolute;
       bottom: 10px; }
+      .material-card__big .card-header__image .card-header__titulo a {
+        color: #FFF; }
+        .material-card__big .card-header__image .card-header__titulo a:hover, .material-card__big .card-header__image .card-header__titulo a:active, .material-card__big .card-header__image .card-header__titulo a:focus {
+          color: #FFF; }
   .material-card__big .card__text {
     user-select: none;
     font-size: 1.2em;
@@ -518,7 +524,7 @@ div#ManejadorDeAvisos[role=alert] {
       width: inherit;
       border-radius: 0px 12px 12px 12px;
       background-color: #dde2d8;
-      font-family: "trebuchet ms", tahoma, verdana, sans­serif;
+      font-family: "trebuchet ms", tahoma, verdana, sans┬¡serif;
       font-size: 1.4em; }
       .chatroom .pop-chat .bocadillo::after {
         content: "";

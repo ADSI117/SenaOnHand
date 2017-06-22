@@ -58,7 +58,7 @@
             </li>
             <li class="nav-item">
               {{-- {{route('mensajes.create')}} --}}
-              <a class="nav-link" data-toggle="modal" data-target="#NewMessage" href="{{route('mensajes.create')}}">
+              <a class="nav-link"  href="{{route('mensajes.create')}}">
                 Nuevo mensaje
               </a>
             </li>

@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="{{ asset('css/componentes.css') }}" />
 </head>
 <body >
-	<div id="wrapper">
+	<div id="wrapper" style="min-height: 70vh;margin-bottom: 30px;">
 		@yield('main')
 
 		@yield('modal-control')

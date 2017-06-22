@@ -28,7 +28,7 @@ class BusquedasController extends Controller
                           ->where('p.titulo', 'like', "%$query%")
                           ->orWhere('p.contenido', 'like', "%$query%")
                           ->orWhere('t.descripcion', 'like', "%$query%")
-                          ->select('p.*', 'u.nombres as nombres', 'u.apellidos as apellidos', 'u.url_foto as url_foto')
+                          ->select('p.*', /*'c.nombre as cat_nombre',*/ 'u.nombres as nombres', 'u.apellidos as apellidos', 'u.url_foto as url_foto')
                           ->groupBy('p.id',
                                     'p.user_id',
                                     'p.subcategoria_id',
@@ -42,7 +42,9 @@ class BusquedasController extends Controller
                                     'num_visitas',
                                     'u.nombres',
                                     'u.apellidos',
-                                    'u.url_foto')
+                                    'u.url_foto'
+                                    // 'c.nombre'
+                                    )
                           ->orderBy('p.updated_at', 'desc')
                           ->get();
 

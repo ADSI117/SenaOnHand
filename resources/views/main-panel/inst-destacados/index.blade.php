@@ -14,13 +14,32 @@
 
 @if($usuarios->count() > 0)
 <div class="container">
-  <h3>({{$usuarios->count()}}) Usuarios</h3>
   <br>
   <div class="row justify-content-center">
-
+    <div class="col">
+      <h3>({{$usuarios->count()}}) Usuarios</h3>
+    </div>
+    <div class="w-100"></div>
     @foreach($usuarios as $usuario)
     <div class="col-xs-12 col-sm-10 col-md-6 col-lg-4">
-      <div class="tarjeta">
+
+      <a href="{{route('instructores.show', [$usuario->id])}}" class="material-card">
+        <small class="content-date"><i class="fa fa-clock-o mr-2"></i> {{$usuario->rol_id}}</small>
+        <div class="material-card-header">
+          <img src="{{Storage::url($usuario->url_foto)}}"  alt="">
+          <div class="content-header-title">
+            <h5  class="header--title">{{$usuario->nombres}} {{$usuario->apellidos}}</h5>
+            <small>{{$usuario->email}}</small>
+          </div>
+          
+        </div>
+        
+      </a>
+      <p class="text-center">
+        {{$usuario->perfil}}
+      </p>
+
+      {{-- <div class="tarjeta">
         <h4 class="cabezera">
           <a href="{{route('instructores.show', [$usuario->id])}}">{{$usuario->nombres}} {{$usuario->apellidos}}</a>
           <small class="text-muted">
@@ -38,8 +57,8 @@
         <div class="contenido">
           <p>{{$usuario->perfil}}</p>
         </div>
+      </div> --}}
 
-      </div>
     </div>
     @endforeach
 
