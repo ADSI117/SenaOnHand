@@ -21,17 +21,18 @@
           {!!Form::text('apellidos', $usuario->apellidos, ['id' => 'apellidos', 'placeholder' => 'Apellidos', 'required', 'class' => 'form-control'])!!}
       </div>
 
+			<div class="form-group form-group-no-border">
+				{!! Form::select('estado_id', $estados_usuarios, $usuario->estado_id, [ 'required', 'class' => 'form-control chosen-select']) !!}
+			</div>
+
       <div class="form-group form-group-no-border">
-          {!! Form::select('tipo_doc_id', $tipos_docs, $usuario->tipo_doc_id, [ 'required', 'class' => 'form-control']) !!}
+          {!! Form::select('tipo_doc_id', $tipos_docs, $usuario->tipo_doc_id, [ 'required', 'class' => 'form-control chosen-select']) !!}
       </div>
 
       <div class="form-group form-group-no-border">
           {!!Form::text('num_doc', $usuario->num_doc, ['id' => 'num_doc', 'placeholder' => 'Numero de Documento', 'required', 'class' => 'form-control'])!!}
       </div>
 
-      <div class="form-group form-group-no-border">
-        {!! Form::select('estado_id', $estados_usuarios, $usuario->estado_id, [ 'required', 'class' => 'form-control']) !!}
-      </div>
 
       <div class="form-group form-group-no-border">
           {!!Form::text('email', $usuario->email, ['id' => 'email', 'placeholder' => 'Email', 'required', 'class' => 'form-control'])!!}
@@ -40,6 +41,8 @@
       <div class="form-group form-group-no-border">
           {!!Form::Submit('Editar Usuario', ['class' => 'btn btn-primary'])!!}
       </div>
+
+			{!!Form::close()!!}
 
 
 @endsection
