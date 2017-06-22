@@ -16,6 +16,7 @@
 	<link rel="stylesheet"  href="{{asset('plugins/animate/animate.css')}}">
 	<link rel="stylesheet" href="{{ asset('css/generales.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/componentes.css') }}" />
+	<link rel="stylesheet" href="{{ asset('plugins/trumbowyg/ui/trumbowyg.min.css') }}" />
 </head>
 <body >
 	<div id="wrapper" style="min-height: 70vh;margin-bottom: 30px;">
@@ -32,6 +33,7 @@
 	{{-- <script src="{{asset('js/app.js')}}"></script> --}}
 	<script src="{{asset('js/componentes/AlertasEmergentes.js')}}"></script>
 	<script src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}"></script>
+	<script src="{{ asset('plugins/trumbowyg/trumbowyg.min.js') }}"></script>
 	<script type="text/javascript">
 		$(".chosen-select").chosen({
 			disable_search_threshold: 10,
@@ -45,6 +47,10 @@
 		$('#NewMessage').on('shown.bs.modal', function (e) {
 			// do something...
 			$('body').css('padding-right', '0px');
+		});
+
+		$('.trumbowyg-demo').trumbowyg({
+			lang: 'es'
 		});
 	</script>
   @yield('js')

@@ -86,7 +86,7 @@
 				<h4 class="display-4 text-capitalize">{{$publicacion->titulo}}</h4>
 				<hr />
 				<p class="lead mt-4 mb-4 text-capitalize">
-					{{$publicacion->contenido}}
+					{!! $publicacion->contenido !!}
 				</p>
 			</div>
 		</div>

@@ -2,12 +2,12 @@
 
 
 @section('main')
-@include('template.h-navbar') 
+@include('template.h-navbar')
 
   <div class="page-banner" style="background-color:#FBC02D;color:#000">
     <div class="container">
       <h1>
-        <i class="fa fa-pencil mr-2"></i>{{ $publicacion->titulo }} 
+        <i class="fa fa-pencil mr-2"></i>{{ $publicacion->titulo }}
       </h1>
     </div>
     <div class="btn-float-page">
@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
               {!!Form::textarea('contenido', $publicacion->contenido,
-              ['id' => 'contenido', 'rows' => '5', 'placeholder' => 'Contenido de la pubicación', 'required', 'class' => 'form-control'])!!}
+              ['id' => 'contenido', 'rows' => '5', 'placeholder' => 'Contenido de la pubicación', 'required', 'class' => 'form-control  trumbowyg-demo'])!!}
             </div>
             <div class="form-group form-group-no-border">
               {!! Form::label('imagen', 'Imagen') !!}
@@ -53,7 +53,7 @@
           </div>
        {!! Form::close()!!}
       </div>
-    
+
 
     <div class="col-xs-12 col-4">
       <!-- Desplegar Etiquetas que tiene la publicacion -->

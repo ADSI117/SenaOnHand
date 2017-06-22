@@ -25,7 +25,7 @@
             </div>
             <div class="form-group form-group-no-border ">
               {!! Form::label('contenido', 'Contenido') !!}
-              {!!Form::textarea('contenido', null, ['id' => 'contenido', 'rows' => '5', 'placeholder' => 'Contenido de la pubicación', 'required', 'class' => 'form-control'])!!}
+              {!!Form::textarea('contenido', null, ['id' => 'contenido', 'rows' => '5', 'placeholder' => 'Contenido de la pubicación', 'required', 'class' => 'form-control trumbowyg-demo'])!!}
             </div>
             <div class="form-group">
               {!! Form::select('subcategoria_id', $subcategorias, null, ['placeholder' => 'Seleccione una Subcategoria', 'required', 'class' => 'material-select chosen-select']) !!}
