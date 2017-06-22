@@ -4,7 +4,7 @@
 @section('title','Programas')
 
 {{-- titulo del contenido --}}
-@section('title-content', 'Gestion de comentarios')
+@section('title-content', 'Gestion de denuncias')
 {{-- poner el buscar al lado del titulo --}}
 @section('search-content')
   <!-- BUSCADOR -->
