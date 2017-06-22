@@ -87,7 +87,7 @@ class SedesController extends Controller
     {
         $sede = Sede::find($id);
         $sede->centro_id = $request->centro_id;
-        $sede->acronimo = $request->acronimo;
+        // $sede->acronimo = $request->acronimo;
         $sede->descripcion = $request->descripcion;
 
         if ($sede->save()){

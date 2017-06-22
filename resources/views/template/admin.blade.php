@@ -28,7 +28,7 @@
           @yield('search-content')
         </div>
         <div class="row justify-content-center">
-          <div class="col-10">
+          <div class="col">
             @yield('content')
           </div>
         </div>
