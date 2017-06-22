@@ -121,6 +121,11 @@ class User extends Authenticatable
         return $this->hasMany('App\TbSeguido', 'usuario_seguido_id', 'id');
     }
 
+    public function denuncias() {
+        // return $this->belongsToMany('App\User')->withTimestamps();
+        return $this->hasMany('App\Denuncia', 'user_id', 'id');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

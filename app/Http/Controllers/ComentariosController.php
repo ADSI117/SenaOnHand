@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comentario;
 use Auth;
+use App\Denuncia;
 
 class ComentariosController extends Controller
 {
@@ -87,7 +88,21 @@ class ComentariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comentario = Comentario::find($id);
+        $comentario->estado_id = 2;
+        $denuncia = Denuncia::find($request->denuncia_id);
+        // dd($denuncia);
+        $denuncia->estado_id = 2;
+
+        $denuncia->save();
+
+        if ($comentario->save()){
+          flash('El comentario se ha borrado')->success()->important();
+          return back();
+        }else{
+          flash('¡Hubo un error!')->success()->important();
+          return back();
+        }
     }
 
     /**

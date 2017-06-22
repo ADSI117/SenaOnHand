@@ -65,6 +65,8 @@ Route::get('admin', 'AdminController@index');
 
  Route::group(['prefix'=>'admin'],function(){
 
+    Route::resource('ges-denuncias', 'GesDenunciasController');
+
     Route::resource('tipos_denuncias','TiposDenunciasController');
 
     Route::resource('usuario','UsuarioMController');

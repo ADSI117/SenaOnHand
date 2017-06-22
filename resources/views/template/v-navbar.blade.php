@@ -1,5 +1,6 @@
 <div class="list-group">
   <a class="list-group-item list-group-item-action" href="{{ route('admin-usuarios.index') }}">Usuarios</a>
+  <a class="list-group-item list-group-item-action" href="{{ route('ges-denuncias.index') }}">Gestion denuncias</a>
   <a class="list-group-item list-group-item-action" href="{{ route('tipos_denuncias.index') }}">Tipos denuncias</a>
   <a class="list-group-item list-group-item-action" href="{{ route('estados_usuarios.index') }}">Estados usuarios</a>
   <a class="list-group-item list-group-item-action" href="{{ route('estados_comentarios.index') }}">Estados comentarios</a>

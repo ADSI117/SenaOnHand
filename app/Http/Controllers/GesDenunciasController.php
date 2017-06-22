@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Denuncia;
-use Auth;
+use DB;
 
-class DenunciasController extends Controller
+class GesDenunciasController extends Controller
 {
-  public function __construct()
-  {
-      $this->middleware('auth');
 
-  }
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +22,19 @@ class DenunciasController extends Controller
      */
     public function index()
     {
-
+      $denuncias =DB::table('tb_denuncias as d')
+                      ->leftjoin('users as u', 'u.id', 'd.usuario_id')
+                      ->leftjoin('tb_estados_denuncias as ed', 'ed.id', 'd.estado_id')
+                      ->leftjoin('tb_tipos_denuncias as td', 'td.id', 'd.tipo_id')
+                      ->leftjoin('tb_comentarios as c', 'c.id', 'd.comentario_id')
+                      ->leftjoin('tb_publicaciones as p', 'p.id', 'd.publicacion_id')
+                      ->select('d.*', 'u.nombres', 'u.apellidos', 'ed.descripcion as desc_den',
+                       'td.descripcion as tip_den', 'c.comentario',
+                       'p.titulo', 'ed.descripcion as estado')
+                       ->where ('d.estado_id', '=', 1)
+                      ->paginate(12);
+      // dd($denuncias);
+      return view('admin.ges-denuncias.index', compact('denuncias'));
     }
 
     /**
@@ -41,22 +55,7 @@ class DenunciasController extends Controller
      */
     public function store(Request $request)
     {
-        $denuncia = new Denuncia();
-        $denuncia->usuario_id = Auth::user()->id;
-        $denuncia->comentario_id = $request->comentario_id;
-        $denuncia->publicacion_id = $request->publicacion_id;
-        $denuncia->tipo_id = $request->tipo_denuncia;
-
-        $denuncia->estado_id = 1;
-        $denuncia->comentario = $request->comentario;
-
-        if ($denuncia->save()){
-          flash('Se ha enviado la denuncia')->success()->important();
-          return back();
-        }else{
-          flash('Hubo un error')->error()->important();
-          return back();
-        }
+        //
     }
 
     /**
@@ -90,15 +89,7 @@ class DenunciasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $denuncia = Denuncia::find($id);
-        $denuncia->estado_id = 2;
-        if($denuncia->save()){
-          flash('La denuncia se a borrado')->success()->important();
-          return back();
-        }else{
-          flash('¡HUbo un error!')->success()->important();
-          return back();
-        }
+        //
     }
 
     /**
