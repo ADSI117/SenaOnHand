@@ -42,7 +42,7 @@
               {!!Form::text('video', null, ['id' => 'video', 'required', 'placeholder' => 'URL del video', 'class' => 'material-input'])!!}
             </div>
             <div class="form-group">
-              {!! Form::select('subcategoria_id', $subcategorias, $publicacion->subcategoria_id, ['placeholder' => 'Seleccione una Subcategoria', 'required', 'class' => 'chosen-select form-control']) !!}
+              {!! Form::select('subcategoria_id', $subcategorias, $publicacion->subcategoria_id, ['placeholder' => 'Seleccione una categoria', 'required', 'class' => 'chosen-select form-control']) !!}
             </div>
             <div class="form-group">
               {!! Form::select('estado_id', $estados, $publicacion->estado_id, ['placeholder' => 'Estado publicacion', 'required', 'class' => 'chosen-select form-control']) !!}

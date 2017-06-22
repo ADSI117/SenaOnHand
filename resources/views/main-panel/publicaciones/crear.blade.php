@@ -24,7 +24,7 @@
               {!!Form::text('titulo', null, ['id' => 'nombre', 'placeholder' => 'Título', 'required', 'class' => 'material-input'])!!}
             </div>
             <div class="form-group">
-              {!! Form::select('subcategoria_id', $subcategorias, null, ['placeholder' => 'Seleccione una Subcategoria', 'required', 'class' => 'material-select chosen-select']) !!}
+              {!! Form::select('subcategoria_id', $subcategorias, null, ['placeholder' => 'Seleccione una categoria', 'required', 'class' => 'material-select chosen-select']) !!}
             </div>
             <div class="form-group form-group-no-border">
               {!! Form::select('estado_id', $estados, null, ['placeholder' => 'Estado publicacion', 'required', 'class' => 'form-control chosen-select']) !!}
