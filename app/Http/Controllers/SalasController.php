@@ -8,6 +8,11 @@ use App\Mensaje;
 use Auth;
 class SalasController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+
+  }
     /**
      * Display a listing of the resource.
      *

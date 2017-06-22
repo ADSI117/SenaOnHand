@@ -91,7 +91,7 @@
 			</div>
 		</div>
 
-		@if($publicacion->imagenes)
+		@if($publicacion->imagenes->count() > 0)
 		<div class='row mt-5 justify-content-center'>
 			<div class="col">
 				<h3><i class="fa fa-picture-o mr-2"></i>Imagenes</h3>
@@ -106,7 +106,7 @@
 		</div>
 		@endif
 
-		@if($publicacion->archivos->all())
+		@if($publicacion->archivos->count() > 0)
 		<div class="row mt-5">
 			<div class="col">
 				<h3><i class="fa fa-file-text mr-2"></i>Archivos</h3>
@@ -122,7 +122,7 @@
 		</div>
 		@endif
 
-		@if($publicacion->videos->all())
+		@if($publicacion->videos->count() > 0)
 			<div class="row mt-5">
 				<div class="col">
 					<div class="embed-responsive embed-responsive-21by9">

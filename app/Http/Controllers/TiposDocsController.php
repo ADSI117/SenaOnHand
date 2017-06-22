@@ -8,6 +8,11 @@ use App\Http\Requests\RequestTipoDoc;
 
 class TiposDocsController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+
+  }
     /**
      * Display a listing of the resource.
      *

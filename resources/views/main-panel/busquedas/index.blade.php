@@ -55,7 +55,7 @@
               <article class="mdcard__article">
                   <h4><a href="{{route('publicaciones.show', [$publicacion->id])}}">{{$publicacion->titulo}}</a></h4>
 
-                  <p>{{substr($publicacion->contenido, 0, 140)}} ...</p>
+                  <p>{!!substr($publicacion->contenido, 0, 140)!!} ...</p>
               </article>
           </div>
 
