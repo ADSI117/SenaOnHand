@@ -50,7 +50,8 @@ class BusquedasController extends Controller
 
             $usuarios = DB::table('users as u')
                                 // ->select('u.id', 'u.nombres', 'u.apellidos', 'u.email')
-                                ->select('u.*')
+                                ->leftjoin('tb_roles as r', 'r.id', 'u.rol_id')
+                                ->select('u.*', 'r.descripcion as rol')
                                 ->where('u.email', 'like', "%$query%")
                                 ->orWhere('u.nombres', 'like', "%$query%")
                                 ->orWhere('u.perfil', 'like', "%$query%")

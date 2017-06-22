@@ -101,9 +101,11 @@ class MensajesController extends Controller
         $mensajes = Mensaje::where('sala_id', '=', $sala->id)
                               ->orderBy('created_at', 'asc')
                               ->get();
-        $cad = '';
 
-        return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes', 'cad'));
+
+        // return view ('main-panel.mensajes.detalle', compact('sala', 'mensajes'));
+
+        return back();
 
     }
 

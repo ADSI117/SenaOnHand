@@ -61,7 +61,7 @@
     {!! Form::hidden('sala_id', $sala->id) !!}
     <div class="row justify-content-center mt-4">
       <div class="col-8">
-        {!!Form::text('mensaje', $cad, ['id' => 'nombre', 'placeholder' => 'Escribir mensaje...', 'required', 'class' => 'material-input'])!!}
+        {!!Form::text('mensaje', '', ['id' => 'mensaje', 'placeholder' => 'Escribir mensaje...', 'required', 'class' => 'material-input'])!!}
       </div>
       <div class="col-2">
         {!!Form::submit('Enviar', ['class'=>'material-btn btn-indigo'])!!}
@@ -74,6 +74,9 @@
 @section('js')
   <script type="text/javascript">
     let scroll = document.querySelector('.chatroom');
+    let mensaje = document.querySelector('#mensaje');
     scroll.scrollTop = scroll.scrollHeight;
+    mensaje.value = '';
+
   </script>
 @endsection

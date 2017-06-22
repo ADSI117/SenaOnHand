@@ -30,10 +30,13 @@
 		</div>
 		@endif
 	</div>
+	<div class="">
+		<!-- Mensaje flash -->
+		@include('flash::message')
+	</div>
 	<div class="container mb-5">
 		<div class="row">
-			<!-- Mensaje flash -->
-			@include('flash::message')
+
 
 			<div class="col">
 				<div class="d-flex align-items-center">
@@ -48,7 +51,7 @@
 								{{$publicacion->user->nombres}} {{$publicacion->user->apellidos}}
 							</a>
 						</span>
-							
+
 						<div class="d-flex align-items-baseline">
 							<i class="fa fa-bookmark mr-2"></i> {{$publicacion->user->publicaciones->count()}} publicaciones.
 						</div>
@@ -62,7 +65,7 @@
 				{!!Form::open(['route' => 'calificaciones.store', 'id' => 'form'])!!}
 					{!!Form::hidden('publicacion_id', $publicacion->id)!!}
 					<p class="clasificacion">
-						{{-- {!!Form::submit('Calificar', ['class' => 'material-btn'])!!} --}}
+						{!!Form::submit('Calificar', ['class' => 'material-btn'])!!}
 						<input id="radio1" type="radio" name="estrellas" value="5">
 						<label for="radio1"><i class="fa fa-leaf"></i></label>
 						<input id="radio2" type="radio" name="estrellas" value="4">
@@ -209,7 +212,7 @@
 
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 

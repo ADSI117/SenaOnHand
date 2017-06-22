@@ -40,8 +40,9 @@ class CalificacionesController extends Controller
      */
     public function store(Request $request)
     {
+
       if ($request->estrellas < 1){
-        flash('¡Debes seleccionarpor lo menos una estrella!')->error()->important();
+        flash('¡Debes seleccionarpor lo menos una estrella!')->success()->important();
         return redirect()->route('publicaciones.show', ['id' => $request->publicacion_id]);
       }
       $buscar =  Calificacion::where('publicacion_id', '=', $request->publicacion_id)
@@ -76,6 +77,13 @@ class CalificacionesController extends Controller
         $publicacion->cant_cal = $num_cal;
 
         $publicacion->save();
+
+        $instructor = User::find($publicacion->user_id);
+
+        $instructor->estrellas += $request->estrellas;
+        $instructor->cant_cal++;
+
+        $instructor->save();
 
         // TODO: Ojo verificar velocidad de procesamiento en servidor en los siguientes eventos
 

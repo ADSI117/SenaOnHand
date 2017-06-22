@@ -64,7 +64,7 @@
 												{{$seguido->perfil}}
 											</p>
 											<div>
-												{!!Form::submit('Dejar de seguir', ['class'=>'card__button'])!!}
+												{!!Form::submit('Dejar de seguir', ['class'=>'material-btn btn-indigo'])!!}
 											</div>
 										{{ Form::close() }}
 									</div>

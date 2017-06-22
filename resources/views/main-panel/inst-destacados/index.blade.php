@@ -24,16 +24,15 @@
     <div class="col-xs-12 col-sm-10 col-md-6 col-lg-4">
 
       <a href="{{route('instructores.show', [$usuario->id])}}" class="material-card">
-        <small class="content-date"><i class="fa fa-clock-o mr-2"></i> {{$usuario->rol_id}}</small>
         <div class="material-card-header">
           <img src="{{Storage::url($usuario->url_foto)}}"  alt="">
           <div class="content-header-title">
             <h5  class="header--title">{{$usuario->nombres}} {{$usuario->apellidos}}</h5>
             <small>{{$usuario->email}}</small>
           </div>
-          
+
         </div>
-        
+
       </a>
       <p class="text-center">
         {{$usuario->perfil}}

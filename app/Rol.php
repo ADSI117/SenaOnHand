@@ -17,4 +17,8 @@ class Rol extends Model {
         return $query->where('descripcion','LIKE', "%$descripcion%");
     }
 
+    public function usuarios() {
+        return $this->hasMany('App\User','rol_id','id');
+    }
+
 }

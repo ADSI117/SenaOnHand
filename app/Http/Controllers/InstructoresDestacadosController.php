@@ -14,7 +14,9 @@ class InstructoresDestacadosController extends Controller
      */
     public function index()
     {
-      $usuarios = User::where('rol_id', '=', '2')->get();
+      $usuarios = User::where('rol_id', '=', '2')
+                        ->orderBy('estrellas', 'desc')
+                        ->get();
       return view ('main-panel.inst-destacados.index', compact('usuarios'));
     }
 

@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('profesion',45)->nullable();
             $table->text('perfil')->nullable();
             $table->string('url_foto',100)->nullable();
+            $table->integer('estrellas')->default(0);
+            $table->integer('cant_cal')->default(0);
             $table->string('password',60);
             $table->rememberToken();
             $table->timestamps();

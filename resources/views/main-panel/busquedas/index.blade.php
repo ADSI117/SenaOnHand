@@ -25,7 +25,7 @@
     <div class="col">
       <h3>({{$publicaciones->count()}}) Publicaciones</h3>
     </div>
-    <div class="w-100"></div>  
+    <div class="w-100"></div>
     @foreach($publicaciones as $publicacion)
     <div class="col-xs-12 col-sm-10 col-md-6 col-lg-4">
       <div class="mdcard radius shadowDepth1">
@@ -35,7 +35,7 @@
 
           <div class="mdcard__content mdcard__padding">
               <div class="mdcard__share">
-                  <div class="mdcard__social">  
+                  <div class="mdcard__social">
                       <a class="share-icon facebook" href="#"><span class="fa fa-facebook"></span></a>
                       <a class="share-icon twitter" href="#"><span class="fa fa-twitter"></span></a>
                       <a class="share-icon googleplus" href="#"><span class="fa fa-google-plus"></span></a>
@@ -60,7 +60,7 @@
           </div>
 
           <div class="mdcard__action">
-              
+
               <div class="mdcard__author">
                   <img src="{{Storage::url($publicacion->url_foto)}}" alt="author" width="50" height="50">
                   <div class="mdcard__author-content">
@@ -87,7 +87,7 @@
     @foreach($usuarios as $usuario)
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <a href="{{route('instructores.show', [$usuario->id])}}" class="material-card">
-          <small class="content-date"><i class="fa fa-clock-o mr-2"></i> {{$usuario->rol_id}}</small>
+          <small class="content-date"><i class="fa fa-clock-o mr-2"></i> {{$usuario->rol}}</small>
           <div class="material-card-header">
             <img src="{{Storage::url($usuario->url_foto)}}"  alt="">
             <div class="content-header-title">
@@ -96,7 +96,7 @@
             </div>
           </div>
           <p>
-            {{$usuario->perfil}}
+            <!-- {{$usuario->perfil}} -->
           </p>
         </a>
     </div>
