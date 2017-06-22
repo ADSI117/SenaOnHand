@@ -19,7 +19,7 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-12 col-6">
+      <div class="col-xs-12 col-md-6">
         {!! Form::open(['route' => ['publicaciones.update', $publicacion], 'method' => 'PUT', 'files' => true, 'class' => 'card']) !!}
           <div class="card-block">
             <div class="form-group">
@@ -55,7 +55,7 @@
       </div>
 
 
-    <div class="col-xs-12 col-4">
+    <div class="col-xs-12 col-md-6">
       <!-- Desplegar Etiquetas que tiene la publicacion -->
       @if($publicacion->tags->all())
         <h3>Tags</h3>
