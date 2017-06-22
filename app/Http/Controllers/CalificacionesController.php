@@ -47,7 +47,7 @@ class CalificacionesController extends Controller
     {
 
       if ($request->estrellas < 1){
-        flash('¡Debes seleccionarpor lo menos una estrella!')->success()->important();
+        flash('¡Debes seleccionarpor lo menos una estrella!')->error()->important();
         return redirect()->route('publicaciones.show', ['id' => $request->publicacion_id]);
       }
       $buscar =  Calificacion::where('publicacion_id', '=', $request->publicacion_id)

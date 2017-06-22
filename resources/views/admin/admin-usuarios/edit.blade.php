@@ -9,7 +9,7 @@
 
 	{!!Form::open(['route'=>['admin-usuarios.update',$usuario],'method'=>'PUT'])!!}
 			<div class="header header-primary text-center">
-				{{\Session::get('alerta')}}
+				@include('flash::message')
 			</div>
 		  <div class="header header-primary text-center">
         <h4 class="title title-up" >Editar Usuario</h4>
@@ -45,7 +45,7 @@
       <div class="form-group form-group-no-border">
           {!!Form::Submit('Editar Usuario', ['class' => 'btn btn-primary'])!!}
       </div>
-
+			
 			{!!Form::close()!!}
 
 

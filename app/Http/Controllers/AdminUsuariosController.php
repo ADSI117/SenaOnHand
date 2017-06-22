@@ -82,7 +82,7 @@ class AdminUsuariosController extends Controller
   */
   public function edit($id)
   {
-    \Session::put('alerta', '');
+
     $usuario = User::find($id);
     $usuario->tipo_doc_id;
     $tipos_docs = TipoDoc::orderBy('nombre','ASC')->pluck('nombre', 'id');
@@ -111,12 +111,12 @@ class AdminUsuariosController extends Controller
     $usuario->email = $request->email;
     // dd($usuario);
     if ($usuario->save()){
-      \Session::put('alerta', 'Registro actualizado');
+      flash('¡Registro actualizado!')->success()->important();
       // dd(\Session::get('alerta'));
       return back();
       // return '{ "estado": 1, "mensaje": "Registro actualizado"}';
     } else {
-      \Session::put('alerta', 'HUbo un error');
+      flash('¡Hubo iun error!')->error()->important();
       return back();
       // return '{ "estado": 0, "mensaje": "Registro no pudo actualizarse"}';
     }

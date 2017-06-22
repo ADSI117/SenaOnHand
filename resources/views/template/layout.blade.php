@@ -9,7 +9,6 @@
 	<title>@yield('title','SenaOnHand')</title>
 	<link rel="stylesheet" href="{{asset('plugins/font-awesome/font-awesome.min.css')}}" />
 	<link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700&amp;subset=latin-ext" rel="stylesheet" />
-	<link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.min.css') }}">
 	<link rel="stylesheet" href="{{asset('plugins/NowKit/css/bootstrap.min.css')}}" />
 	<link rel="stylesheet" href="{{asset('plugins/NowKit/css/now-ui-kit.css')}}" />
 	{{-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> --}}
@@ -17,6 +16,7 @@
 	<link rel="stylesheet" href="{{ asset('css/generales.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/componentes.css') }}" />
 	<link rel="stylesheet" href="{{ asset('plugins/trumbowyg/ui/trumbowyg.min.css') }}" />
+	<link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.min.css') }}">
 </head>
 <body >
 	<div id="wrapper" style="min-height: 70vh;margin-bottom: 30px;">
