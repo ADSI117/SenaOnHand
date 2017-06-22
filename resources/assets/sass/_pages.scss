@@ -144,6 +144,18 @@ html, body {
   font-size: .8em;
   border-radius: 25px;
   background-color: #f1f1f1;
+  .closebtn {
+    padding-left: 10px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    font-size: .9em;
+    cursor: pointer;
+  }
+
+  .closebtn:hover {
+      color: #000;
+  }
 }
 
 .notify {

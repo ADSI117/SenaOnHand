@@ -45,7 +45,7 @@ class MainPanelController extends Controller
                             ->leftjoin('tb_categorias as c', 'c.id', '=', 's.categoria_id')
                             ->leftjoin('usuario_categoria as uc', 'uc.categoria_id', '=', 'c.id')
                             ->where('uc.user_id', '=', $usuario->id)
-                            ->select('p.*', 'u.nombres as nombres', 'u.apellidos as apellidos', 'u.url_foto as url_foto')
+                            ->select('p.*', 'c.nombre as cat_nombre' , 'u.nombres as nombres', 'u.apellidos as apellidos', 'u.url_foto as url_foto')
                             ->groupBy('p.id',
                                       'p.user_id',
                                       'p.subcategoria_id',
@@ -59,7 +59,8 @@ class MainPanelController extends Controller
                                       'num_visitas',
                                       'u.nombres',
                                       'u.apellidos',
-                                      'u.url_foto')
+                                      'u.url_foto',
+                                      'c.nombre')
                             ->orderBy('p.updated_at', 'desc')
                             ->paginate(12);
 

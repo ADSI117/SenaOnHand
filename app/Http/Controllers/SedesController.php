@@ -72,7 +72,8 @@ class SedesController extends Controller
         $sede = Sede::find($id);
         $sede->centro;
         $centros = Centro::orderBy('descripcion', 'desc')->pluck('descripcion', 'id');
-        return view ('admin.sedes.edit', ['sede'=>$sede, 'centros'=>$centros]);
+        // return view ('admin.sedes.edit', ['sede'=>$sede, 'centros'=>$centros]);
+        return '{ "estado": 1, "mensaje": "Registro creado"}';
     }
 
     /**

@@ -1356,7 +1356,9 @@ textarea.form-control {
 textarea.form-control:focus, textarea.form-control:active {
   border-left: none;
   border-top: none;
-  border-right: none; }
+  border-right: none;
+  border-bottom: 1px solid #3F51B5;
+   }
 
 .has-success.form-group .form-control, .has-success.form-group.form-group-no-border .form-control, .has-danger.form-group .form-control, .has-danger.form-group.form-group-no-border .form-control {
   padding-right: 40px; }

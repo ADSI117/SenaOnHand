@@ -44,14 +44,15 @@
 }
  
 .mdcard__image {
-    min-height: 100px;
+    min-height: 50px;
     background-color: #eee;
-}
-    .mdcard__image img {
+    & img {
         width: 100%;
         max-width: 100%;
         display: block;
     }
+}
+    
 
 .mdcard__content {
     position: relative;

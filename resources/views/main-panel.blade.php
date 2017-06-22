@@ -17,8 +17,8 @@
     @foreach($publicaciones as $publicacion)
     <div class="col-xs-12 col-sm-10 col-md-6 col-lg-4">
       <div class="mdcard radius shadowDepth1">
-          <div class="mdcard__image border-tlr-radius">
-              <img src="http://lorempixel.com/400/200/sports/" alt="image" class="border-tlr-radius">
+          <div class="mdcard__image border-tlr-radius bg-indigo">
+              {{-- <img src="http://lorempixel.com/400/200/sports/" alt="image" class="border-tlr-radius"> --}}
           </div>
 
           <div class="mdcard__content mdcard__padding">
@@ -33,7 +33,7 @@
               </div>
 
               <div class="mdcard__meta">
-                  <a href="#">Web Design(cat)</a>
+                  <a href="#">{{$publicacion->cat_nombre}}</a>
                   <time>{{$publicacion->created_at}}</time>
               </div>
 
@@ -47,7 +47,7 @@
           <div class="mdcard__action">
               
               <div class="mdcard__author">
-                  <img src="{{Storage::url($publicacion->url_foto)}}" alt="author">
+                  <img src="{{Storage::url($publicacion->url_foto)}}" alt="author" width="50" height="50">
                   <div class="mdcard__author-content">
                       Por <a href="{{route('instructores.show', [$publicacion->user_id])}}">{{$publicacion->nombres}} {{$publicacion->apellidos}}</a>
                   </div>

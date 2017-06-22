@@ -9,13 +9,13 @@ function showModalAccion(dataset) {
     let cells = arrCells(dataset.td);
     let index = selectOption(cells[1].dataset.index);
     FORM.centro_id.selectedIndex = parseInt(index.value);
-    FORM.acronimo.value = cells[2].textContent;
-    FORM.descripcion.value = cells[3].textContent;
+    // FORM.acronimo.value = cells[2].textContent;
+    FORM.descripcion.value = cells[2].textContent;
     FORM.btnSubmit.textContent = "Guardar";
   } else {
     // Crear
     FORM.centro_id.selectedIndex = 0;
-    FORM.acronimo.value = "";
+    // FORM.acronimo.value = "";
     FORM.descripcion.value = "";
     FORM.btnSubmit.textContent = "Registrar";
   }
@@ -30,7 +30,7 @@ FORM.addEventListener('submit', function(ev) {
     datos += "&_method=PUT";
   }
   datos += "&centro_id="+form.centro_id.value;
-  datos += "&acronimo="+form.acronimo.value;
+  // datos += "&acronimo="+form.acronimo.value;
   datos += "&descripcion="+form.descripcion.value;
 
   do_send(form.action,"POST",datos)

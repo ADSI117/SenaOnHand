@@ -29,7 +29,7 @@
 	<script src="{{asset('plugins/NowKit/js/now-ui-kit.js')}}"></script>
 	<script src="{{asset('plugins/NowKit/js/core/tether.min.js')}}"></script>
 	<script src="{{asset('plugins/NowKit/js/core/bootstrap.min.js')}}"></script>
-	<script src="{{asset('js/app.js')}}"></script>
+	{{-- <script src="{{asset('js/app.js')}}"></script> --}}
 	<script src="{{asset('js/componentes/AlertasEmergentes.js')}}"></script>
 	<script src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}"></script>
 	<script type="text/javascript">
