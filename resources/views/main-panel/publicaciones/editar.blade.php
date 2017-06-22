@@ -18,7 +18,7 @@
   </div>
 
   <div class="container-fluid">
-    <div class="row justify-content-center">
+    <div class="row">
       <div class="col-xs-12 col-6">
         {!! Form::open(['route' => ['publicaciones.update', $publicacion], 'method' => 'PUT', 'files' => true, 'class' => 'card']) !!}
           <div class="card-block">

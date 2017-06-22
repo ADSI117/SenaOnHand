@@ -52,7 +52,7 @@
 			@foreach($categorias as $categoria)
 				<tr data-tr="{{$categoria->id}}">
 					<td class="align-middle">{{$categoria->id}}</td>
-					<td class="align-middle">{{$categoria->descripcion}}</td>
+					<td class="align-middle">{{$categoria->nombre}}</td>
 					<td class="ta-right">
 						<button
 							data-toggle="modal" data-target="#modal-control"
