@@ -92,9 +92,10 @@
                     <img src="{{Storage::url('soh_profile_default.png') }}" alt="" class="rounded-0 hidden-md-down white">
                   @endif
                   <a class="dropdown-header">Configuración</a>
-                  
 
-                  <a class="dropdown-item"  href="{{route('seguidores.index')}}" >Seguidores</a>
+                  @if (Auth::user()->rol_id == 2)
+                    <a class="dropdown-item"  href="{{route('seguidores.index')}}" >Seguidores</a>
+                  @endif
                   <a class="dropdown-item"  href="{{route('usuarios.edit', Auth::user()->id)}}" >Editar perfil</a>
                   <a class="dropdown-item"  href="{{route('suscripciones.index')}}" >Mis suscripciones</a>
                   <div class="divider"></div>
